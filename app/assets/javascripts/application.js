@@ -22,7 +22,6 @@
 //= require toastr
 //= require cocoon
 
-//= require easing
 //= require vacunate
 
 
