@@ -41,7 +41,12 @@ ActiveRecord::Schema.define(version: 2021_01_27_223235) do
     t.integer "phone"
     t.string "email"
     t.boolean "condition"
-    t.bigint "population_group_id"
+    t.string "population_group"
+    t.boolean "obesity"
+    t.boolean "diabetes"
+    t.boolean "chronic_kidney_disease"
+    t.boolean "cardiovascular_disease"
+    t.boolean "chronic_lung_disease"
     t.bigint "locality_id"
     t.string "address_street"
     t.integer "address_number"
@@ -51,7 +56,6 @@ ActiveRecord::Schema.define(version: 2021_01_27_223235) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["locality_id"], name: "index_people_on_locality_id"
-    t.index ["population_group_id"], name: "index_people_on_population_group_id"
     t.index ["state_id"], name: "index_people_on_state_id"
   end
 
@@ -100,6 +104,5 @@ ActiveRecord::Schema.define(version: 2021_01_27_223235) do
   end
 
   add_foreign_key "people", "localities"
-  add_foreign_key "people", "population_groups"
   add_foreign_key "people", "states"
 end

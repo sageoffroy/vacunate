@@ -25,10 +25,10 @@ class PeopleController < ApplicationController
 
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: "Person was successfully created." }
+        format.html { redirect_to '/', notice: "Person was successfully created." }
         format.json { render :show, status: :created, location: @person }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render "inscripcion/index", status: :unprocessable_entity }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
@@ -64,6 +64,6 @@ class PeopleController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.require(:person).permit(:firstname, :lastname, :dni, :dni_sex, :self_perceived_sex, :birthdate, :phone_code, :phone, :email, :condition, :population_group_id, :locality_id, :address_street, :address_number, :address_floor, :address_department, :state_id)
+      params.require(:person).permit(:firstname, :lastname, :dni, :dni_sex, :self_perceived_sex, :birthdate, :phone_code, :phone, :email, :condition, :population_group, :locality_id, :address_street, :address_number, :address_floor, :address_department, :state_id, :obesity, :diabetes, :chronic_kidney_disease, :cardiovascular_disease, :chronic_lung_disease)
     end
 end

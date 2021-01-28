@@ -2406,6 +2406,10 @@ textarea.form-control {
   }
 }
 
+label[for="person_population_group"] {
+  font-size: 14px;
+}
+
 .btn {
   display: inline-block;
   font-weight: 400;
@@ -10316,7 +10320,7 @@ body {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  padding: 0.375rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -10347,4 +10351,8 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.actions {
+  width: 100%;
 }

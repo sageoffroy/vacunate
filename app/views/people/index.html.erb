@@ -1,30 +1,69 @@
-<h1>People</h1>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+  <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><%= image_tag "logo_chubut.png", class:"img-fluid nav-logo" %></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">VOLVER</a></li>
+          </ul>
+      </div>
+  </div>
+</nav>
 
-<table class="responsive nowrap table table-hover" id="dttb-people" data-sort="true" data-source="<%= url_for(format: :json)%>">
-  <thead>
-    <tr>
-      <th data-data="firstname">Firstname</th>
-      <th data-data="lastname">Lastname</th>
-      <th data-data="dni">Dni</th>
-      <th data-data="dni_sex">Dni sex</th>
-      <th data-data="self_perceived_sex">Self perceived sex</th>
-      <th data-data="birthdate">Birthdate</th>
-      <th data-data="telephone">Telephone</th>
-      <th data-data="email">Email</th>
-      <th data-data="condition">Condition</th>
-      <th data-data="population_group">Population group</th>
-      <th data-data="locality">Locality</th>
-      <th data-data="address_street">Address street</th>
-      <th data-data="address_number">Address number</th>
-      <th data-data="address_floor">Address floor</th>
-      <th data-data="address_department">Address department</th>
-      <th data-data="state">State</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
-    </tr>
-  </thead>
+<!-- Formulario-->
+<section id="formulario-header" class="formulario-header-section">
+  <div class="container">
+    <div class="panel-pane pane-texto">
+      <div class="pane-content">
+        <div class="">
+          <div class="row text-center my-2">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <%= image_tag "logo_vacunate.png", style:"max-width:25%;" %>
+              <h6 class="text-white mx-auto mt-3">Plan provincial público, gratuito y optativo contra COVID-19</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container">
+  <div class="panel-pane pane-texto">
+    <div class="pane-content">
+      <div class="row my-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h2>Formulario de Inscripción</h2>
+          <table class="datatable table">
+            <thead>
+              <tr>
+                <th><%= Person.human_attribute_name("dni").titleize%></th>
+                <th><%= Person.human_attribute_name("firstname").titleize%></th>
+                <th><%= Person.human_attribute_name("lastname").titleize%></th>
+                <th>Opciones</th>
+              </tr>
 
-</table>
+            </thead>
 
-<br>
-
-<%= link_to 'New Person', new_person_path %>
+            <tbody>
+              <% @people.each do |person| %>
+                <tr>
+                    <td><%=person.dni%></td>
+                    <td><%=person.firstname%></td>
+                    <td><%=person.lastname%></td>
+                  <td>
+                    <%= link_to((fa_icon "eye"), person) %>
+                    <%= link_to((fa_icon "pencil"), edit_person_path(person)) %>
+                    <%= link_to((fa_icon "trash-o"), person, method: :delete, data: { confirm: '¿Esta seguro que desea eliminar?' }) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

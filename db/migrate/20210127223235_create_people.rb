@@ -11,7 +11,13 @@ class CreatePeople < ActiveRecord::Migration[5.2]
       t.integer :phone
       t.string :email
       t.boolean :condition
-      t.references :population_group, foreign_key: true
+      t.string :population_group
+      t.boolean :obesity
+      t.boolean :diabetes
+      t.boolean :chronic_kidney_disease
+      t.boolean :cardiovascular_disease
+      t.boolean :chronic_lung_disease
+
       t.references :locality, foreign_key: true
       t.string :address_street
       t.integer :address_number
