@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: vacunate_production
-  username: vacunate
-  password: <%= ENV['VACUNATE_DATABASE_PASSWORD'] %>
+  username: bihos
+  password: Chubut387

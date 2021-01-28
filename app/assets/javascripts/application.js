@@ -21,7 +21,14 @@
 //= require select2
 //= require toastr
 //= require cocoon
+
+//= require easing
+//= require vacunate
+
+
 //= require all
+
+
 
 //= require_tree .
 
