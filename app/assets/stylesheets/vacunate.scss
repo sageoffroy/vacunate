@@ -10128,8 +10128,8 @@ body {
 }
 
 #mainNav {
-  min-height: 3.5rem;
-  background-color: #333;
+  min-height: 2rem;
+  
 }
 #mainNav .navbar-toggler {
   font-size: 80%;
@@ -10145,8 +10145,15 @@ body {
   font-weight: 700;
   padding: 0.9rem 0;
 }
+
+
+#mainNav .navbar-nav .nav-item {
+  border-bottom: 3px solid transparent;
+}
+
 #mainNav .navbar-nav .nav-item:hover {
-  color: fade(#fff, 80%);
+  color: white;
+  border-bottom: 3px solid white;
   outline: none;
   background-color: transparent;
 }
@@ -10167,12 +10174,12 @@ body {
   }
   #mainNav .nav-link {
     transition: none;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.5rem;
     color: white;
     
   }
   #mainNav .nav-link:hover {
-    color: black;
+    color: white;
   }
   #mainNav .nav-link:active {
     color: #fff;
@@ -10185,7 +10192,7 @@ body {
   }
   #mainNav.navbar-shrink .nav-link {
     color: white;
-    padding: 1.5rem 1.5rem 1.25rem;
+    padding: 1.25rem 1.5rem;
     border-bottom: 0.25rem solid transparent;
   }
   #mainNav.navbar-shrink .nav-link:hover {
@@ -10259,7 +10266,7 @@ body {
 
 
 .cuidados-section {
-  padding-top: 50px;
+  padding-top: 85px;
   background: white;
 }
 .cuidados-section p {
@@ -10267,11 +10274,15 @@ body {
 }
 
 .mensaje-section {
-  padding: 50px 0;
+  padding: 85px 0;
+}
+
+.formulario-section {
+  padding: 85px 0;
 }
 
 .sintomas-section {
-  padding: 50px 0;
+  padding: 85px 0;
 }
 .sintomas-section .featured-text {
   padding: 2rem;
@@ -10288,7 +10299,7 @@ body {
 }
 
 .vacunatorios-section {
-  padding-top: 50px;
+  padding-top: 85px;
   padding-bottom: 50px;
   background: white;
 }
