@@ -1,9 +1,9 @@
 /*!
-    * Start Bootstrap - Grayscale v6.0.3 (https://startbootstrap.com/theme/grayscale)
-    * Copyright 2013-2020 Start Bootstrap
-    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-grayscale/blob/master/LICENSE)
-    */
-    (function ($) {
+* Start Bootstrap - Grayscale v6.0.3 (https://startbootstrap.com/theme/grayscale)
+* Copyright 2013-2020 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-grayscale/blob/master/LICENSE)
+*/
+(function ($) {
     "use strict"; // Start of use strict
 
     // Smooth scrolling using jQuery easing
@@ -54,3 +54,8 @@
     // Collapse the navbar when page is scrolled
     $(window).scroll(navbarCollapse);
 })(jQuery); // End of use strict
+
+document.getElementById('person_telephone').addEventListener('input', function (e) {
+  var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+  e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+});

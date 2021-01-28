@@ -1,0 +1,2 @@
+class PopulationGroup < ApplicationRecord
+end

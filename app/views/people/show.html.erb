@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @person.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @person.lastname %>
+</p>
+
+<p>
+  <strong>Dni:</strong>
+  <%= @person.dni %>
+</p>
+
+<p>
+  <strong>Dni sex:</strong>
+  <%= @person.dni_sex %>
+</p>
+
+<p>
+  <strong>Self perceived sex:</strong>
+  <%= @person.self_perceived_sex %>
+</p>
+
+<p>
+  <strong>Birthdate:</strong>
+  <%= @person.birthdate %>
+</p>
+
+<p>
+  <strong>Telephone:</strong>
+  <%= @person.telephone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @person.email %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @person.condition %>
+</p>
+
+<p>
+  <strong>Population group:</strong>
+  <%= @person.population_group %>
+</p>
+
+<p>
+  <strong>Locality:</strong>
+  <%= @person.locality %>
+</p>
+
+<p>
+  <strong>Address street:</strong>
+  <%= @person.address_street %>
+</p>
+
+<p>
+  <strong>Address number:</strong>
+  <%= @person.address_number %>
+</p>
+
+<p>
+  <strong>Address floor:</strong>
+  <%= @person.address_floor %>
+</p>
+
+<p>
+  <strong>Address department:</strong>
+  <%= @person.address_department %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @person.state %>
+</p>
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>

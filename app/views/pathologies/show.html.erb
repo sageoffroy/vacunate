@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @pathology.code %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @pathology.priority %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pathology.description %>
+</p>
+
+<%= link_to 'Edit', edit_pathology_path(@pathology) %> |
+<%= link_to 'Back', pathologies_path %>

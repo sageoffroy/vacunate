@@ -1,0 +1,99 @@
+<%= form_with(model: person, local: true, html: { class: "form-horizontal" }) do |form| %>
+  <% if person.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+      <ul>
+      <% person.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :firstname %>
+      <%= form.text_field :firstname, :class => "form-control", :placeholder => "José Luis"  %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :lastname %>
+      <%= form.text_field :lastname, :class => "form-control", :placeholder => "Gonzalez"  %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :dni %>
+      <%= form.text_field :dni, :class => "form-control", :placeholder=>"33.333.333"%>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :dni_sex %>
+      <%= form.select :dni_sex, ["Masculino", "Femenino"], {prompt: "Seleccionar"}, {class: "select2"} %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :self_perceived_sex %>
+      <%= form.select :self_perceived_sex, ["Varón", "Mujer", "Varón Trans", "Mujer Trans", "Otro"], {prompt: "Seleccionar"}, {class: "select2"} %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :birthdate %>
+      <%= form.text_field :birthdate, :class => "datepicker", :placeholder => "01/01/1900"%>
+    </div>
+    <div class="col-md-4 form-group ">
+       <%= form.label :code_phone %>
+       <%= form.text_field :code_phone, :placeholder=>"(280)" %>
+    </div>
+
+    <div class="col-md-8 form-group ">
+       <%= form.label :phone %>
+       <%= form.text_field :phone, :placeholder=>"4480200" %>
+    </div>
+    <div class="col-md-12 form-group ">
+      <%= form.label :email %>
+      <%= form.text_field :email, :placeholder=> "contacto@chubut.gov.ar" %>
+    </div>
+  </div>
+  
+
+  <div class="field">
+    <%= form.label :condition %>
+    <%= form.check_box :condition %>
+  </div>
+
+  <div class="field">
+    <%= form.label :population_group_id %>
+    <%= form.text_field :population_group_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :locality_id %>
+    <%= form.collection_select :locality_id, Locality.all, :id, :to_s, {prompt: "Seleccionar"}, {class: "select2 select-field"} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_street %>
+    <%= form.text_field :address_street %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_number %>
+    <%= form.number_field :address_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_floor %>
+    <%= form.number_field :address_floor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_department %>
+    <%= form.text_field :address_department %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state_id %>
+    <%= form.text_field :state_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

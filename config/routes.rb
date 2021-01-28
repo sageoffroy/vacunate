@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
+  
+  resources :people
+  resources :pathologies
+  resources :population_groups
+  resources :localities
+  resources :states
+  get 'inscripcion' => 'inscripcion#index'
+  
   devise_for :users
 
   root 'welcome#index'

@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  firstname: MyString
+  lastname: MyString
+  dni: 1
+  dni_sex: MyString
+  self_perceived_sex: MyString
+  birthdate: 2021-01-27
+  telephone: MyString
+  email: MyString
+  condition: false
+  population_group: one
+  locality: one
+  address_street: MyString
+  address_number: 1
+  address_floor: 1
+  address_department: MyString
+  state: one
+
+two:
+  firstname: MyString
+  lastname: MyString
+  dni: 1
+  dni_sex: MyString
+  self_perceived_sex: MyString
+  birthdate: 2021-01-27
+  telephone: MyString
+  email: MyString
+  condition: false
+  population_group: two
+  locality: two
+  address_street: MyString
+  address_number: 1
+  address_floor: 1
+  address_department: MyString
+  state: two

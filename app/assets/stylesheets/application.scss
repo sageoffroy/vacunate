@@ -4,9 +4,11 @@ $azul-oscuro: #1F295A;
 $verde-agua: #fff;
 
 @import "bootstrap";
+@import "bootstrap-datepicker3";
 @import "font-awesome";
 @import "toastr";
-@import "datatables";
+@import "select2";
+@import "select2-bootstrap";
 @import "datatables";
 
 

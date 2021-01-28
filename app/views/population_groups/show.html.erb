@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @population_group.code %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @population_group.priority %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @population_group.description %>
+</p>
+
+<%= link_to 'Edit', edit_population_group_path(@population_group) %> |
+<%= link_to 'Back', population_groups_path %>

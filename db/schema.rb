@@ -10,10 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_26_212355) do
+ActiveRecord::Schema.define(version: 2021_01_27_223235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "localities", force: :cascade do |t|
+    t.string "name"
+    t.integer "postal_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pathologies", force: :cascade do |t|
+    t.integer "code"
+    t.integer "priority"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.integer "dni"
+    t.string "dni_sex"
+    t.string "self_perceived_sex"
+    t.date "birthdate"
+    t.integer "phone_code"
+    t.integer "phone"
+    t.string "email"
+    t.boolean "condition"
+    t.bigint "population_group_id"
+    t.bigint "locality_id"
+    t.string "address_street"
+    t.integer "address_number"
+    t.integer "address_floor"
+    t.string "address_department"
+    t.bigint "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["locality_id"], name: "index_people_on_locality_id"
+    t.index ["population_group_id"], name: "index_people_on_population_group_id"
+    t.index ["state_id"], name: "index_people_on_state_id"
+  end
+
+  create_table "population_groups", force: :cascade do |t|
+    t.integer "code"
+    t.integer "priority"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "roles", force: :cascade do |t|
     t.string "name"
@@ -23,6 +71,12 @@ ActiveRecord::Schema.define(version: 2021_01_26_212355) do
     t.datetime "updated_at", null: false
     t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,4 +99,7 @@ ActiveRecord::Schema.define(version: 2021_01_26_212355) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "people", "localities"
+  add_foreign_key "people", "population_groups"
+  add_foreign_key "people", "states"
 end

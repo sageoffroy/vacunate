@@ -11,9 +11,9 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
-  <body id="page-top">
-    <%= render "layouts/navbar"%>
+  <body id="page-top" class="bg-light">
     <%= yield %>
+    <%= render "layouts/footer"%>
   </body>
   <!-- Core theme JS-->
   <%= javascript_include_tag 'easing', 'data-turbolinks-track': 'reload' %>
