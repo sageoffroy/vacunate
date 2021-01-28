@@ -1,8 +1,8 @@
 class InscripcionController < ApplicationController
-  def index
-  	@person = Person.new
-
+ 	skip_before_action :verify_authenticity_token, raise: false
+  	skip_after_action :verify_authorized
   	
-
-  end
+  	def index
+  		@person = Person.new
+  	end
 end
