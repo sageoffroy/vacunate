@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :population_groups
   resources :localities
   resources :states
+  
   get 'inscripcion' => 'inscripcion#index'
   
   devise_for :users

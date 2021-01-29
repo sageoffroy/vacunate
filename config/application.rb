@@ -18,9 +18,17 @@ module Vacunate
 
 
     config.generators do |g|
+<<<<<<< HEAD
         g.stylesheets false
     end
     config.action_controller.default_protect_from_forgery = false
+=======
+  		g.stylesheets false
+	  end
+
+    config.action_controller.default_protect_from_forgery = false
+
+>>>>>>> d36fcef0bd18423def2c0ff6e4845887f9bd3353
 
   end
 end

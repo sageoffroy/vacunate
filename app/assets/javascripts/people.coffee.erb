@@ -1,3 +1,5 @@
+
+
 $.fn.extend {
   integrateSelect2: (selector)->
     selector = selector || '.select2'
@@ -24,14 +26,37 @@ $.fn.extend {
 
 
 
-###
-# Number.prototype.format(n, x, s, c)
-#
-# @param integer n: length of decimal
-# @param integer x: length of whole part
-# @param mixed   s: sections delimiter
-# @param mixed   c: decimal delimiter
-###
+$.fn.render_form_errors = (model_name, errors) ->
+  form = this
+  $("#new_dependence_of_agent").clear_form_errors()
+  $.each(errors, (field, messages) ->
+    field = field.substring(field.lastIndexOf(".")+1).replace("_id","")
+    console.log "CAMPO: " + field
+    input = form.find('input, select, textarea').filter(->
+      name = $(this).attr('name')
+      campo = name.substring(name.lastIndexOf('[')+1).replace("]","").replace("_id", "")
+      return field == campo
+    )
+    console.log input
+    input.closest('.form-group').addClass('has-danger')
+    input.addClass('form-control-danger')
+
+    #input.parent().append('<span class="help-block">' + $.map(messages, (m) -> m.charAt(0).toUpperCase() + m.slice(1)).join('<br />') + '</span>')
+    toastr["error"](messages)
+  )
+
+$.fn.clear_form_errors = () ->
+  this.find('.form-group').removeClass('has-danger')
+  this.removeClass('form-control-danger')
+
+$.fn.clear_form_fields = () ->
+  this.find(':input','#new_dependence_of_agent')
+      .not(':button, :submit, :reset, :hidden')
+      .val('')
+      .removeAttr('checked')
+      .removeAttr('selected')
+
+
 
 Number::format = (n, x, s, c) ->
   re = '\\d(?=(\\d{' + (x or 3) + '})+' + (if n > 0 then '\\D' else '$') + ')'
@@ -49,7 +74,7 @@ $(document).ready ->
     e.target.value = x[1]
     return
 
-  document.getElementById('person_code_phone').addEventListener 'input', (e) ->
+  document.getElementById('person_phone_code').addEventListener 'input', (e) ->
     x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})/)
     e.target.value = x[1]
     return
@@ -82,7 +107,7 @@ $(document).on 'turbolinks:load', ->
     e.target.value = x[1]
     return
 
-  document.getElementById('person_code_phone').addEventListener 'input', (e) ->
+  document.getElementById('person_phone_code').addEventListener 'input', (e) ->
     x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})/)
     e.target.value = x[1]
     return
@@ -103,5 +128,4 @@ $(document).on 'turbolinks:before-cache', ->
     dataTable =  $($.fn.dataTable.tables(true)).DataTable()
     if (dataTable != null)
      dataTable.destroy();
-
 

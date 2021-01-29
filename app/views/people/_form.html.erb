@@ -1,16 +1,11 @@
-<%= form_with(model: person, local: true, html: { class: "form-horizontal" }) do |form| %>
+<%= form_with(model: person, id: "new-inscription", local: true, html: { class: "form-horizontal" }) do |form| %>
   <% if person.errors.any? %>
-    <div id="error_explanation">
-      <h6><%= pluralize(person.errors.count, "error") %> prohibited this person from being saved:</h6>
-
-      <ul>
-      <% person.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+      <script type="text/javascript">
+        <% person.errors.full_messages.each do |message| %>
+          toastr['error']('<%= message %>');
+        <% end %>
+      </script>
   <% end %>
-
   <div class="form-row">
     <div class="col-md-12">
       <hr>
@@ -42,7 +37,7 @@
 
     <div class="col-md-12">
       <hr>
-      <p><strong>Datos personales</strong></p>
+      <p><strong>1- Datos personales</strong></p>
     </div>
 
 
@@ -74,12 +69,12 @@
 
     <div class="col-md-12">
       <hr>
-      <p><strong>Datos de contacto</strong></p>
+      <p><strong>2- Datos de contacto</strong></p>
     </div>
 
     <div class="col-md-4 form-group">
-       <%= form.label :code_phone, "Código" %>
-       <%= form.text_field :code_phone, :placeholder=>"280" %>
+       <%= form.label :phone_code, "Código" %>
+       <%= form.text_field :phone_code, :placeholder=>"280" %>
     </div>
 
     <div class="col-md-8 form-group">
@@ -97,7 +92,7 @@
 
     <div class="col-md-12">
       <hr>
-      <p><strong>Datos de tu domicilio</strong></p>
+      <p><strong>3- Datos de tu domicilio</strong></p>
     </div>
 
     <div class="col-md-12 form-group">
@@ -127,7 +122,7 @@
 
     <div class="col-md-12">
       <hr>
-      <p><strong>Indica a que grupo poblacional perteneces</strong></p>
+      <p><strong>4- Indica a que grupo poblacional perteneces</strong></p>
     </div>
 
     <div class="col-md-6 form-group text-center">
@@ -160,36 +155,31 @@
 
     <div class="col-md-12">
       <hr>
-      <p><strong>Indica si tienes una o más patologías</strong></p>
+      <p><strong>5- Indica si tienes una o más patologías</strong></p>
     </div>
 
-    <div class="col-md-6 form-group text-center">
-      <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy mayor de 60 años"%>
-      <%= form.label :population_group, "Soy mayor de 60 años" %>    
+
+    <div class="col-md-12 form-group">
+      <%= form.check_box :obesity%>
+      <%= form.label :obesity, "Obesidad" %>
+    </div>
+    <div class="col-md-12 form-group">
+      <%= form.check_box :diabetes%>
+      <%= form.label :diabetes, "Diabetes" %>
+    </div>
+    <div class="col-md-12 form-group">
+      <%= form.check_box :chronic_kidney_disease%>
+      <%= form.label :chronic_kidney_disease, "Enfermedad renal crónica" %>
+    </div>
+    <div class="col-md-12 form-group">
+      <%= form.check_box :cardiovascular_disease%>
+      <%= form.label :cardiovascular_disease, "Enfermedad cardiovascular" %>
+    </div>
+    <div class="col-md-12 form-group">
+      <%= form.check_box :chronic_lung_disease%>
+      <%= form.label :chronic_lung_disease, "Enfermedad pulmonar crónica" %>
     </div>
     
-    <div class="col-md-6 form-group text-center">
-      <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Tengo entre 18 y 59 y formo parte del grupo de riesgo"%>
-      <%= form.label :population_group, "Tengo entre 18 y 59 (Grupo de Riesgo)" %>
-    </div>
-    <div class="col-md-4 form-group text-center">
-      <%= image_tag "iconos_salud-03.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal de salud"%>
-      <%= form.label :population_group, "Soy personal de salud" %>
-    </div>
-
-    <div class="col-md-4 form-group text-center">
-      <%= image_tag "iconos_salud-05.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal de seguridad"%>
-      <%= form.label :population_group, "Soy personal de seguridad" %>
-    </div>
-    <div class="col-md-4 form-group text-center">
-      <%= image_tag "iconos_salud-04.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal docente/auxiliar"%>
-      <%= form.label :population_group, "Soy personal de Educación" %>
-    </div>
 
     <div class="actions">
       <%= form.submit "Inscribirme", :class => "btn btn-primary btn-lg btn-block" %>
