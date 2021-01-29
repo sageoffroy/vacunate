@@ -1,5 +1,6 @@
 class PathologiesController < ApplicationController
   before_action :set_pathology, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /pathologies or /pathologies.json
   def index

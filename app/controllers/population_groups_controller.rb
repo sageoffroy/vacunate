@@ -1,6 +1,7 @@
 class PopulationGroupsController < ApplicationController
   before_action :set_population_group, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
+  
   # GET /population_groups or /population_groups.json
   def index
     @population_groups = PopulationGroup.all

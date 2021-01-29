@@ -1,6 +1,8 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: %i[ show edit update destroy ]
 
+  before_action :authenticate_user!, :only => [:index, :edit]
+
   # GET /people or /people.json
   def index
     @people = Person.all
@@ -24,10 +26,10 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: "Person was successfully created." }
+        format.html { redirect_to @person, notice: "La Inscripción ha sido correcto" }
         format.json { render :show, status: :created, location: @person }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity}
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
