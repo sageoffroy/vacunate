@@ -12,7 +12,8 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
-  <body id="page-top" class="bg-light">
+  <body id="page-top" class="<%= controller_name %> <%= action_name %> bg-light">
+
     <% unless flash.empty? %>
       <script type="text/javascript">
         <% flash.each do |f| %>

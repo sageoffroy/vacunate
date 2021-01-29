@@ -6,12 +6,12 @@ es:
         other: personas
     attributes:    
       person:
-        dni: "el número de documento"
-        firstname: "el nombre"
-        lastname: "apellido/s"
-        dni_sex: "sexo que figura en el DNI"
-        self_perceived_sex: "identidad autopercibida"
-        birthdate: "la fecha de nacimiento"
+        dni: "El número de documento"
+        firstname: "El nombre"
+        lastname: "El apellido"
+        dni_sex: "El sexo que figura en el DNI"
+        self_perceived_sex: "la identidad autopercibida"
+        birthdate: "La fecha de nacimiento"
         phone_code: "el codigo de telefono"
         phone: "el número de teléfono"
         email: "e-mail"

@@ -8,7 +8,6 @@ class Person < ApplicationRecord
   validates :lastname, presence: true
   validates :dni, presence: true
   validates :dni_sex, presence: true
-  validates :self_perceived_sex, presence: true
   validates :birthdate, presence: true
   validates :address_street, presence: true
   validates :address_number, presence: true

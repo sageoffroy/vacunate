@@ -6,7 +6,7 @@
         <% end %>
       </script>
   <% end %>
-  
+
   <div class="form-row">
     <div class="col-md-12">
       <hr>
@@ -20,24 +20,30 @@
         <li class="">Posee una enfermedad oncohematologica.</li>
         <li class="">Inmunodeficiencias congenitas adquiridas.</li>
         <li class="">Ha recibido un transplante.</li>
-        <li class="">Tuvo una reaccion alergica a algun componente de una vacuna o vacuna.</li>
         <li class="">Está o sospecha estar embarazada.</li>
         <li class="">Se encuentra amamantando</li>
       </ul>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12 mb-3">
       <%= form.radio_button :condition, "1"%>
       <%= form.label :condition, "Si" %>
       <%= form.radio_button :condition, "0", checked: true %>
       <%= form.label :condition, "No"%>
     </div>
     <div class="col-md-12">
-      <div id="alert-msg" style="color:red;" hidden="true">*Actualmente la administracion de la vacuna no esta indicada en personas que presenten al menos una de las condiciones antes mencionadas.</div>
-    </div>
+      <div id="alert-msg" style="color:red;" hidden="true">
+        *Actualmente la administración de la vacuna no esta indicada en personas que presenten al menos una de las condiciones antes mencionadas.
+      </div>
 
+    </div>
+    
     <div class="col-md-12">
       <hr>
+      <div class="alert alert-warning" role="alert">
+        Los campos marcados con un "<span style="color:red;">*</span>" son de caracter obligatorio para poder inscribirse
+      </div>
+      
       <p><strong>1- Datos personales</strong></p>
     </div>
 
@@ -60,7 +66,7 @@
       <%= form.select :dni_sex, ["Masculino", "Femenino"], {prompt: "Seleccionar"}, {class: "select2"} %>
     </div>
     <div class="form-group col-md-6">
-      <%= form.label :self_perceived_sex, "Identidad autopercibida  <span style='color:red;'>*</span>".html_safe %>
+      <%= form.label :self_perceived_sex, "Identidad autopercibida"%>
       <%= form.select :self_perceived_sex, ["Varón", "Mujer", "Varón Trans", "Mujer Trans", "Otro"], {prompt: "Seleccionar"}, {class: "select2"} %>
     </div>
     <div class="form-group col-md-6">
@@ -74,13 +80,12 @@
     </div>
 
     <div class="col-md-4 form-group">
-       <%= form.label :phone_code, "Código" %>
-       <%= form.text_field :phone_code, :placeholder=>"280" %>
+       <%= form.label :phone_code, "Código de Área" %>
+       <%= form.text_field :phone_code, :placeholder=>"280", data: { toggle: 'tooltip', placement: 'top', original_title: 'Sin el 0' } %>
     </div>
-
     <div class="col-md-8 form-group">
        <%= form.label :phone, "Número de teléfono" %>
-       <%= form.text_field :phone, :placeholder=>"4480200" %>
+       <%= form.text_field :phone, :placeholder=>"4480200", data: { toggle: 'tooltip', placement: 'top', original_title: 'Si es un celular sin el 15' } %>
     </div>
     <div class="col-md-12 form-group">
       <%= form.label :email, "E-mail" %>
@@ -88,7 +93,9 @@
     </div>
     
     <div class="col-md-12">
-      <p>*Se deberá declarar un telefono y/o un email.</p>
+      <div class="alert alert-warning" role="alert">
+        Se deberá declarar un telefono y/o un email.
+      </div>
     </div>
 
     <div class="col-md-12">
@@ -111,12 +118,12 @@
       <%= form.number_field :address_number %>
     </div>
 
-    <div class="col-md-1 form-group">
+    <div class="col-md-1 col-sm-6 form-group">
       <%= form.label :address_floor, "Piso" %>
       <%= form.number_field :address_floor %>
     </div>
 
-    <div class="col-md-1 form-group">
+    <div class="col-md-1 col-sm-6 form-group">
       <%= form.label :address_department, "Dpto" %>
       <%= form.text_field :address_department %>
     </div>
@@ -126,31 +133,36 @@
       <p><strong>4- Indica a que grupo poblacional perteneces</strong></p>
     </div>
 
-    <div class="col-md-6 form-group text-center">
+    <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy mayor de 60 años", checked: true%>
+      <%= form.radio_button :population_group, "Soy mayor de 60 años", checked: true%><br>
       <%= form.label :population_group, "Soy mayor de 60 años" %>    
     </div>
     
-    <div class="col-md-6 form-group text-center">
+    <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Tengo entre 18 y 59 y formo parte del grupo de riesgo"%>
-      <%= form.label :population_group, "Tengo entre 18 y 59 (Grupo de Riesgo)" %>
+      <%= form.radio_button :population_group, "Tengo entre 18 y 59 y formo parte del grupo de riesgo"%><br>
+      <%= form.label :population_group, "Tengo entre 18 y 59 (Con factores de riesgo)" %>
+    </div>
+    <div class="col-md-4 form-group text-center">
+      <%= image_tag "iconos_salud-06.png", style:"max-width:150px;" %><br>
+      <%= form.radio_button :population_group, "Tengo entre 18 y 59 y formo parte del grupo de riesgo"%><br>
+      <%= form.label :population_group, "Tengo entre 18 y 59 (Sin factores de riesgo)" %>
     </div>
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-03.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal de salud"%>
+      <%= form.radio_button :population_group, "Soy personal de salud"%><br>
       <%= form.label :population_group, "Soy personal de salud" %>
     </div>
 
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-05.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal de seguridad"%>
+      <%= form.radio_button :population_group, "Soy personal de seguridad"%><br>
       <%= form.label :population_group, "Soy personal de seguridad" %>
     </div>
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-04.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal docente/auxiliar"%>
+      <%= form.radio_button :population_group, "Soy personal docente/auxiliar"%><br>
       <%= form.label :population_group, "Soy personal de Educación" %>
     </div>
 
@@ -187,16 +199,53 @@
     </div>
 
   </div>
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#warning-modal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="warning-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Entiendo</button>
+      </div>
+    </div>
+  </div>
+</div>
   
   
 <% end %>
 <script type="text/javascript">
+
+  $(document).ready(function(){
+    if ($('.people.new').length > 0){
+    $("#warning-modal").modal('show');}
+  });
+
+
+
+
   $('#person_condition_0').change(function() {
     $('#alert-msg').prop('hidden', true);
+    $('#new-inscription :input').prop('disabled', false);
   });
 
   $('#person_condition_1').change(function() {
     $('#alert-msg').prop('hidden', false);
+    $('#new-inscription :input').prop('disabled', true);
+    $('#person_condition_0').prop('disabled', false);
   });
 
 </script>
