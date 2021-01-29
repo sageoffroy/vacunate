@@ -31,7 +31,7 @@
 
 //= require_tree .
 
-$(document).ready(function() {
+
 toastr.options = {
   "closeButton": true,
   "debug": false,
@@ -40,13 +40,13 @@ toastr.options = {
   "positionClass": "toast-top-right",
   "preventDuplicates": false,
   "onclick": null,
-  "showDuration": "20000",
-  "hideDuration": "1000",
-  "timeOut": "5000",
+  "showDuration": "120000",
+  "hideDuration": "11000",
+  "timeOut": "0",
   "extendedTimeOut": "0",
+  "tapToDismiss": true,
   "showEasing": "swing",
   "hideEasing": "linear",
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 }
-});

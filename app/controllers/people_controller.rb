@@ -22,17 +22,18 @@ class PeopleController < ApplicationController
   # POST /people or /people.json
   def create
     @person = Person.new(person_params)
-
     respond_to do |format|
       if @person.save
-        format.html { redirect_to '/', notice: "Person was successfully created." }
+        format.html { redirect_to @person, notice: "Person was successfully created." }
         format.json { render :show, status: :created, location: @person }
       else
-        format.html { render "inscripcion/index", status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
   end
+
+  
 
   # PATCH/PUT /people/1 or /people/1.json
   def update
@@ -56,6 +57,16 @@ class PeopleController < ApplicationController
     end
   end
 
+  def validate
+      event = Person.new(validate_params)
+      event.valid?
+      event_field = validate_params.keys.first.try(:to_sym)
+      validation_response = !event.errors.include?(event_field)
+      respond_to do |format|
+        format.json { render json: {field_name: event_field, valid: validation_response, message: event.errors[event_field]} }
+      end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
@@ -65,5 +76,9 @@ class PeopleController < ApplicationController
     # Only allow a list of trusted parameters through.
     def person_params
       params.require(:person).permit(:firstname, :lastname, :dni, :dni_sex, :self_perceived_sex, :birthdate, :phone_code, :phone, :email, :condition, :population_group, :locality_id, :address_street, :address_number, :address_floor, :address_department, :state_id, :obesity, :diabetes, :chronic_kidney_disease, :cardiovascular_disease, :chronic_lung_disease)
+    end
+
+    def validate_params
+      params.permit(:firstname, :lastname, :from, :to)
     end
 end
