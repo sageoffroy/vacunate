@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   
   resources :people
-  resources :pathologies
-  resources :population_groups
   resources :localities
   resources :states
   
