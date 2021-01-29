@@ -6,6 +6,7 @@
         <% end %>
       </script>
   <% end %>
+  
   <div class="form-row">
     <div class="col-md-12">
       <hr>
@@ -26,13 +27,13 @@
     </div>
 
     <div class="col-md-12">
-      <%= form.radio_button :condition, "0"%>
+      <%= form.radio_button :condition, "1"%>
       <%= form.label :condition, "Si" %>
-      <%= form.radio_button :condition, "1", checked: true %>
+      <%= form.radio_button :condition, "0", checked: true %>
       <%= form.label :condition, "No"%>
     </div>
     <div class="col-md-12">
-      <p id="alert-msg" style="color:red;" hidden="true">*Actualmente la administracion de la vacuna no esta indicada en personas que presenten al menos una de las condiciones mencionadas.</p>
+      <div id="alert-msg" style="color:red;" hidden="true">*Actualmente la administracion de la vacuna no esta indicada en personas que presenten al menos una de las condiciones antes mencionadas.</div>
     </div>
 
     <div class="col-md-12">
@@ -127,7 +128,7 @@
 
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy mayor de 60 años"%>
+      <%= form.radio_button :population_group, "Soy mayor de 60 años", checked: true%>
       <%= form.label :population_group, "Soy mayor de 60 años" %>    
     </div>
     
@@ -189,3 +190,13 @@
   
   
 <% end %>
+<script type="text/javascript">
+  $('#person_condition_0').change(function() {
+    $('#alert-msg').prop('hidden', true);
+  });
+
+  $('#person_condition_1').change(function() {
+    $('#alert-msg').prop('hidden', false);
+  });
+
+</script>

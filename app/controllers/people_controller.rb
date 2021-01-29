@@ -57,16 +57,6 @@ class PeopleController < ApplicationController
     end
   end
 
-  def validate
-      event = Person.new(validate_params)
-      event.valid?
-      event_field = validate_params.keys.first.try(:to_sym)
-      validation_response = !event.errors.include?(event_field)
-      respond_to do |format|
-        format.json { render json: {field_name: event_field, valid: validation_response, message: event.errors[event_field]} }
-      end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_person
