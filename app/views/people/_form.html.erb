@@ -1,13 +1,28 @@
 <%= form_with(model: person, id: "new-inscription", local: true, html: { class: "form-horizontal" }) do |form| %>
   <% if person.errors.any? %>
+      
       <script type="text/javascript">
-        <% person.errors.full_messages.each do |message| %>
-          toastr['error']('<%= message %>');
-        <% end %>
+        window.onload = function() {
+          toastr['error']('Uno o más campos tienen errores, corrígelos y vuelve a intentarlo');
+          <% person.errors.messages.each do |key_p, message| %>
+            <% key = key_p.to_s.delete_prefix(':') %>
+            <% if Person.columns_hash[key].nil? %>
+              <% key = key+"_id" %>
+            <% end %>
+            var element = document.getElementById("person_<%= key%>");
+            element.classList.add("is-invalid");
+            if ("<%= message[0] %>" != ""){
+              var span = document.createElement('span');
+              span.className = "invalid-feedback";
+              span.append("<%= message[0] %>");
+              element.parentElement.append(span);
+            }
+          <% end %>
+        }
       </script>
   <% end %>
 
-  <div class="form-row">
+  <div class="row">
     <div class="col-md-12">
       <hr>
       <p><strong>¿Usted presenta alguna de las siguientes condiciones?</strong></p>
@@ -25,13 +40,14 @@
       </ul>
     </div>
 
-    <div class="col-md-12 mb-3">
+    <div class="col-md-12 text-center">
       <%= form.radio_button :condition, "1"%>
       <%= form.label :condition, "Si" %>
       <%= form.radio_button :condition, "0", checked: true %>
       <%= form.label :condition, "No"%>
+      
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 mb-3">
       <div id="alert-msg" style="color:red;" hidden="true">
         *Actualmente la administración de la vacuna no esta indicada en personas que presenten al menos una de las condiciones antes mencionadas.
       </div>
@@ -63,15 +79,15 @@
     </div>
     <div class="form-group col-md-6">
       <%= form.label :dni_sex, "Sexo que figura en el DNI  <span style='color:red;'>*</span>".html_safe %>
-      <%= form.select :dni_sex, ["Masculino", "Femenino"], {prompt: "Seleccionar"}, {class: "select2"} %>
+      <%= form.select :dni_sex, ["Masculino", "Femenino"], {prompt: "Seleccionar"}, {class: "select2 custom-select"} %>
     </div>
     <div class="form-group col-md-6">
       <%= form.label :self_perceived_sex, "Identidad autopercibida"%>
-      <%= form.select :self_perceived_sex, ["Varón", "Mujer", "Varón Trans", "Mujer Trans", "Otro"], {prompt: "Seleccionar"}, {class: "select2"} %>
+      <%= form.select :self_perceived_sex, ["Varón", "Mujer", "Varón Trans", "Mujer Trans", "Otro"], {prompt: "Seleccionar"}, {class: "select2 form-control"} %>
     </div>
     <div class="form-group col-md-6">
       <%= form.label :birthdate, "Fecha de nacimiento  <span style='color:red;'>*</span>".html_safe %>
-      <%= form.text_field :birthdate, :class => "datepicker", :placeholder => "01/01/1900"%>
+      <%= form.text_field :birthdate, :class => "datepicker form-control", :placeholder => "01/01/1900"%>
     </div>
 
     <div class="col-md-12">
@@ -81,22 +97,22 @@
 
     <div class="col-md-4 form-group">
        <%= form.label :phone_code, "Código de Área" %>
-       <%= form.text_field :phone_code, :placeholder=>"280", data: { toggle: 'tooltip', placement: 'top', original_title: 'Sin el 0' } %>
+       <%= form.text_field :phone_code, :placeholder=>"280", data: { toggle: 'tooltip', placement: 'top', original_title: 'Sin el 0' }, :class => "form-control" %>
     </div>
     <div class="col-md-8 form-group">
        <%= form.label :phone, "Número de teléfono" %>
-       <%= form.text_field :phone, :placeholder=>"4480200", data: { toggle: 'tooltip', placement: 'top', original_title: 'Si es un celular sin el 15' } %>
+       <%= form.text_field :phone, :placeholder=>"4480200", data: { toggle: 'tooltip', placement: 'top', original_title: 'Si es un celular sin el 15' } , :class => "form-control"%>
     </div>
     <div class="col-md-12 form-group">
       <%= form.label :email, "E-mail" %>
-      <%= form.text_field :email, :placeholder=> "contacto@chubut.gov.ar" %>
+      <%= form.text_field :email, :placeholder=> "contacto@chubut.gov.ar", :class => "form-control" %>
     </div>
     
-    <div class="col-md-12">
+    <!--div class="col-md-12">
       <div class="alert alert-warning" role="alert">
-        Se deberá declarar un telefono y/o un email.
+        Se deberá declarar un teléfono y/o un email.
       </div>
-    </div>
+    </div-->
 
     <div class="col-md-12">
       <hr>
@@ -105,27 +121,27 @@
 
     <div class="col-md-12 form-group">
       <%= form.label :locality_id, "Localidad  <span style='color:red;'>*</span>".html_safe %>
-      <%= form.collection_select :locality_id, Locality.all, :id, :to_s, {prompt: "Seleccionar"}, {class: "select2 select-field"} %>
+      <%= form.collection_select :locality_id, Locality.all, :id, :to_s, {prompt: "Seleccionar localidad"}, {class: "select2 select-field form-control"} %>
     </div>
 
-    <div class="col-md-9 form-group">
+    <div class="col-md-6 form-group">
       <%= form.label :address_street, "Calle  <span style='color:red;'>*</span>".html_safe %>
-      <%= form.text_field :address_street %>
+      <%= form.text_field :address_street, :placeholder=> "Fontana", :class => "form-control" %>
     </div>
 
-    <div class="col-md-1 form-group">
+    <div class="col-md-2 col-sm-4 col-xs-4 form-group">
       <%= form.label :address_number, "Nº  <span style='color:red;'>*</span>".html_safe %>
-      <%= form.number_field :address_number %>
+      <%= form.text_field :address_number, :placeholder=> "50", :class => "form-control" %>
     </div>
 
-    <div class="col-md-1 col-sm-6 form-group">
+    <div class="col-md-2 col-sm-4 col-xs-4 form-group">
       <%= form.label :address_floor, "Piso" %>
-      <%= form.number_field :address_floor %>
+      <%= form.text_field :address_floor, :placeholder=> "3", data: { toggle: 'tooltip', placement: 'top', original_title: 'Coloque 0 en caso de vivir en planta baja' }, :class => "form-control" %>
     </div>
 
-    <div class="col-md-1 col-sm-6 form-group">
+    <div class="col-md-2 col-sm-4 col-xs-4 form-group">
       <%= form.label :address_department, "Dpto" %>
-      <%= form.text_field :address_department %>
+      <%= form.text_field :address_department, :placeholder=> "C", :class => "form-control" %>
     </div>
 
     <div class="col-md-12">
@@ -195,7 +211,8 @@
     
 
     <div class="actions">
-      <%= form.submit "Inscribirme", :class => "btn btn-primary btn-lg btn-block" %>
+      <%= form.submit "Inscribirme", :class => "btn btn-primary btn-block" %>
+      <a class="btn btn-secondary btn-block mt-3" href="/">VOLVER AL INICIO</a>
     </div>
 
   </div>
@@ -224,9 +241,6 @@
     if ($('.people.new').length > 0){
     $("#warning-modal").modal('show');}
   });
-
-
-
 
   $('#person_condition_0').change(function() {
     $('#alert-msg').prop('hidden', true);

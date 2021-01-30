@@ -1,28 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-  <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top"><%= image_tag "logo_chubut.png", class:"img-fluid nav-logo" %></a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/">VOLVER</a></li>
-          </ul>
-      </div>
-  </div>
-</nav>
-
 <!-- Formulario-->
-<section id="formulario-header" class="formulario-header-section">
+<section id="header" class="header-section py-5">
   <div class="container">
     <div class="panel-pane pane-texto">
       <div class="pane-content">
         <div class="">
           <div class="row text-center my-2">
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <%= image_tag "logo_vacunate.png", style:"max-width:25%;" %>
-              <h6 class="text-white mx-auto mt-3">Plan provincial público, gratuito y optativo contra COVID-19</h6>
+              <%= image_tag "logo_vacunate.png", style:"max-width:25%;", class:"mb-5" %>
+              <h6 class="text-white mx-auto mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h6>
+              <a href="/"><%= image_tag "logo_chubut.png", class:"img-fluid nav-logo", style:"max-width:50%;" %></a>
             </div>
           </div>
         </div>
@@ -30,6 +16,8 @@
     </div>
   </div>
 </section>
+
+
 <div class="container">
   <div class="panel-pane pane-texto">
     <div class="pane-content">
