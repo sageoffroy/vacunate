@@ -73,17 +73,3 @@ localities_list = [
 localities_list.each do |nombre|
 	Locality.find_or_create_by(name:nombre)
 end
-
-
-population_groups_list = [
-	"Personas mayores de 60 años",
-	"Personas entre 18 y 59 años con enfermedades preexistentes",
-	"Personal de salud",
-	"Personal de seguridad",
-	"Personal docente y auxiliares"
-]
-
-population_groups_list.each do |descripción|
-	PopulationGroup.find_or_create_by(description:descripción)
-end
-
