@@ -3,23 +3,20 @@
       
       <script type="text/javascript">
         window.onload = function() {
-          console.log ('<%= person.errors.keys %>');
-          <% person.errors.full_messages.each do |message| %>
-            toastr['error']('<%= message %>');
-
-          <% end %>
-
-          <% person.errors.keys.each do |key_p| %>
+          toastr['error']('Uno o más campos tienen errores, corrígelos y vuelve a intentarlo');
+          <% person.errors.messages.each do |key_p, message| %>
             <% key = key_p.to_s.delete_prefix(':') %>
             <% if Person.columns_hash[key].nil? %>
               <% key = key+"_id" %>
             <% end %>
-            console.log("person_<%= key%>");
             var element = document.getElementById("person_<%= key%>");
             element.classList.add("is-invalid");
-            
-            
-          
+            if ("<%= message[0] %>" != ""){
+              var span = document.createElement('span');
+              span.className = "invalid-feedback";
+              span.append("<%= message[0] %>");
+              element.parentElement.append(span);
+            }
           <% end %>
         }
       </script>
@@ -111,11 +108,11 @@
       <%= form.text_field :email, :placeholder=> "contacto@chubut.gov.ar", :class => "form-control" %>
     </div>
     
-    <div class="col-md-12">
+    <!--div class="col-md-12">
       <div class="alert alert-warning" role="alert">
         Se deberá declarar un teléfono y/o un email.
       </div>
-    </div>
+    </div-->
 
     <div class="col-md-12">
       <hr>
