@@ -10265,28 +10265,28 @@ body {
   color: white;
 }
 
-.cuidados-section {
-  padding-top: 85px;
-  background: white;
+section {
+  padding: 85px 0;
+  
 }
 .cuidados-section p {
   margin-bottom: 5rem;
 }
 
-.mensaje-section {
-  padding: 85px 0;
-}
 
-.formulario-section {
-  padding: 85px 0;
-}
-
-.sintomas-section {
-  padding: 85px 0;
-}
 .sintomas-section .featured-text {
   padding: 2rem;
 }
+
+@media (min-width: 768px) {
+  
+  section {
+    padding: 45px 0;
+  
+  }
+
+}
+
 @media (min-width: 992px) {
   .sintomas-section .featured-text {
     padding: 0 0 0 2rem;
