@@ -1,32 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark" id="mainNav">
-  <div class="container">
-      <%= image_tag "logo_chubut.png", class:"img-fluid nav-logo" %>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#preguntas">PREGUNTAS FRECUENTES</a></li>
-              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#vacunatorios">VACUNATORIOS</a></li>
-          </ul>
-      </div>
-  </div>
-</nav>
+
 <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
         <div class="mx-auto text-center">
             <h1 class="mx-auto my-0 text-uppercase">
               <%= image_tag "logo_vacunate.png", style:"max-width:50%;" %>
             </h1>
-            <h2 class="text-white mx-auto mt-5 mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h2>
-            <a class="btn btn-primary js-scroll-trigger" href="/people/new">INSCRIBITE</a>
+            <div class="row justify-content-md-center">
+              <div class="col-md-6 ">
+                <h2 class="text-white mx-auto mt-5 mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h2>
+                <a class="btn btn-primary btn-block mb-3" href="/people/new">INSCRIBITE</a>
+                <a class="btn btn-secondary btn-block mb-3" href="#preguntas">PREGUNTAS FRECUENTES</a>
+                <a class="btn btn-secondary btn-block mb-3" href="#contacto">CONTACTO</a>
+              </div>
+            </div>
         </div>
     </div>
 </header>
 
 <!-- Preguntas -->
-<section class="preguntas-section text-center" id="preguntas">
+<section class="preguntas-section text-center py-5" id="preguntas">
   <div class="container">
     <div class="panel-pane pane-texto">
       <div class="pane-content">
