@@ -31,7 +31,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     respond_to do |format|
       if @person.save
-        format.html { redirect_to @person, notice: "¡Felicitaciones " + @person.firstname + "! Ha sido inscripto correctamente"}
+        format.html { redirect_to @person}
         format.json { render :show, status: :created, location: @person }
       else
         format.html { render :new}
