@@ -1,7 +1,7 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: %i[ show edit update destroy ]
 
-  before_action :authenticate_user!, :only => [:index, :edit, :show]
+  before_action :authenticate_user!, :only => [:index, :edit]
 
   # GET /people or /people.json
   def index
@@ -17,6 +17,11 @@ class PeopleController < ApplicationController
     @person = Person.new
   end
 
+  def felicitaciones
+    
+  end
+
+
   # GET /people/1/edit
   def edit
   end
@@ -26,7 +31,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     respond_to do |format|
       if @person.save
-        format.html { redirect_to "/", notice: "¡Felicitaciones " + @person.firstname + "! Ha sido inscripto correctamente" }
+        format.html { redirect_to :show, notice: "¡Felicitaciones " + @person.firstname + "! Ha sido inscripto correctamente"}
         format.json { render :show, status: :created, location: @person }
       else
         format.html { render :new}
