@@ -1,50 +1,76 @@
+<html>
+  <head>
+    <title>Chubut Vacunate</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<header class="masthead">
-    <div class="container d-flex h-100 align-items-center">
-        <div class="mx-auto text-center">
-            <h1 class="mx-auto my-0 text-uppercase">
-              <%= image_tag "logo_vacunate.png", style:"max-width:50%;" %>
-            </h1>
-            <div class="row justify-content-md-center">
-              <div class="col-md-6 ">
-                <h2 class="text-white mx-auto mt-5 mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h2>
-                <a class="btn btn-primary btn-block mb-3" href="/people/new">INSCRIBITE</a>
-                <a class="btn btn-secondary btn-block mb-3" href="#preguntas">PREGUNTAS FRECUENTES</a>
-                <a class="btn btn-secondary btn-block mb-3" href="#contacto">CONTACTO</a>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" media="all">
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+  </head>
+
+  <body id="page-top" class="<%= controller_name %> <%= action_name %> bg-light">
+    <% unless flash.empty? %>
+      <script type="text/javascript">
+        <% flash.each do |f| %>
+          <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+          toastr['<%= type %>']('<%= f[1] %>');
+        <% end %>
+      </script>
+    <% end %>
+      <header class="masthead">
+        <div class="container d-flex h-100 align-items-center">
+            <div class="mx-auto text-center">
+                <h1 class="mx-auto my-0 text-uppercase">
+                  <%= image_tag "logo_vacunate.png", style:"max-width:50%;" %>
+                </h1>
+                <div class="row justify-content-md-center">
+                  <div class="col-md-6 ">
+                    <h2 class="text-white mx-auto mt-5 mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h2>
+                    <a class="btn btn-primary btn-block mb-3" href="/people/new">INSCRIBITE</a>
+                    <a class="btn btn-secondary btn-block mb-3" href="#preguntas">PREGUNTAS FRECUENTES</a>
+                    <a class="btn btn-secondary btn-block mb-3" href="#contacto">CONTACTO</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </header>
+      <!-- Preguntas -->
+      <section class="preguntas-section text-center py-5" id="preguntas">
+        <div class="container">
+          <div class="panel-pane pane-texto">
+            <div class="pane-content">
+              <div class="row text-center mb-5">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <h2>PREGUNTAS FRECUENTES</h2>
+                  </div>
+              </div>
+              <div class="row text-center mt-2 ">
+                <div class="col-md-12 col-lg-7 mb-5">
+                  <%= image_tag "preguntas1.png", style:"max-width:50%;" %>
+                </div>
+                <div class="col-md-12 col-lg-5"></div>
+
+                <div class="col-md-12 col-lg-5"></div>
+                <div class="col-md-12 col-lg-7 mb-5">
+                  <%= image_tag "preguntas2.png", style:"max-width:50%;" %>
+                </div>
+
+                <div class="col-md-12 col-lg-7 mb-5">
+                  <%= image_tag "preguntas3.png", style:"max-width:50%;" %>
+                </div>
+                <div class="col-md-12 col-lg-5"></div>
+
               </div>
             </div>
-        </div>
-    </div>
-</header>
-
-<!-- Preguntas -->
-<section class="preguntas-section text-center py-5" id="preguntas">
-  <div class="container">
-    <div class="panel-pane pane-texto">
-      <div class="pane-content">
-        <div class="row text-center mb-5">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <h2>PREGUNTAS FRECUENTES</h2>
-            </div>
-        </div>
-        <div class="row text-center mt-2 ">
-          <div class="col-md-12 col-lg-7 mb-5">
-            <%= image_tag "preguntas1.png", style:"max-width:50%;" %>
           </div>
-          <div class="col-md-12 col-lg-5"></div>
-
-          <div class="col-md-12 col-lg-5"></div>
-          <div class="col-md-12 col-lg-7 mb-5">
-            <%= image_tag "preguntas2.png", style:"max-width:50%;" %>
-          </div>
-
-          <div class="col-md-12 col-lg-7 mb-5">
-            <%= image_tag "preguntas3.png", style:"max-width:50%;" %>
-          </div>
-          <div class="col-md-12 col-lg-5"></div>
-
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
+
+      <%= render "layouts/footer"%>
+  </body>
+</html>
+
+

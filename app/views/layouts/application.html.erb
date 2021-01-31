@@ -21,6 +21,11 @@
         <% end %>
       </script>
     <% end %>
+      <% if user_signed_in? %>
+        <%= render "layouts/navbar"%>
+      <% else %>
+        <%= render "layouts/header"%>
+      <% end %>
       <%= yield %>
       <%= render "layouts/footer"%>
   </body>

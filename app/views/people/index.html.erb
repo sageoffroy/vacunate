@@ -1,20 +1,3 @@
-<!-- Formulario-->
-<section id="header" class="header-section py-5">
-  <div class="container">
-    <div class="panel-pane pane-texto">
-      <div class="pane-content">
-        <div class="">
-          <div class="row justify-content-center text-center my-2">
-            <div class="col-md-6">
-              <%= image_tag "logo_vacunate_chubut.png", style:"max-width:100%;", class:"mb-5" %>
-              <h6 class="text-white mx-auto mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <div class="container">
@@ -26,9 +9,12 @@
           <table class="datatable table">
             <thead>
               <tr>
+                <th><%= Person.human_attribute_name("locality").titleize%></th>
+                <th><%= Person.human_attribute_name("population_group").titleize%></th>
                 <th><%= Person.human_attribute_name("dni").titleize%></th>
                 <th><%= Person.human_attribute_name("firstname").titleize%></th>
                 <th><%= Person.human_attribute_name("lastname").titleize%></th>
+                
                 <th>Opciones</th>
               </tr>
 
@@ -37,9 +23,12 @@
             <tbody>
               <% @people.each do |person| %>
                 <tr>
+                    <td><%=person.locality%></td>
+                    <td><%=person.population_group%></td>
                     <td><%=person.dni%></td>
                     <td><%=person.firstname%></td>
                     <td><%=person.lastname%></td>
+                    
                   <td>
                     <%= link_to((fa_icon "eye"), person) %>
                     <%= link_to((fa_icon "pencil"), edit_person_path(person)) %>
