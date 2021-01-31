@@ -10332,6 +10332,26 @@ input[type=number] {
 .is-valid ~ .select2 .selection .select2-selection{
     border-color: #28a745!important;
 }
+
+
+.is-invalid .recaptcha-checkbox-border {
+
+  border-color: #dc3545!important;
+}
+
+.is-invalid .rc-anchor-light {
+  border-color: #dc3545!important; 
+}
+
+#person_recaptcha_id .recaptcha-checkbox-border {
+
+  border-color: #dc3545!important;
+}
+
+strong .is-invalid {
+  color: #dc3545;
+}
+
 *:focus{
   outline:0px;
 }

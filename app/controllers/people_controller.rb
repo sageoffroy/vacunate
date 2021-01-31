@@ -30,7 +30,7 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params)
     respond_to do |format|
-      if verify_recaptcha(model: @person) && @person.save
+      if verify_recaptcha(model: @person, attribute: "recaptcha", message:"Debes verificar que no eres un robot") && @person.save
         format.html { redirect_to @person}
         format.json { render :show, status: :created, location: @person }
       else
