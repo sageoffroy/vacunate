@@ -28,3 +28,8 @@
 
 /config/credentials.yml.enc
 /config/database.yml
+
+nohup.out
+
+
+.env

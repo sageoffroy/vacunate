@@ -208,7 +208,15 @@
       <%= form.check_box :chronic_lung_disease%>
       <%= form.label :chronic_lung_disease, "Enfermedad pulmonar crónica" %>
     </div>
+
+    <div class="col-md-12">
+      <hr>
+      <p><strong>6- Verifica que no eres un robot</strong></p>
+    </div>
     
+    <div class="col-md-12 form-group">
+      <%= recaptcha_tags %>
+    </div>
 
     <div class="actions"> 
       <%= form.submit "Inscribirme", :class => "btn btn-primary btn-block" %>
