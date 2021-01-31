@@ -16,6 +16,7 @@ class Person < ApplicationRecord
   private
 
     def phone_xor_email
+      byebug
       if phone_code.blank? or phone.blank?
         if email.blank?
           errors.add(:phone_code, "")
