@@ -3,6 +3,8 @@ class PeopleController < ApplicationController
 
   before_action :authenticate_user!, :only => [:index, :edit, :show]
 
+  skip_before_filter :verify_authenticity_token, :only => [:index, :edit, :show]
+
   # GET /people or /people.json
   def index
     @people = Person.all
