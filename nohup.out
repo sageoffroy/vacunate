@@ -1,0 +1,10 @@
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x86-mswin32, x64-mingw32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java`.
+=> Booting Puma
+=> Rails 5.2.4.4 application starting in production 
+=> Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.12.6 (ruby 2.7.2-p137), codename: Llamas in Pajamas
+* Min threads: 5, max threads: 5
+* Environment: production
+* Listening on tcp://0.0.0.0:3000
+Use Ctrl-C to stop
