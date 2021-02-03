@@ -5,7 +5,10 @@ class PeopleController < ApplicationController
 
   # GET /people or /people.json
   def index
-    @people = Person.all
+    respond_to do |format|
+      format.html
+      format.json { render json: PersonDatatable.new(params, view_context: view_context) }
+    end
   end
 
   # GET /people/1 or /people/1.json
@@ -76,6 +79,6 @@ class PeopleController < ApplicationController
     end
 
     def validate_params
-      params.permit(:firstname, :lastname, :from, :to)
+      params.permit(:firstname, :lastname, :dni, :from, :to)
     end
 end

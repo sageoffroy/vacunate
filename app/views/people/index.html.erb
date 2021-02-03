@@ -6,7 +6,7 @@
       <div class="row my-2">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <h2>Formulario de Inscripción</h2>
-          <table class="datatable table">
+          <table id="people-datatable" data-source="<%= people_path(format: :json) %>" class= "table">
             <thead>
               <tr>
                 <th><%= Person.human_attribute_name("locality").titleize%></th>
@@ -14,28 +14,11 @@
                 <th><%= Person.human_attribute_name("dni").titleize%></th>
                 <th><%= Person.human_attribute_name("firstname").titleize%></th>
                 <th><%= Person.human_attribute_name("lastname").titleize%></th>
-                
                 <th>Opciones</th>
               </tr>
-
             </thead>
 
             <tbody>
-              <% @people.each do |person| %>
-                <tr>
-                    <td><%=person.locality%></td>
-                    <td><%=person.population_group%></td>
-                    <td><%=person.dni%></td>
-                    <td><%=person.firstname%></td>
-                    <td><%=person.lastname%></td>
-                    
-                  <td>
-                    <%= link_to((fa_icon "eye"), person) %>
-                    <%= link_to((fa_icon "pencil"), edit_person_path(person)) %>
-                    <%= link_to((fa_icon "trash-o"), person, method: :delete, data: { confirm: '¿Esta seguro que desea eliminar?' }) %>
-                  </td>
-                </tr>
-              <% end %>
             </tbody>
           </table>
         </div>
