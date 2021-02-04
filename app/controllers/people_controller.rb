@@ -3,6 +3,7 @@ class PeopleController < ApplicationController
 
   before_action :authenticate_user!, :only => [:index, :edit]
 
+
   # GET /people or /people.json
   def index
     respond_to do |format|
@@ -60,7 +61,11 @@ class PeopleController < ApplicationController
 
   # DELETE /people/1 or /people/1.json
   def destroy
+    
+    authorize! :destroy, Person, :message => "No tienes permisos para destruir inscripciones."
+
     @person.destroy
+
     respond_to do |format|
       format.html { redirect_to people_url, notice: "Person was successfully destroyed." }
       format.json { head :no_content }

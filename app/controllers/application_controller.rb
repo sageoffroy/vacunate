@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
- 	
- 	# => protected
-	# => def authenticate_user!
-    	# => redirect_to root_path, notice: "Debes tener permisos para poder ingresar a esa página" unless user_signed_in?
-  	# => end
+ 	rescue_from CanCan::AccessDenied do |exception|
+ 		respond_to do |format|
+	      format.json { head :forbidden, content_type: 'text/html' }
+	      format.html { redirect_to main_app.root_url, notice: exception.message }
+	      format.js   { head :forbidden, content_type: 'text/html' }
+	    end
+  	end
 end

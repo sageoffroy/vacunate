@@ -359,7 +359,9 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 h2, .h2 {
@@ -10362,4 +10364,9 @@ strong .is-invalid {
 
 .fa-eye, .fa-pencil {
   margin-right: 15px;
+}
+
+
+.fa-trash-o {
+  color: red;
 }

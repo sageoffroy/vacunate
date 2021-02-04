@@ -1,4 +1,6 @@
 class Person < ApplicationRecord
+  
+
   belongs_to :locality, validate: false
   validates_inclusion_of :condition, :in => [true, false]
   validates :firstname, presence: true
@@ -12,6 +14,14 @@ class Person < ApplicationRecord
   validates :dni, uniqueness: true
 
   validate :phone_xor_email
+
+  def to_s
+    "(" + dni + ") " + firstname + " " + lastname
+  end
+
+  def have_any_pathology?
+    return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease)
+  end
 
   private
 
