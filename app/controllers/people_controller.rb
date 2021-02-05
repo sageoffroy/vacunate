@@ -48,6 +48,8 @@ class PeopleController < ApplicationController
 
   # PATCH/PUT /people/1 or /people/1.json
   def update
+    authorize! :update, Person, :message => "No tienes permisos para actulizar esta inscripción."
+
     respond_to do |format|
       if @person.update(person_params)
         format.html { redirect_to @person, notice: "Person was successfully updated." }
@@ -67,7 +69,7 @@ class PeopleController < ApplicationController
     @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to people_url, notice: "Person was successfully destroyed." }
+      format.html { redirect_to people_url, notice: "La inscripción a sido destruida." }
       format.json { head :no_content }
     end
   end
