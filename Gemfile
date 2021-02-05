@@ -92,3 +92,6 @@ gem 'rolify'
 # ReCaptcha
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem "recaptcha", require: "recaptcha/rails"
+
+
+gem 'seed_dump'
