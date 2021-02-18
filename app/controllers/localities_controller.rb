@@ -27,7 +27,7 @@ class LocalitiesController < ApplicationController
 
     respond_to do |format|
       if @locality.save
-        format.html { redirect_to @locality, notice: "Locality was successfully created." }
+        format.html { redirect_to @locality, notice: "La localidad ha sido creada correctamente" }
         format.json { render :show, status: :created, location: @locality }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class LocalitiesController < ApplicationController
   def update
     respond_to do |format|
       if @locality.update(locality_params)
-        format.html { redirect_to @locality, notice: "Locality was successfully updated." }
+        format.html { redirect_to localities_url, notice: "Locality ha sido actualizada correctamente." }
         format.json { render :show, status: :ok, location: @locality }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -66,6 +66,6 @@ class LocalitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def locality_params
-      params.require(:locality).permit(:name, :postal_code)
+      params.require(:locality).permit(:name, :postal_code, :area_id)
     end
 end

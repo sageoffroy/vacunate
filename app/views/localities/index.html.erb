@@ -1,16 +1,36 @@
-<h1>Localities</h1>
+<div class="container">
+  <div class="panel-pane pane-texto">
+    <div class="pane-content">
+      <div class="row my-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h3>LOCALIDADES</h3>
+          <table class="responsive nowrap table table-hover datatable">
+            <thead>
+              <tr>
+                <th>Área</th>
+                <th>Nombre</th>
+                <th>CP</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
 
-<table class="responsive nowrap table table-hover" id="dttb-localities" data-sort="true" data-source="<%= url_for(format: :json)%>">
-  <thead>
-    <tr>
-      <th data-data="name">Name</th>
-      <th data-data="postal_code">Postal code</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
-    </tr>
-  </thead>
-
-</table>
-
-<br>
-
-<%= link_to 'New Locality', new_locality_path %>
+            <tbody>
+              <% @localities.each do |locality| %>
+                <tr>
+                  <td><%= locality.area %></td>
+                  <td><%= locality.name %></td>
+                  <td><%= locality.postal_code %></td>
+                  <td>
+                    <%= link_to((fa_icon "eye"), locality) %>
+                    <%= link_to((fa_icon "pencil"), edit_locality_path(locality)) %>
+                    <%= link_to((fa_icon "trash-o"), locality, method: :delete, data: { confirm: '¿Esta seguro que desea eliminar?' }) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

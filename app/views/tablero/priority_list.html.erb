@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="panel-pane pane-texto">
+    <div class="pane-content">
+      <div class="row my-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h3>LISTADO DE PERSONAS DE</h3>
+          <table class="responsive nowrap table table-hover datatable">
+            <thead>
+              <tr>
+                <th><%= Person.human_attribute_name("dni").titleize%></th>
+                <th><%= Person.human_attribute_name("firstname").titleize%></th>
+                <th><%= Person.human_attribute_name("lastname").titleize%></th>
+                <th><%= Person.human_attribute_name("email").titleize%></th>
+                <th><%= Person.human_attribute_name("telephone").titleize%></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @people.each do |person| %>
+                <tr>
+                  <td><%= person.dni %></td>
+                  <td><%= person.firstname %></td>
+                  <td><%= person.lastname %></td>
+                  <td><%= person.email %></td>
+                  <td><%= person.code_telephone %></td>
+                  
+
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

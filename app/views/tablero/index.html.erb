@@ -3,7 +3,9 @@
     <div class="pane-content">
       <div class="row my-2">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <h3 class="">TABLERO</h3>
+            <h3 class="">
+                TABLERO 
+            </h3>
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
@@ -103,28 +105,47 @@
                 </div>
             </div>
         </div>
-
         <div class="col-lg-6 mb-4">
-           <!-- Project Card Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Inscripciones con Patologías</h6>
-                </div>
-                <div class="card-body">
-                    <div class="row text-center">
-                        <div class="col-lg-6">
-                            <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %>
+            <div class="row">
+
+                <div class="col-lg-12">
+                   <!-- Project Card Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Inscripciones con Patologías</h6>
                         </div>
-                        <div class="col-lg-6" style="display: table;height: 150px;">
-                            <span class="h1 text-warning" style="vertical-align:middle;display: table-cell;">
-                                <%=@inscripciones_patologia%>
-                            </span>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-lg-6">
+                                    <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %>
+                                </div>
+                                <div class="col-lg-6" style="display: table;height: 150px;">
+                                    <span class="h1 text-warning" style="vertical-align:middle;display: table-cell;">
+                                        <%=@inscripciones_patologia%>
+                                    </span>
+                                </div>
+                            </div>
+                            <p> Cantidad de inscripciones con una o más patologías de Riesgo.</p>
                         </div>
                     </div>
-                    <p> Cantidad de inscripciones con una o más patologías de Riesgo.</p>
                 </div>
-            </div>
 
+                <div class="col-lg-12">
+                   <!-- Project Card Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Lisados de Prioridad</h6>
+                        </div>
+                        <div class="card-body">
+                            <% @inscripciones_x_localidad.each do |loc| %>
+                                <a class="btn btn-secondary btn-block mt-3" href="/priority_list/<%=loc[0].id%>
+                                "><%=loc[0].name%></a>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
       </div>
 

@@ -16,11 +16,11 @@ class PersonDatatable < AjaxDatatablesRails::ActiveRecord
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
     @view_columns ||= {
-      locality: { source: "Person.locality", cond: :like, searchable: false, orderable: false },
-      population_group: { source: "Person.population_group", searchable: false, orderable: false },
-      dni: { source: "Person.dni", searchable: false, orderable: false },
-      firstname: { source: "Person.firstname", searchable: false, orderable: false },
-      lastname: { source: "Person.lastname", searchable: false, orderable: false },
+      locality: { source: "Person.locality_id", cond: :like, searchable: true, orderable: true },
+      population_group: { source: "Person.population_group", searchable: true, orderable: true },
+      dni: { source: "Person.dni", searchable: true, orderable: true },
+      firstname: { source: "Person.firstname", searchable: true, orderable: true },
+      lastname: { source: "Person.lastname", searchable: true, orderable: true },
       options: {searchable: false, orderable: false}
     }
   end
@@ -28,7 +28,7 @@ class PersonDatatable < AjaxDatatablesRails::ActiveRecord
   def data
     records.map do |record|
       {
-        locality: record.locality.to_s,
+        locality: record.locality.name,
         population_group: record.population_group,
         dni: record.dni,
         firstname: record.firstname,
