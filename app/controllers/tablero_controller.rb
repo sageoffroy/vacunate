@@ -1,6 +1,6 @@
 class TableroController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
   	if !current_user.nil?
 
@@ -17,7 +17,7 @@ class TableroController < ApplicationController
   			inscripciones = Person.all
   		end
   	end
-  	
+
   	@total_de_inscripciones = inscripciones.count
   	@total_mayores_60 = inscripciones.where(population_group: "Soy mayor de 60 años").count
   	@total_18_59_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (con factores de riesgo)").count
@@ -29,12 +29,12 @@ class TableroController < ApplicationController
 		@inscripciones_ERC = inscripciones.where(chronic_kidney_disease: true).count
 		@inscripciones_EC = inscripciones.where(cardiovascular_disease: true).count
 		@inscripciones_EPC = inscripciones.where(chronic_lung_disease: true).count
-		
+
 
 		count = 0
 		inscripciones.all.each do |person|
 			if person.have_any_pathology?
-				count = count + 1 
+				count = count + 1
 			end
 		end
 
@@ -50,15 +50,15 @@ class TableroController < ApplicationController
   	state_aux = @state
   	if @state == "Nuevo"
   		state_aux = nil
-  	end	
+  	end
 
     if !@population_group == "Soy mayor de 70 años"
-      @inscripciones = Person.where(locality: Locality.where(id:@locality), population_group: @population_group, state: state_aux)
+      @inscripciones = Person.where(locality: Locality.where(id:@locality).first, population_group: @population_group, state: state_aux)
     else
-      @inscripciones = Person.where(locality: Locality.where(id:@locality), population_group: "Soy mayor de 60 años", state: state_aux)
+      @inscripciones = Person.where(locality: Locality.where(id:@locality).first, population_group: "Soy mayor de 60 años", state: state_aux)
     end
 
-  	
+
 
   end
 
