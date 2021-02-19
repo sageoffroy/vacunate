@@ -25,7 +25,9 @@ class PeopleController < ApplicationController
     
   end
 
-
+  def priority
+    
+  end
   # GET /people/1/edit
   def edit
   end

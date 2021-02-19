@@ -10,76 +10,85 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total de Inscripciones</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%=@total_de_inscripciones%></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa fa-address-book fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    Total de Inscripciones
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_de_inscripciones%>
+                  </div>
                 </div>
+                <div class="col-auto">
+                    <i class="fa fa-address-book fa-2x text-gray-300"></i>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Mayores de 60</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%=@total_mayores_60%></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa fa-blind fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Mayores de 60</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%=@total_mayores_60%></div>
                 </div>
+                <div class="col-auto">
+                  <i class="fa fa-blind fa-2x text-gray-300"></i>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">18 a 59 (Riesgo)</div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%=@total_18_59_riesgo%></div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa fa-medkit fa-2x text-gray-300"></i>
-                        </div>
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                    18 a 59 (Riesgo)
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <%=@total_18_59_riesgo%>
                     </div>
+                  </div>
                 </div>
+                <div class="col-auto">
+                  <i class="fa fa-medkit fa-2x text-gray-300"></i>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
 
         <!-- Pending Requests Card Example -->
         <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Resto</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><%=@total_de_inscripciones - @total_mayores_60 - @total_18_59_riesgo%></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fa fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                    Resto
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_de_inscripciones - @total_mayores_60 - @total_18_59_riesgo%>
+                  </div>
                 </div>
+                <div class="col-auto">
+                  <i class="fa fa-comments fa-2x text-gray-300"></i>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
     </div>
 
@@ -106,46 +115,56 @@
             </div>
         </div>
         <div class="col-lg-6 mb-4">
-            <div class="row">
-
-                <div class="col-lg-12">
-                   <!-- Project Card Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Inscripciones con Patologías</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="row text-center">
-                                <div class="col-lg-6">
-                                    <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %>
-                                </div>
-                                <div class="col-lg-6" style="display: table;height: 150px;">
-                                    <span class="h1 text-warning" style="vertical-align:middle;display: table-cell;">
-                                        <%=@inscripciones_patologia%>
-                                    </span>
-                                </div>
+          <div class="row">
+            <div class="col-lg-12">
+               <!-- Project Card Example -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Inscripciones con Patologías</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-lg-6">
+                                <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %>
                             </div>
-                            <p> Cantidad de inscripciones con una o más patologías de Riesgo.</p>
+                            <div class="col-lg-6" style="display: table;height: 150px;">
+                                <span class="h1 text-warning" style="vertical-align:middle;display: table-cell;">
+                                    <%=@inscripciones_patologia%>
+                                </span>
+                            </div>
                         </div>
+                        <p> Cantidad de inscripciones con una o más patologías de Riesgo.</p>
                     </div>
                 </div>
-
-                <div class="col-lg-12">
-                   <!-- Project Card Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Lisados de Prioridad</h6>
-                        </div>
-                        <div class="card-body">
-                            <% @inscripciones_x_localidad.each do |loc| %>
-                                <a class="btn btn-secondary btn-block mt-3" href="/priority_list/<%=loc[0].id%>
-                                "><%=loc[0].name%></a>
-                            <% end %>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+            <div class="col-lg-12">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Generar Listado</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Localidad:" %>
+                      <%= select_tag "select_locality_list", options_from_collection_for_select(Locality.where(area: Area.where(abbreviation: current_user.area).first), :id, :to_s), :class=> 'select2 select-field form-control' %>
+                    </div>
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Grupo Poblacional:" %>
+                      <%= select_tag "population_group_list", options_for_select([ "Soy personal de salud", "Soy personal de seguridad", "Soy personal docente/auxiliar", "Soy mayor de 70 años", "Soy mayor de 60 años"], "Soy personal de salud"), {class: "select2 select-field form-control"}%>
+                    </div>
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Estado:" %>
+                      <%= select_tag "state_list", options_for_select([ "Nuevo", "Vacunado", "Ausente"], "Nuevo"), {class: "select2 select-field form-control"}%>
+                    </div>
+                    <div class="actions"> 
+                      <a id="list_generator_button" class="btn btn-secondary btn-block mt-3">GENERAR LISTADO</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -153,3 +172,21 @@
   </div>
 </div>
 <!-- /.container-fluid -->
+
+
+<script type="text/javascript">
+  $("#list_generator_button").on("click", listGenerator);
+
+  
+
+
+  function listGenerator(){
+    locality = $('#select_locality_list');
+    population_group = $('#population_group_list');
+    state = $('#state_list');
+  
+    window.location.href = '/list_group_state/'+locality.val()+'/'+population_group.val()+'/'+ state.val()
+
+  }
+
+</script>

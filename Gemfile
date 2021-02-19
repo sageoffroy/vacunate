@@ -70,6 +70,7 @@ gem 'bootstrap-datepicker-rails'
 gem "select2-rails"
 
 # Datatable
+gem "jszip-rails"
 gem 'jquery-datatables'
 gem 'ajax-datatables-rails'
 gem 'kaminari'

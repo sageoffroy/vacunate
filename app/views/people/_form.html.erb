@@ -219,6 +219,8 @@
       <%= recaptcha_tags :id => "person_recaptcha_id" %>
     </div>
 
+    <%= form.hidden_field :state%>
+
     <div class="actions"> 
       <%= form.submit "Inscribirme", :class => "btn btn-primary btn-block" %>
       <a class="btn btn-secondary btn-block mt-3" href="/">VOLVER AL INICIO</a>

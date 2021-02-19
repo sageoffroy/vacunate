@@ -6,13 +6,13 @@ class TableroController < ApplicationController
 
 
   		if current_user.area == "dpapt"
-  			inscripciones = Person.where(locality: Locality.all.where(area: 1))
+  			inscripciones = Person.where(locality: Locality.where(area: 1))
   		elsif current_user.area == "dpapn"
-  			inscripciones = Person.where(locality: Locality.all.where(area: 2))
+  			inscripciones = Person.where(locality: Locality.where(area: 2))
   		elsif current_user.area == "dpape"
-  			inscripciones = Person.where(locality: Locality.all.where(area: 3))
+  			inscripciones = Person.where(locality: Locality.where(area: 3))
   		elsif current_user.area == "dpapcr"
-  			inscripciones = Person.where(locality: Locality.all.where(area: 4))
+  			inscripciones = Person.where(locality: Locality.where(area: 4))
   		else
   			inscripciones = Person.all
   		end
@@ -42,8 +42,23 @@ class TableroController < ApplicationController
 
   end
 
-  def priority_list
-  	@people = Person.where(locality: params[:id])
+  def list_group_state
+  	@locality = Locality.where(id: params[:locality]).first
+  	@population_group = params[:population_group]
+  	@state = params[:state]
+
+  	state_aux = @state
+  	if @state == "Nuevo"
+  		state_aux = nil
+  	end	
+
+    if !@population_group == "Soy mayor de 70 años"
+      @inscripciones = Person.where(locality: Locality.where(id:@locality), population_group: @population_group, state: state_aux)
+    else
+      @inscripciones = Person.where(locality: Locality.where(id:@locality), population_group: "Soy mayor de 60 años", state: state_aux)
+    end
+
+  	
 
   end
 

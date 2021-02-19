@@ -13,6 +13,8 @@ class Person < ApplicationRecord
   validates_associated :locality
   validates :dni, uniqueness: true
 
+  belongs_to :state, optional: true
+
   validate :phone_xor_email
 
   def to_s
@@ -25,6 +27,14 @@ class Person < ApplicationRecord
 
   def code_telephone
     "(" +phone_code.to_s + ") " + phone.to_s
+  end
+
+  def age
+    return ((Time.zone.now - birthdate.to_time) / 1.year.seconds).floor
+  end
+
+  def pathologies
+    
   end
 
   private

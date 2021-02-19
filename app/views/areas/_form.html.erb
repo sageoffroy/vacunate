@@ -1,27 +1,45 @@
-<%= form_with(model: area, local: true) do |form| %>
+<%= form_with(model: area, id: "new-area", local: true, html: { class: "form-horizontal" }) do |form| %>
   <% if area.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(area.errors.count, "error") %> prohibited this area from being saved:</h2>
-
-      <ul>
-      <% area.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <script type="text/javascript">
+      window.onload = function() {
+        toastr['error']('Uno o más campos tienen errores, corrígelos y vuelve a intentarlo');
+        <% area.errors.messages.each do |key_p, message| %>
+          <% key = key_p.to_s.delete_prefix(':') %>
+          <% if Area.columns_hash[key].nil? %>
+            <% key = key+"_id" %>
+          <% end %>
+          var element = document.getElementById("area_<%= key%>");
+          element.classList.add("is-invalid");
+          if ("<%= message[0] %>" != ""){
+            var span = document.createElement('span');
+            span.className = "invalid-feedback";
+            span.append("<%= message[0] %>");
+            element.parentElement.append(span);
+          }
+        <% end %>
+      }
+    </script>
   <% end %>
+  <div class="row">
+    <div class="form-group col-md-6">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+      <%= form.label :name, "Nombre de la Localidad <span style='color:red;'>*</span>".html_safe %>
+      <%= form.text_field :name, :class => "form-control", :placeholder => "Dirección Provincial Área Prográmatica Rawson"  %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :abbreviation, "Abreviación".html_safe %>
+      <%= form.text_field :abbreviation, :class => "form-control", :placeholder => "dpapt"  %>
+    </div>
+    <div class="actions"> 
+      <%= form.submit "Guardar", :class => "btn btn-primary btn-block" %>
+      <%= link_to 'VER AREAS', areas_path, :class => "btn btn-secondary btn-block" %>
+      <a class="btn btn-secondary btn-block mt-3" href="/">VOLVER AL INICIO</a>
+
+                  
+    </div>
+
   </div>
 
-  <div class="field">
-    <%= form.label :abbreviation %>
-    <%= form.text_field :abbreviation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  
 <% end %>

@@ -5,8 +5,4 @@ class Area < ApplicationRecord
 	def to_s 
 		name
 	end
-
-	def abbreviation
-		
-	end
 end
