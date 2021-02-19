@@ -52,7 +52,7 @@ class TableroController < ApplicationController
   		state_aux = nil
   	end
 
-    if !@population_group == "Soy mayor de 70 años"
+    if !(@population_group == "Soy mayor de 70 años")
       @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: state_aux)
     else
       @inscripciones = Person.where(locality: @locality, population_group: "Soy mayor de 60 años", state: state_aux)
