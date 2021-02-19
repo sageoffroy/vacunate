@@ -4,7 +4,7 @@
     <title>Chubut Vacunate</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -12,7 +12,7 @@
     <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
 
-  <body id="page-top" class="bg-light">
+  <body id="page-top" class="<%= controller_name %> <%= action_name %> bg-light">
     <% unless flash.empty? %>
       <script type="text/javascript">
         <% flash.each do |f| %>
@@ -21,7 +21,12 @@
         <% end %>
       </script>
     <% end %>
-    <%= yield %>
-    <%= render "layouts/footer"%>
+      <% if user_signed_in? %>
+        <%= render "layouts/navbar"%>
+      <% else %>
+        <%= render "layouts/header"%>
+      <% end %>
+      <%= yield %>
+      <%= render "layouts/footer"%>
   </body>
 </html>

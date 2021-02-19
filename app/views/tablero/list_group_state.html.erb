@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="panel-pane pane-texto">
+    <div class="pane-content">
+      <div class="row my-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h3>PERSONAS INSCRIPTAS EN <%= @locality.to_s.upcase %></h3>
+          <strong>GRUPO POBLACIONAL: </strong><%= @population_group.to_s.upcase %><br>
+          <strong>ESTADO: </strong><%= @state.upcase %>
+          <hr>
+          <table id="table_export" class="responsive nowrap table table-hover">
+            <thead>
+              <tr>
+                <th><%= Person.human_attribute_name("dni").titleize%></th>
+                <th><%= Person.human_attribute_name("firstname").titleize%></th>
+                <th><%= Person.human_attribute_name("lastname").titleize%></th>
+                <th>Edad</th>
+                <th><%= Person.human_attribute_name("email").titleize%></th>
+                <th><%= Person.human_attribute_name("phone").titleize%></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @inscripciones.each do |ins| %>
+                <tr>
+                  <td><%= ins.dni %></td>
+                  <td><%= ins.firstname %></td>
+                  <td><%= ins.lastname %></td>
+                  <td><%= ins.age %></td>
+                  <td><%= ins.email %></td>
+                  <td><%= ins.code_telephone %></td>
+                  
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <a class="btn btn-secondary btn-block mt-3" href="/tablero">VOLVER AL tablero</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+    $('#table_export').DataTable( {
+        dom: 'Bfrtip',
+        buttons: ['copyHtml5','excelHtml5','csvHtml5','pdfHtml5'],
+        bPaginate: true,
+        language: {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'},
+        processing: true
+    } );
+} );
+
+
+
+</script>

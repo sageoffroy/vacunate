@@ -359,7 +359,9 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 h2, .h2 {
@@ -5607,7 +5609,9 @@ a.close.disabled {
 .modal-body {
   position: relative;
   flex: 1 1 auto;
-  padding: 1rem;
+  padding: 2rem;
+  text-align: justify;
+  line-height: 1.3;
 }
 
 .modal-footer {
@@ -5616,7 +5620,7 @@ a.close.disabled {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 1px solid #dee2e6;
+  border-top: none;
   border-bottom-right-radius: calc(0.3rem - 1px);
   border-bottom-left-radius: calc(0.3rem - 1px);
 }
@@ -10201,11 +10205,10 @@ body {
 }
 
 .btn {
-  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
-  padding: 1.25rem 2rem;
+  box-shadow: none;
+  padding: 0.75rem;
   font-family: "Encode Sans",Arial,sans-serif;
   font-weight: 700;
-  font-size: 80%;
   text-transform: uppercase;
   letter-spacing: 0.15rem;
   border: 0;
@@ -10217,7 +10220,6 @@ body {
   width: 100%;
   height: auto;
   min-height: 35rem;
-  padding: 15rem 0;
   background: url("bg-masthead.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -10234,6 +10236,7 @@ body {
   max-width: 20rem;
   font-size: 1rem;
 }
+
 @media (min-width: 768px) {
   .masthead h1 {
     font-size: 4rem;
@@ -10257,64 +10260,21 @@ body {
 }
 
 
-.cuidados-section {
-  padding-top: 85px;
-  background: white;
-}
-.cuidados-section p {
-  margin-bottom: 5rem;
+
+.preguntas-section {
+  background: #97339e;
+  color: white;
 }
 
-.mensaje-section {
-  padding: 85px 0;
-}
-
-.formulario-section {
-  padding: 85px 0;
-}
-
-.sintomas-section {
-  padding: 85px 0;
-}
-.sintomas-section .featured-text {
-  padding: 2rem;
-}
-@media (min-width: 992px) {
-  .sintomas-section .featured-text {
-    padding: 0 0 0 2rem;
-    border-left: 0.5rem solid $verde-agua;
-  }
-}
-.sintomas-section .project-text {
-  padding: 3rem;
-  font-size: 90%;
-}
 
 .vacunatorios-section {
-  padding-top: 85px;
-  padding-bottom: 50px;
   background: white;
 }
 
-@media (min-width: 992px) {
-  .sintomas-section .project-text {
-    padding: 5rem;
-  }
-  .sintomas-section .project-text hr {
-    border-color: $verde-agua;
-    border-width: 0.25rem;
-    width: 30%;
-  }
-}
-
-.formulario-header-section {
+.header-section {
   background: #2D94D9;
-  padding: 100px 0 50px;
 }
 
-.footer {
-  padding: 5rem 0;
-}
 
 
 .select2-container--bootstrap .select2-selection--single {
@@ -10364,4 +10324,49 @@ input[type=number] {
 
 .actions {
   width: 100%;
+}
+
+
+.is-invalid ~ .select2 .selection .select2-selection{
+    border-color: #dc3545!important;
+}
+.is-valid ~ .select2 .selection .select2-selection{
+    border-color: #28a745!important;
+}
+
+
+.is-invalid .recaptcha-checkbox-border {
+
+  border-color: #dc3545!important;
+}
+
+.is-invalid .rc-anchor-light {
+  border-color: #dc3545!important; 
+}
+
+#person_recaptcha_id .recaptcha-checkbox-border {
+
+  border-color: #dc3545!important;
+}
+
+strong .is-invalid {
+  color: #dc3545;
+}
+
+*:focus{
+  outline:0px;
+}
+
+
+.fa {
+  
+}
+
+.fa-eye, .fa-pencil {
+  margin-right: 15px;
+}
+
+
+.fa-trash-o {
+  color: red;
 }

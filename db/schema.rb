@@ -10,24 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_223235) do
+ActiveRecord::Schema.define(version: 2021_02_18_113856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "areas", force: :cascade do |t|
+    t.string "name"
+    t.string "abbreviation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "localities", force: :cascade do |t|
     t.string "name"
     t.integer "postal_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "pathologies", force: :cascade do |t|
-    t.integer "code"
-    t.integer "priority"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "area_id"
+    t.index ["area_id"], name: "index_localities_on_area_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -59,14 +60,6 @@ ActiveRecord::Schema.define(version: 2021_01_27_223235) do
     t.index ["state_id"], name: "index_people_on_state_id"
   end
 
-  create_table "population_groups", force: :cascade do |t|
-    t.integer "code"
-    t.integer "priority"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -91,6 +84,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_223235) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "area"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -103,6 +97,7 @@ ActiveRecord::Schema.define(version: 2021_01_27_223235) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "localities", "areas"
   add_foreign_key "people", "localities"
   add_foreign_key "people", "states"
 end

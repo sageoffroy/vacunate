@@ -1,6 +1,6 @@
 class StatesController < ApplicationController
   before_action :set_state, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
   # GET /states or /states.json
   def index
     @states = State.all

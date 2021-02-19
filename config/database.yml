@@ -24,6 +24,9 @@ default: &default
 development:
   <<: *default
   database: vacunate_development
+  username: bihos
+  host: localhost
+  password: quitar
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -81,5 +84,5 @@ test:
 production:
   <<: *default
   database: vacunate_production
-  username: bihos
+  username: informatica
   password: Chubut387

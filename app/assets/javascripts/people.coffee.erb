@@ -25,39 +25,6 @@ $.fn.extend {
 }
 
 
-
-$.fn.render_form_errors = (model_name, errors) ->
-  form = this
-  $("#new_dependence_of_agent").clear_form_errors()
-  $.each(errors, (field, messages) ->
-    field = field.substring(field.lastIndexOf(".")+1).replace("_id","")
-    console.log "CAMPO: " + field
-    input = form.find('input, select, textarea').filter(->
-      name = $(this).attr('name')
-      campo = name.substring(name.lastIndexOf('[')+1).replace("]","").replace("_id", "")
-      return field == campo
-    )
-    console.log input
-    input.closest('.form-group').addClass('has-danger')
-    input.addClass('form-control-danger')
-
-    #input.parent().append('<span class="help-block">' + $.map(messages, (m) -> m.charAt(0).toUpperCase() + m.slice(1)).join('<br />') + '</span>')
-    toastr["error"](messages)
-  )
-
-$.fn.clear_form_errors = () ->
-  this.find('.form-group').removeClass('has-danger')
-  this.removeClass('form-control-danger')
-
-$.fn.clear_form_fields = () ->
-  this.find(':input','#new_dependence_of_agent')
-      .not(':button, :submit, :reset, :hidden')
-      .val('')
-      .removeAttr('checked')
-      .removeAttr('selected')
-
-
-
 Number::format = (n, x, s, c) ->
   re = '\\d(?=(\\d{' + (x or 3) + '})+' + (if n > 0 then '\\D' else '$') + ')'
   num = @toFixed(Math.max(0, ~ ~n))
@@ -69,21 +36,23 @@ $(document).ready ->
   form.integrateSelect2()
   form.integrateDatepicker()
 
-  document.getElementById('person_phone').addEventListener 'input', (e) ->
-    x = e.target.value.replace(/\D/g, '').match(/(\d{0,8})/)
-    e.target.value = x[1]
-    return
 
-  document.getElementById('person_phone_code').addEventListener 'input', (e) ->
-    x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})/)
-    e.target.value = x[1]
-    return
+  if ($('.people.new').length > 0)
+    document.getElementById('person_phone').addEventListener 'input', (e) ->
+      x = e.target.value.replace(/\D/g, '').match(/(\d{0,8})/)
+      e.target.value = x[1]
+      return
 
-  document.getElementById('person_dni').addEventListener 'input', (e) ->
-    x = e.target.value.replace(/\D/g, '')
-    e.target.value = x
-    return
-  
+    document.getElementById('person_phone_code').addEventListener 'input', (e) ->
+      x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})/)
+      e.target.value = x[1]
+      return
+
+    document.getElementById('person_dni').addEventListener 'input', (e) ->
+      x = e.target.value.replace(/\D/g, '')
+      e.target.value = x
+      return
+  return
 
 
 
@@ -102,20 +71,32 @@ $(document).on 'turbolinks:load', ->
   form.integrateSelect2()
   form.integrateDatepicker()
 
-  document.getElementById('person_phone').addEventListener 'input', (e) ->
-    x = e.target.value.replace(/\D/g, '').match(/(\d{0,8})/)
-    e.target.value = x[1]
-    return
 
-  document.getElementById('person_phone_code').addEventListener 'input', (e) ->
-    x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})/)
-    e.target.value = x[1]
-    return
+  if ($('.people.new').length > 0)
+    document.getElementById('person_phone').addEventListener 'input', (e) ->
+      x = e.target.value.replace(/\D/g, '').match(/(\d{0,8})/)
+      e.target.value = x[1]
+      return
 
-  document.getElementById('person_dni').addEventListener 'input', (e) ->
-    x = e.target.value.replace(/\D/g, '')
-    e.target.value = x
-    return
+    document.getElementById('person_phone_code').addEventListener 'input', (e) ->
+      x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})/)
+      e.target.value = x[1]
+      return
+
+    document.getElementById('person_dni').addEventListener 'input', (e) ->
+      x = e.target.value.replace(/\D/g, '')
+      e.target.value = x
+      return
+
+    document.getElementById('person_address_floor').addEventListener 'input', (e) ->
+      x = e.target.value.replace(/\D/g, '').match(/(\d{0,1})/)
+      e.target.value = x[1]
+      return
+
+    document.getElementById('person_address_number').addEventListener 'input', (e) ->
+      x = e.target.value.replace(/\D/g, '').match(/(\d{0,6})/)
+      e.target.value = x[1]
+      return
 
 
 
@@ -127,5 +108,28 @@ $ ->
 $(document).on 'turbolinks:before-cache', ->
     dataTable =  $($.fn.dataTable.tables(true)).DataTable()
     if (dataTable != null)
-     dataTable.destroy();
+      dataTable.destroy();
 
+
+$(document).on 'turbolinks:load', ->
+  $('#people-datatable').dataTable
+    processing: true
+    serverSide: true
+    ajax:
+      url: $('#people-datatable').data('source')
+    pagingType: 'full_numbers'
+    language: 'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
+    bPaginate: true
+    info: false
+    responsive: true
+    deferRender: true
+    stateSave: true
+    columns: [
+      {data: 'locality'}
+      {data: 'population_group'}
+      {data: 'dni'}
+      {data: 'firstname'}
+      {data: 'lastname'}
+      {data: 'options'}
+
+    ]

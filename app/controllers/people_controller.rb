@@ -1,9 +1,15 @@
 class PeopleController < ApplicationController
   before_action :set_person, only: %i[ show edit update destroy ]
 
+  before_action :authenticate_user!, :only => [:index, :edit]
+
+
   # GET /people or /people.json
   def index
-    @people = Person.all
+    respond_to do |format|
+      format.html
+      format.json { render json: PersonDatatable.new(params, view_context: view_context) }
+    end
   end
 
   # GET /people/1 or /people/1.json
@@ -15,6 +21,13 @@ class PeopleController < ApplicationController
     @person = Person.new
   end
 
+  def felicitaciones
+    
+  end
+
+  def priority
+    
+  end
   # GET /people/1/edit
   def edit
   end
@@ -23,11 +36,11 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params)
     respond_to do |format|
-      if @person.save
-        format.html { redirect_to @person, notice: "Person was successfully created." }
+      if verify_recaptcha(model: @person, attribute: "recaptcha", message:"Debes verificar que no eres un robot") && @person.save
+        format.html { redirect_to @person}
         format.json { render :show, status: :created, location: @person }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new}
         format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
@@ -37,6 +50,8 @@ class PeopleController < ApplicationController
 
   # PATCH/PUT /people/1 or /people/1.json
   def update
+    authorize! :update, Person, :message => "No tienes permisos para actulizar esta inscripción."
+
     respond_to do |format|
       if @person.update(person_params)
         format.html { redirect_to @person, notice: "Person was successfully updated." }
@@ -50,9 +65,13 @@ class PeopleController < ApplicationController
 
   # DELETE /people/1 or /people/1.json
   def destroy
+    
+    authorize! :destroy, Person, :message => "No tienes permisos para destruir inscripciones."
+
     @person.destroy
+
     respond_to do |format|
-      format.html { redirect_to people_url, notice: "Person was successfully destroyed." }
+      format.html { redirect_to people_url, notice: "La inscripción a sido destruida." }
       format.json { head :no_content }
     end
   end
@@ -69,6 +88,6 @@ class PeopleController < ApplicationController
     end
 
     def validate_params
-      params.permit(:firstname, :lastname, :from, :to)
+      params.permit(:firstname, :lastname, :dni, :from, :to)
     end
 end

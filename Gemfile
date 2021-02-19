@@ -70,6 +70,7 @@ gem 'bootstrap-datepicker-rails'
 gem "select2-rails"
 
 # Datatable
+gem "jszip-rails"
 gem 'jquery-datatables'
 gem 'ajax-datatables-rails'
 gem 'kaminari'
@@ -87,3 +88,11 @@ gem 'barby'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
+
+
+# ReCaptcha
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'recaptcha', require: 'recaptcha/rails'
+
+
+gem 'seed_dump'

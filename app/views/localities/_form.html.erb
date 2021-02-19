@@ -1,27 +1,51 @@
-<%= form_with(model: locality, local: true) do |form| %>
+<%= form_with(model: locality, id: "new-locality", local: true, html: { class: "form-horizontal" }) do |form| %>
   <% if locality.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(locality.errors.count, "error") %> prohibited this locality from being saved:</h2>
-
-      <ul>
-      <% locality.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <script type="text/javascript">
+      window.onload = function() {
+        toastr['error']('Uno o más campos tienen errores, corrígelos y vuelve a intentarlo');
+        <% locality.errors.messages.each do |key_p, message| %>
+          <% key = key_p.to_s.delete_prefix(':') %>
+          <% if Person.columns_hash[key].nil? %>
+            <% key = key+"_id" %>
+          <% end %>
+          var element = document.getElementById("locality_<%= key%>");
+          element.classList.add("is-invalid");
+          if ("<%= message[0] %>" != ""){
+            var span = document.createElement('span');
+            span.className = "invalid-feedback";
+            span.append("<%= message[0] %>");
+            element.parentElement.append(span);
+          }
+        <% end %>
+      }
+    </script>
   <% end %>
+  <div class="row">
+    <div class="form-group col-md-6">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+      <%= form.label :name, "Nombre de la Localidad <span style='color:red;'>*</span>".html_safe %>
+      <%= form.text_field :name, :class => "form-control", :placeholder => "Rawson"  %>
+    </div>
+
+    <div class="form-group col-md-6">
+      <%= form.label :postal_code, "Código Postal".html_safe %>
+      <%= form.text_field :postal_code, :class => "form-control", :placeholder => "9103"  %>
+    </div>
+
+    <div class="col-md-12 form-group">
+      <%= form.label :area_id, "Área Programática <span style='color:red;'>*</span>".html_safe %>
+      <%= form.collection_select :area_id, Area.all, :id, :to_s, {prompt: "Seleccionar Área Programática"}, {class: "select2 select-field form-control"} %>
+    </div>
+
+    <div class="actions"> 
+      <%= form.submit "Guardar", :class => "btn btn-primary btn-block" %>
+      <%= link_to 'VER LOCALIDADES', localities_path, :class => "btn btn-secondary btn-block" %>
+      <a class="btn btn-secondary btn-block mt-3" href="/">VOLVER AL INICIO</a>
+
+                  
+    </div>
+
   </div>
 
-  <div class="field">
-    <%= form.label :postal_code %>
-    <%= form.number_field :postal_code %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  
 <% end %>

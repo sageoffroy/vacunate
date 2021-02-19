@@ -18,17 +18,10 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require datatables
+//= require jszip
 //= require select2
 //= require toastr
 //= require cocoon
-
-//= require vacunate
-
-
-//= require all
-
-
-
 //= require_tree .
 
 
