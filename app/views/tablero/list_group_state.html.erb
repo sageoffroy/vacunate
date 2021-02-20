@@ -11,24 +11,37 @@
             <thead>
               <tr>
                 <th><%= Person.human_attribute_name("dni").titleize%></th>
-                <th><%= Person.human_attribute_name("firstname").titleize%></th>
-                <th><%= Person.human_attribute_name("lastname").titleize%></th>
+                <th>Nombre Completo</th>
                 <th>Edad</th>
                 <th><%= Person.human_attribute_name("email").titleize%></th>
                 <th><%= Person.human_attribute_name("phone").titleize%></th>
+                <th><%= Person.human_attribute_name("priority").titleize%></th>
+                <th>Patologías</th>
               </tr>
             </thead>
 
             <tbody>
               <% @inscripciones.each do |ins| %>
                 <tr>
-                  <td><%= ins.dni %></td>
-                  <td><%= ins.firstname %></td>
-                  <td><%= ins.lastname %></td>
+                <% if ((ins.dni < 1000000) or (ins.dni > 99999999)) %>
+                  <td><span style="color:red;"><%= ins.dni %></span></td>
+                <% else %>
+                  <td><%= ins.dni %></span></td>
+                <% end %>
+                  <td><%= ins.firstname + " " + ins.lastname %></td>
+                <% if (ins.age > 130) %>
+                  <td><span style="color:red;"><%= ins.age %></span></td>
+                <% else %>
                   <td><%= ins.age %></td>
+                <% end %>
                   <td><%= ins.email %></td>
                   <td><%= ins.code_telephone %></td>
-                  
+                <% if (ins.age > 130) %>
+                  <td><span style="color:red;">0</span></td>
+                <% else %>
+                  <td><%= ins.priority %></td>
+                <% end %>
+                  <td><%= ins.show_pathologies %></td>
                 </tr>
               <% end %>
             </tbody>

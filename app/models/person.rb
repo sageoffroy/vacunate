@@ -25,6 +25,53 @@ class Person < ApplicationRecord
     return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease)
   end
 
+  def show_pathologies
+
+    p_aux = ""
+
+    if (diabetes)
+      if (p_aux.eql? "")
+        p_aux = p_aux + "DBT"
+      else
+        p_aux = p_aux + " - DBT"
+      end
+    end
+
+    if (obesity)
+      if (p_aux.eql? "")
+        p_aux = p_aux + "O"
+      else
+        p_aux = p_aux + " - O"
+      end
+    end
+
+    if (chronic_kidney_disease)
+      if (p_aux.eql? "")
+        p_aux = p_aux + "ERC"
+      else
+        p_aux = p_aux + " - ERC"
+      end
+    end
+
+    if (cardiovascular_disease)
+      if (p_aux.eql? "")
+        p_aux = p_aux + "ECV"
+      else
+        p_aux = p_aux + " - ECV"
+      end
+    end
+
+    if (chronic_lung_disease)
+      if (p_aux.eql? "")
+        p_aux = p_aux + "RC"
+      else
+        p_aux = p_aux + " - RC"
+      end
+    end
+
+    return p_aux
+  end
+
   def code_telephone
     "(" +phone_code.to_s + ") " + phone.to_s
   end
@@ -33,7 +80,28 @@ class Person < ApplicationRecord
     return ((Time.zone.now - birthdate.to_time) / 1.year.seconds).floor
   end
 
-  def pathologies
+  def update_priority
+
+    priority_aux = (age * 1.3).round
+
+    if (diabetes)
+      priority_aux += 20
+    end
+    if (obesity)
+      priority_aux += 10
+    end
+    if (chronic_kidney_disease)
+      priority_aux += 5
+    end
+    if (cardiovascular_disease)
+      priority_aux += 5
+    end
+    if (chronic_lung_disease)
+      priority_aux += 5
+    end
+
+    update_attribute('priority', priority_aux)
+    
     
   end
 

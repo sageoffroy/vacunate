@@ -6,7 +6,7 @@ class TableroController < ApplicationController
 
 
   		if current_user.area == "dpapt"
-  			inscripciones = Person.where(locality: Locality.where(area: 1))
+        inscripciones = Person.where(locality: Locality.where(area: 1))
   		elsif current_user.area == "dpapn"
   			inscripciones = Person.where(locality: Locality.where(area: 2))
   		elsif current_user.area == "dpape"
@@ -53,7 +53,7 @@ class TableroController < ApplicationController
   	end
 
     if !(@population_group == "Soy mayor de 70 años")
-      @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: state_aux)
+      @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: state_aux).order(:priority)
     else
       @inscripciones = Person.where(locality: @locality, population_group: "Soy mayor de 60 años", state: state_aux)
     end
