@@ -35,6 +35,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
     respond_to do |format|
       if verify_recaptcha(model: @person, attribute: "recaptcha", message:"Debes verificar que no eres un robot") && @person.save
+        @person.update_priority
         format.html { redirect_to @person}
         format.json { render :show, status: :created, location: @person }
       else
@@ -49,9 +50,9 @@ class PeopleController < ApplicationController
   # PATCH/PUT /people/1 or /people/1.json
   def update
     authorize! :update, Person, :message => "No tienes permisos para actulizar esta inscripción."
-
     respond_to do |format|
       if @person.update(person_params)
+        @person.update_priority
         format.html { redirect_to @person, notice: "Person was successfully updated." }
         format.json { render :show, status: :ok, location: @person }
       else

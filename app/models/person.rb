@@ -82,6 +82,8 @@ class Person < ApplicationRecord
 
   def update_priority
 
+    byebug
+
     priority_aux = (age * 1.3).round
 
     if (diabetes)
@@ -102,7 +104,7 @@ class Person < ApplicationRecord
 
     update_attribute('priority', priority_aux)
     
-    
+    byebug    
   end
 
   private

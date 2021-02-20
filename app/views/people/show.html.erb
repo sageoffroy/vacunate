@@ -8,6 +8,9 @@
               <div class="row justify-content-center">
                 <div class="col-md-6 text-center">
                   <h3>¡FELICITACIONES <%= @person.firstname.upcase %>  !</h3>
+                  <% if user_signed_in? %>
+                    <strong>Prioridad: <%=@person.priority%></strong>
+                  <% end %>
                   <p>Has sido inscripto correctamente en el plan público, gratuito y optativo contra COVID-19.
                   Tenemos toda la información necesaria para contactarnos con usted una vez la dosis esté disponible. Recuerde que la inscripción no garantiza la reserva de un turno.</p>
 
