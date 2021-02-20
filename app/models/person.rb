@@ -25,6 +25,24 @@ class Person < ApplicationRecord
     return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease)
   end
 
+  def population_group_table
+    
+    case population_group
+    when "Soy personal de salud"
+      return "Salud" 
+    when "Soy personal de seguridad"
+      return "Seguridad"       
+    when "Soy personal de educación"
+      return "Educación"       
+    when "Soy mayor de 60 años"
+      return "60 o más" 
+    when "Tengo entre 18 y 59 (con factores de riesgo)"
+      return "18 a 59 (riesgo)"      
+    else
+      return "Otro"
+    end
+  end  
+
   def show_pathologies
 
     p_aux = ""
@@ -68,6 +86,11 @@ class Person < ApplicationRecord
         p_aux = p_aux + " - RC"
       end
     end
+
+    if (p_aux.eql? "")
+      p_aux = "N/A"
+    end
+
 
     return p_aux
   end

@@ -7,15 +7,17 @@
           <strong>GRUPO POBLACIONAL: </strong><%= @population_group.to_s.upcase %><br>
           <strong>ESTADO: </strong><%= @state.upcase %>
           <hr>
-          <table id="table_export" class="responsive nowrap table table-hover">
+          <table id="table_export" class="responsive nowrap table table-hover dt-responsive table-striped">
             <thead>
               <tr>
+                <th><%= Person.human_attribute_name("locality").titleize%></th>
+                <th>Grupo</th>
                 <th><%= Person.human_attribute_name("dni").titleize%></th>
                 <th>Nombre Completo</th>
-                <th>Edad</th>
                 <th><%= Person.human_attribute_name("email").titleize%></th>
                 <th><%= Person.human_attribute_name("phone").titleize%></th>
                 <th><%= Person.human_attribute_name("priority").titleize%></th>
+                <th>Edad</th>
                 <th>Patologías</th>
               </tr>
             </thead>
@@ -23,23 +25,25 @@
             <tbody>
               <% @inscripciones.each do |ins| %>
                 <tr>
+                  <td><%= ins.locality %></td>
+                  <td><%= ins.population_group_table %></td>
                 <% if ((ins.dni < 1000000) or (ins.dni > 99999999)) %>
                   <td><span style="color:red;"><%= ins.dni %></span></td>
                 <% else %>
                   <td><%= ins.dni %></span></td>
                 <% end %>
                   <td><%= ins.firstname + " " + ins.lastname %></td>
-                <% if (ins.age > 130) %>
-                  <td><span style="color:red;"><%= ins.age %></span></td>
-                <% else %>
-                  <td><%= ins.age %></td>
-                <% end %>
                   <td><%= ins.email %></td>
                   <td><%= ins.code_telephone %></td>
                 <% if (ins.age > 130) %>
                   <td><span style="color:red;">0</span></td>
                 <% else %>
                   <td><%= ins.priority %></td>
+                <% end %>
+                <% if (ins.age > 130) %>
+                  <td><span style="color:red;"><%= ins.age %></span></td>
+                <% else %>
+                  <td><%= ins.age %></td>
                 <% end %>
                   <td><%= ins.show_pathologies %></td>
                 </tr>
@@ -58,10 +62,10 @@
   $(document).ready(function() {
     $('#table_export').DataTable( {
         dom: 'Bfrtip',
-        buttons: ['copyHtml5','excelHtml5','csvHtml5','pdfHtml5'],
+        buttons: ['copyHtml5','excelHtml5','csvHtml5'],
         bPaginate: true,
         language: {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'},
-        processing: true
+        order: [[ 6, "desc" ]]
     } );
 } );
 
