@@ -24,41 +24,13 @@
   <% end %>
 
   <div class="row">
-    <div class="col-md-12">
-      <hr>
-      <p><strong>¿Usted presenta alguna de las siguientes condiciones?</strong></p>
-    </div>
-    <div class="col-md-12">
-      <ul class="">
-        <li class="">Recibe medicación que baje sus defensas.</li>
-        <li class="">Posee una enfermedad oncohematológica.</li>
-        <li class="">Está o sospecha estar embarazada.</li>
-        <li class="">Se encuentra amamantando.</li>
-      </ul>
-    </div>
-
-    <div class="col-md-12 text-center">
-      <%= form.radio_button :condition, "1"%>
-      <%= form.label :condition, "Si" %>
-      <%= form.radio_button :condition, "0", checked: true %>
-      <%= form.label :condition, "No"%>
-      
-    </div>
-    <div class="col-md-12 mb-3">
-      <div id="alert-msg" style="color:red;" hidden="true">
-        *Actualmente la administración de la vacuna no esta indicada en personas que presenten al menos una de las condiciones antes mencionadas.
-      </div>
-
-    </div>
-    
+   
     <div class="col-md-12 title-form">
       <hr>
       <div class="alert alert-warning" role="alert">
         Los campos marcados con un "<span style="color:red;">*</span>" son de carácter obligatorio para poder inscribirse.
       </div>
-      <div class="alert alert-warning" role="alert">
-        Los datos que aparecen en los campos del formulario son pura y exclusivamente a modo de ejemplo y deberán ser ingresados aunque coincidan con su información.
-      </div>
+      
       <p><strong>1- Datos personales</strong></p>
     </div>
 
@@ -251,7 +223,7 @@
     $("#warning-modal").modal('show');}
   });
 
-  $('#person_condition_0').change(function() {
+  /*$('#person_condition_0').change(function() {
     $('#alert-msg').prop('hidden', true);
     $('#new-inscription :input').prop('disabled', false);
   });
@@ -260,6 +232,6 @@
     $('#alert-msg').prop('hidden', false);
     $('#new-inscription :input').prop('disabled', true);
     $('#person_condition_0').prop('disabled', false);
-  });
+  });*/
 
 </script>
