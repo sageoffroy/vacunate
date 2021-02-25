@@ -3,8 +3,6 @@ class TableroController < ApplicationController
 
   def index
   	if !current_user.nil?
-
-
   		if current_user.area == "dpapt"
         inscripciones = Person.where(locality: Locality.where(area: 1))
   		elsif current_user.area == "dpapn"
@@ -31,6 +29,12 @@ class TableroController < ApplicationController
 		@inscripciones_EPC = inscripciones.where(chronic_lung_disease: true).count
 
 
+    if current_user.area == "MS"
+      @localities = Locality.all
+    else
+      @localities = Locality.where(area: Area.where(abbreviation: current_user.area).first)
+    end
+
 		count = 0
 		inscripciones.all.each do |person|
 			if person.have_any_pathology?
@@ -53,9 +57,12 @@ class TableroController < ApplicationController
   	end
 
     if !(@population_group == "Soy mayor de 70 años")
+      if @population_group == "Soy personal de educación"
+        @population_group = "Soy personal docente/auxiliar"
+      end
       @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: state_aux).order(:priority)
-    else
-      @inscripciones = Person.where(locality: @locality, population_group: "Soy mayor de 60 años", state: state_aux).order(:priority)
+    else #Mayor de 70
+      @inscripciones = Person.where(locality: @locality, population_group: "Soy mayor de 60 años", state: state_aux, birthdate: 150.years.ago..70.years.ago).order(:priority)
     end
 
 

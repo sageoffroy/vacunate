@@ -6,6 +6,7 @@ class Person < ApplicationRecord
   validates :firstname, presence: true
   validates :lastname, presence: true
   validates :dni, presence: true
+  validates :dni, length: { in: 7..8 }
   validates :dni_sex, presence: true
   validates :birthdate, presence: true
   validates :address_street, presence: true
@@ -132,15 +133,39 @@ class Person < ApplicationRecord
   private
 
     def phone_xor_email
-      if phone_code.blank? or phone.blank?
-        if email.blank?
-          errors.add(:phone_code, "")
-          errors.add(:phone, "")
-          errors.add(:email, "Debe especificar un Email y/o un Teléfono de contacto")
+      if email.blank?
+        if phone_code.blank?
+          if phone.blank?
+            # Mail vacío, Código vacío y Telefono vacío
+            errors.add(:phone_code, "")
+            errors.add(:phone, "")
+            errors.add(:email, "Debe especificar un Email y/o un Teléfono de contacto")
+          else
+            # Mail vacío, Código vacío y Telefono con número
+            errors.add(:phone_code, "Debe especificar un Código de Área a su Teléfono de contacto")
+          end
+        else
+          if phone.blank?
+            # Mail vacío, Código Completo y Telefono vacío
+            errors.add(:phone, "Debe ingresar su Número de Teléfono además del Código de Área")
+            
+          end
         end
-      end      
+      else
+        if phone_code.blank?
+          if !phone.blank?
+            # Mail correcto, Código vacío y Telefono con número
+            errors.add(:phone_code, "Debe especificar un Código de Área a su Teléfono de contacto")
+          end
+        else
+          if phone.blank?
+            # Mail correcto, Código Completo y Telefono vacío
+            errors.add(:phone, "Debe ingresar su Número de Teléfono además del Código de Área")
+          end
+        end
+      end
     end
-  
+
 end
 
 

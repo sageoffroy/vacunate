@@ -79,7 +79,7 @@ $(document).on 'turbolinks:load', ->
       return
 
     document.getElementById('person_phone_code').addEventListener 'input', (e) ->
-      x = e.target.value.replace(/\D/g, '').match(/(\d{0,4})/)
+      x = e.target.value.replace(/\D/g, '').match(/(\d{3,4})/)
       e.target.value = x[1]
       return
 

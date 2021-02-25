@@ -147,11 +147,11 @@
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <%= label_tag "Localidad:" %>
-                      <%= select_tag "select_locality_list", options_from_collection_for_select(Locality.where(area: Area.where(abbreviation: current_user.area).first), :id, :to_s), :class=> 'select2 select-field form-control' %>
+                      <%= select_tag "select_locality_list", options_from_collection_for_select(@localities, :id, :to_s), :class=> 'select2 select-field form-control' %>
                     </div>
                     <div class="col-md-12 form-group">
                       <%= label_tag "Grupo Poblacional:" %>
-                      <%= select_tag "population_group_list", options_for_select([ "Soy personal de salud", "Soy personal de seguridad", "Soy personal docente/auxiliar", "Soy mayor de 70 años", "Soy mayor de 60 años"], "Soy personal de salud"), {class: "select2 select-field form-control"}%>
+                      <%= select_tag "population_group_list", options_for_select([ "Soy personal de salud", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 70 años", "Soy mayor de 60 años"], "Soy personal de salud"), {class: "select2 select-field form-control"}%>
                     </div>
                     <div class="col-md-12 form-group">
                       <%= label_tag "Estado:" %>

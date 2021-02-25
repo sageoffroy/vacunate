@@ -10301,7 +10301,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #495057;
+  color: $form-text-color;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -10332,6 +10332,10 @@ input[type=number] {
 }
 .is-valid ~ .select2 .selection .select2-selection{
     border-color: #28a745!important;
+}
+
+.select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+  color: $form-text-color;
 }
 
 

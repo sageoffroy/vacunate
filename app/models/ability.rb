@@ -8,7 +8,7 @@ class Ability
     
     user ||= User.new # guest user (not logged in)
     
-    can :read, Person
+    can :manage, :all
     can :write, Person
     cannot :edit, Person
     cannot :destroy, Person

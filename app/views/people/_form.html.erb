@@ -56,7 +56,9 @@
       <div class="alert alert-warning" role="alert">
         Los campos marcados con un "<span style="color:red;">*</span>" son de carácter obligatorio para poder inscribirse.
       </div>
-      
+      <div class="alert alert-warning" role="alert">
+        Los datos que aparecen en los campos del formulario son pura y exclusivamente a modo de ejemplo y deberán ser ingresados aunque coincidan con su información.
+      </div>
       <p><strong>1- Datos personales</strong></p>
     </div>
 
@@ -84,7 +86,7 @@
     </div>
     <div class="form-group col-md-6">
       <%= form.label :birthdate, "Fecha de nacimiento  <span style='color:red;'>*</span>".html_safe %>
-      <%= form.text_field :birthdate, :class => "datepicker form-control", :placeholder => "01/01/1900"%>
+      <%= form.text_field :birthdate, :class => "datepicker form-control", :placeholder => "01/01/1900", :value=>"#{form.object.birthdate.strftime("%d/%m/%Y") unless form.object.new_record?}"%>
     </div>
 
     <div class="col-md-12 title-form">
@@ -94,7 +96,7 @@
 
     <div class="col-md-4 form-group">
        <%= form.label :phone_code, "Código de Área" %>
-       <%= form.text_field :phone_code, :placeholder=>"280", data: { toggle: 'tooltip', placement: 'top', original_title: 'Sin el 0' }, :class => "form-control" %>
+       <%= form.text_field :phone_code, :placeholder=>"285", data: { toggle: 'tooltip', placement: 'top', original_title: 'Sin el 0' }, :class => "form-control" %>
     </div>
     <div class="col-md-8 form-group">
        <%= form.label :phone, "Número de teléfono" %>
