@@ -2,7 +2,6 @@ class Person < ApplicationRecord
   
   
   belongs_to :locality, validate: false
-  validates_inclusion_of :condition, :in => [true, false]
   validates :firstname, presence: true
   validates :lastname, presence: true
   validates :dni, presence: true

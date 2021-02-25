@@ -58,7 +58,7 @@
     </div>
     <div class="form-group col-md-6">
       <%= form.label :birthdate, "Fecha de nacimiento  <span style='color:red;'>*</span>".html_safe %>
-      <%= form.text_field :birthdate, :class => "datepicker form-control", :placeholder => "01/01/1900", :value=>"#{form.object.birthdate.strftime("%d/%m/%Y") unless form.object.new_record?}"%>
+      <%= form.text_field :birthdate, :class => "datepicker form-control", :placeholder => "01/01/1900"%>
     </div>
 
     <div class="col-md-12 title-form">
