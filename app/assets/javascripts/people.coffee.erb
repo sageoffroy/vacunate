@@ -1,3 +1,5 @@
+
+
 $.fn.extend {
   integrateSelect2: (selector)->
     selector = selector || '.select2'
@@ -17,7 +19,8 @@ $.fn.extend {
       clearBtn: true,
       dateFormat: "dd-mm-yyyy"
       endDate: "-4y"
-      defaultViewDate: { year: 1980, month: 1, day: 1 }
+      defaultViewDate: { year: 1985, month: 1, day: 1 }
+
     })
 }
 
@@ -95,30 +98,31 @@ $(document).on 'turbolinks:load', ->
       e.target.value = x[1]
       return
 
-    $('#people-datatable').dataTable
-    processing: true
-    serverSide: true
-    ajax:
-      url: $('#people-datatable').data('source')
-      pagingType: 'full_numbers'
-      language: 'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
-      bPaginate: true
-      info: false
-      responsive: true
-      deferRender: true
-      stateSave: true
-      columns: [
-        {data: 'locality'}
-        {data: 'population_group'}
-        {data: 'dni'}
-        {data: 'firstname'}
-        {data: 'lastname'}
-        {data: 'options'}
-      ]
-
 $(document).on 'turbolinks:before-cache', ->
     dataTable =  $($.fn.dataTable.tables(true)).DataTable()
     if (dataTable != null)
       dataTable.destroy();
 
-  
+
+$(document).on 'turbolinks:load', ->
+  $('#people-datatable').dataTable
+    processing: true
+    serverSide: true
+    ajax:
+      url: $('#people-datatable').data('source')
+    pagingType: 'full_numbers'
+    language: 'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
+    bPaginate: true
+    info: false
+    responsive: true
+    deferRender: true
+    stateSave: true
+    columns: [
+      {data: 'locality'}
+      {data: 'population_group'}
+      {data: 'dni'}
+      {data: 'firstname'}
+      {data: 'lastname'}
+      {data: 'options'}
+
+    ]
