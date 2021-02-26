@@ -64,6 +64,9 @@
     <div class="col-md-12 title-form">
       <hr>
       <p><strong>2- Datos de contacto</strong></p>
+      <div class="alert alert-warning" role="alert">
+        Asegúrese de ingresar los datos de contacto de forma correcta. De otro modo el personal a cargo de informarle sobre su turno de vacunación, no podrá contactarse con usted.
+      </div>
     </div>
 
     <div class="col-md-4 form-group">
@@ -192,7 +195,7 @@
     <%= form.hidden_field :state%>
 
     <div class="actions"> 
-      <%= form.submit "Inscribirme", :class => "btn btn-primary btn-block" %>
+      <%= form.submit "Inscribirme", :class => "btn btn-primary btn-block", data: { confirm: 'Asegúrese de que los datos de contacto son correctos antes de continuar' } %>
       <a class="btn btn-secondary btn-block mt-3" href="/">VOLVER AL INICIO</a>
     </div>
 
@@ -222,16 +225,4 @@
     if ($('.people.new').length > 0){
     $("#warning-modal").modal('show');}
   });
-
-  /*$('#person_condition_0').change(function() {
-    $('#alert-msg').prop('hidden', true);
-    $('#new-inscription :input').prop('disabled', false);
-  });
-
-  $('#person_condition_1').change(function() {
-    $('#alert-msg').prop('hidden', false);
-    $('#new-inscription :input').prop('disabled', true);
-    $('#person_condition_0').prop('disabled', false);
-  });*/
-
 </script>
