@@ -21,10 +21,6 @@ class PeopleController < ApplicationController
     @person = Person.new
   end
 
-  def felicitaciones
-    
-  end
-
 
   # GET /people/1/edit
   def edit
@@ -33,6 +29,7 @@ class PeopleController < ApplicationController
   # POST /people or /people.json
   def create
     @person = Person.new(person_params)
+    @person.state = State.where(name: "Nuevo").first
     respond_to do |format|
       if verify_recaptcha(model: @person, attribute: "recaptcha", message:"Debes verificar que no eres un robot") && @person.save
         @person.update_priority

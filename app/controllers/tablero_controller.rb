@@ -49,10 +49,10 @@ class TableroController < ApplicationController
   def list_group_state
   	@locality = Locality.where(id: params[:locality]).first
   	@population_group = params[:population_group]
-  	@state = params[:state]
+  	@state_string = params[:state]
 
-  	state_aux = @state
-  	if @state == "Nuevo"
+  	state_aux = @state_string
+  	if @state_string == "Nuevo"
   		state_aux = nil
   	end
 
@@ -69,4 +69,43 @@ class TableroController < ApplicationController
 
   end
 
+  def update_states
+    
+    format_dni_list = params[:dni_list].gsub("\r\n", ",")
+    dni_list = format_dni_list.split(',')
+    @state_string = params[:state]
+
+    params_state = State.where(name: @state_string).first
+    new_state = State.where(name: "Nuevo").first
+
+    @log_array = []
+    @log_array.push(["Comenzandola actualización", "info"])
+    dni_list.each do |dni|
+
+      person = Person.where(dni: dni).first
+            
+      if person.nil?
+        @log_array.push(["El dni: " + dni + " no existe en el registro de inscripciones", "danger"])
+      else
+        if person.state.nil?
+          person.update_state(new_state)
+        end
+
+        if person.state == params_state
+          @log_array.push(["El dni: " + dni + " ya tenía el estado " + @state_string, "info"])
+        else
+          person.state = params_state
+          person.save
+          @log_array.push(["El dni: " + dni + " se actualizó al estado " + @state_string, "success"])
+        end
+      end
+    end
+
+    @log_array.push(["Actualización finalizada", "info"])
+
+
+    
+  end
+
 end
+
