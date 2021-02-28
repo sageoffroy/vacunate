@@ -10366,11 +10366,20 @@ strong .is-invalid {
   
 }
 
-.fa-eye, .fa-pencil {
-  margin-right: 15px;
+.fa-eye, .fa-pencil, .fa-stethoscope {
+  margin-right: 5px;
 }
 
+.fa-stethoscope{
+  color: green;
+}
 
-.fa-trash-o {
+.fa-trash-o, .fa-calendar-times-o {
   color: red;
+}
+
+.text-console 
+{
+  font-family: monospace;
+
 }

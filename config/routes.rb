@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   get '/tablero' => 'tablero#index'
 
-  get '/list_group_state/:locality/:population_group/:state' => 'tablero#list_group_state'
+  get '/list_group_state/:locality/:population_group/:state/:age_min' => 'tablero#list_group_state'
+
+  post '/update_states' => 'tablero#update_states'
+
+  get '/change_state/:state/:id' => 'tablero#change_state'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,4 @@
+$(".change_state").bind('ajax:success', function(){
+	$(this).closest('tr').find('td.state').text(" <%=@state_string%>");
+	
+});

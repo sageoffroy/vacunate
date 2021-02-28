@@ -145,20 +145,27 @@
                 </div>
                 <div class="card-body">
                   <div class="row">
+
                     <div class="col-md-12 form-group">
                       <%= label_tag "Localidad:" %>
-                      <%= select_tag "select_locality_list", options_from_collection_for_select(@localities, :id, :to_s), :class=> 'select2 select-field form-control' %>
+                      <%= select_tag "select_locality_list", options_from_collection_for_select(@localities, :id, :to_s), :class=> 'select-field form-control', multiple: "multiple" %>
                     </div>
                     <div class="col-md-12 form-group">
                       <%= label_tag "Grupo Poblacional:" %>
-                      <%= select_tag "population_group_list", options_for_select([ "Soy personal de salud", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 70 años", "Soy mayor de 60 años"], "Soy personal de salud"), {class: "select2 select-field form-control"}%>
+                      <%= select_tag "population_group_list", options_for_select([ "Soy personal de salud", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)","Tengo entre 18 y 59 (sin factores de riesgo)"]), {class: "select-field form-control", multiple: "multiple"}%>
                     </div>
+
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Edad Mínima" %>
+                      <%= number_field_tag 'age_min', '18', {class:'form-control'}%>
+                    </div>     
+
                     <div class="col-md-12 form-group">
                       <%= label_tag "Estado:" %>
-                      <%= select_tag "state_list", options_for_select([ "Nuevo", "Vacunado", "Ausente"], "Nuevo"), {class: "select2 select-field form-control"}%>
+                      <%= select_tag "state_list", options_for_select(["Nuevo", "Vacunado", "Ausente"]), {class: " select-field form-control", multiple: "multiple"}%>
                     </div>
-                    <div class="actions"> 
-                      <a id="list_generator_button" class="btn btn-secondary btn-block mt-3">GENERAR LISTADO</a>
+                    <div class="col-md-12 form-group"> 
+                      <a id="list_generator_button" class="btn btn-secondary btn-block">GENERAR LISTADO</a>
                     </div>
                   </div>
                 </div>
@@ -172,16 +179,20 @@
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-12 form-group">
-                      <%= label_tag "Listado de documentos:" %>
-                      <%= text_area_tag "dni_list","", {:class => "form-control"}  %>
-                    </div>
-                    <div class="col-md-12 form-group">
-                      <%= label_tag "Estado:" %>
-                      <%= select_tag "state_list", options_for_select([ "Nuevo", "Vacunado", "Ausente"], "Nuevo"), {class: "select2 select-field form-control"}%>
-                    </div>
-                    <div class="actions"> 
-                      <a id="list_generator_button" class="btn btn-secondary btn-block mt-3">Actualizar registros</a>
+                    <div class="col-md-12 form-group">  
+                    <%= form_tag('/update_states') do %>
+                        <div class="form-group">  
+                          <%= label_tag "Listado de documentos:" %>
+                          <%= text_area_tag "dni_list","", {:class => "form-control"}  %>
+                        </div>    
+                        <div class="form-group">  
+                          <%= label_tag "Estado:" %>
+                          <%= select_tag "state", options_for_select([ "Nuevo", "Vacunado", "Ausente"], "Nuevo"), {class: "select2 select-field form-control"}%>
+                        </div>
+                        <div class="form-group">  
+                          <%= submit_tag "Actualizar", :class => "btn btn-secondary btn-block"%>
+                        </div>
+                    <% end %>
                     </div>
                   </div>
                 </div>
@@ -198,7 +209,29 @@
 
 
 <script type="text/javascript">
+
+
+  $("#select_locality_list").select2({
+    theme: "bootstrap",
+    width: '100%',
+    allowClear: false
+  });
+
+  $("#population_group_list").select2({
+    theme: "bootstrap",
+    width: '100%',
+    allowClear: false
+  }); 
+
+  $("#state_list").select2({
+    theme: "bootstrap",
+    width: '100%',
+    allowClear: false
+  });  
+
   $("#list_generator_button").on("click", listGenerator);
+
+
 
   
 
@@ -207,9 +240,22 @@
     locality = $('#select_locality_list');
     population_group = $('#population_group_list');
     state = $('#state_list');
-  
-    window.location.href = '/list_group_state/'+locality.val()+'/'+population_group.val()+'/'+ state.val()
+    age_min = $('#age_min');
 
+    
+    console.log (locality.val() == null);
+    console.log (population_group.val() == null);
+    console.log (state.val() == null);
+    console.log (age_min.val() == null);
+
+    if (!(locality.val().length === 0) &&  !(population_group.val().length === 0) && !(state.val().length === 0) && !(age_min.val().length === 0)){
+  
+      window.location.href = '/list_group_state/'+locality.val()+'/'+population_group.val()+'/'+ state.val()+'/'+age_min.val()
+    }
+    else{
+      toastr['error']('Debes completar todos los campos para poder listar');
+
+    }
   }
 
 </script>
