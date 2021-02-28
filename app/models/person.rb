@@ -130,11 +130,7 @@ class Person < ApplicationRecord
   end
 
   def update_state (state)
-
-    
     update_attribute('state', state)
-    
-    
   end
 
   private

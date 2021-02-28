@@ -28,6 +28,7 @@ es:
         address_floor: "piso"
         address_department: "departamento"
         state_id: "estado"
+        priority: "prioridad"
   date:
     abbr_day_names:
     - dom

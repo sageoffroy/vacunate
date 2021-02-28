@@ -47,58 +47,64 @@ class TableroController < ApplicationController
   end
 
   def list_group_state
-  	@locality = Locality.where(id: params[:locality]).first
-  	@population_group = params[:population_group]
-  	@state_string = params[:state]
-
-  	state_aux = @state_string
-  	if @state_string == "Nuevo"
-  		state_aux = nil
-  	end
-
-    if !(@population_group == "Soy mayor de 70 años")
-      if @population_group == "Soy personal de educación"
-        @population_group = "Soy personal docente/auxiliar"
-      end
-      @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: state_aux).order(:priority)
-    else #Mayor de 70
-      @inscripciones = Person.where(locality: @locality, population_group: "Soy mayor de 60 años", state: state_aux, birthdate: 150.years.ago..70.years.ago).order(:priority)
-    end
-
-
-
+  	@locality = Locality.where(id: [params[:locality].split(',')])
+  	@population_group = params[:population_group].split(',')
+    @state_string = params[:state].split(',')
+    @age_min = params[:age_min].to_i
+    params_state = State.where(name:@state_string)
+    
+    @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: params_state, birthdate: 150.years.ago..@age_min.years.ago).order(:priority)
   end
+
+  def change_state
+    
+    @state_string = params[:state]
+
+    state = State.where(name: @state_string).first
+    person = Person.where(id: params[:id]).first
+
+    person.update_state(state)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   def update_states
     
     format_dni_list = params[:dni_list].gsub("\r\n", ",")
     dni_list = format_dni_list.split(',')
     @state_string = params[:state]
+    @log_array = []
+      @log_array.push(["Comenzandola actualización", "info"])
 
     params_state = State.where(name: @state_string).first
-    new_state = State.where(name: "Nuevo").first
-
-    @log_array = []
-    @log_array.push(["Comenzandola actualización", "info"])
-    dni_list.each do |dni|
-
-      person = Person.where(dni: dni).first
-            
-      if person.nil?
-        @log_array.push(["El dni: " + dni + " no existe en el registro de inscripciones", "danger"])
-      else
-        if person.state.nil?
-          person.update_state(new_state)
-        end
-
-        if person.state == params_state
-          @log_array.push(["El dni: " + dni + " ya tenía el estado " + @state_string, "info"])
+    if !params_state.nil?
+      new_state = State.where(name: "Nuevo").first
+      dni_list.each do |dni|
+        person = Person.where(dni: dni).first
+        
+        #Si la persona no éxiste      
+        if person.nil?
+          @log_array.push(["El dni: " + dni + " no existe en el registro de inscripciones", "danger"])
         else
-          person.state = params_state
-          person.save
-          @log_array.push(["El dni: " + dni + " se actualizó al estado " + @state_string, "success"])
+          #Si la persona no tiene un estado asociado, le asignamos el estado nuevo     
+          if person.state.nil?
+            person.update_state(new_state)
+          end
+
+          #Si la persona ya tiene ese estado      
+          if person.state == params_state
+            @log_array.push(["El dni: " + dni + " ya tenía el estado " + @state_string, "info"])
+          else
+            person.update_state(params_state)
+            @log_array.push(["El dni: " + dni + " se actualizó al estado " + @state_string, "success"])
+          end
         end
       end
+    else
+      @log_array.push(["El estado: " + @state_string + " no es un estado válido", "danger"])
     end
 
     @log_array.push(["Actualización finalizada", "info"])
