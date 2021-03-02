@@ -16,5 +16,7 @@ Rails.application.routes.draw do
 
   get '/change_state/:state/:id' => 'tablero#change_state'
 
+  post '/check_dni' => 'tablero#check_dni'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -5,7 +5,7 @@ class Person < ApplicationRecord
   validates :firstname, presence: true
   validates :lastname, presence: true
   validates :dni, presence: true
-  validates :dni, length: { in: 7..8 }
+  validates :dni, length: { in: 6..8 }
   validates :dni_sex, presence: true
   validates :birthdate, presence: true
   validates :address_street, presence: true
@@ -96,7 +96,20 @@ class Person < ApplicationRecord
   end
 
   def code_telephone
-    "(" +phone_code.to_s + ") " + phone.to_s
+    if phone.nil?
+      return ""
+    else
+      if phone_code.nil?
+        if locality.area.abbreviation == "dpape"
+          phone_code = 2945
+        elsif locality.area.abbreviation == "dpapcr"
+          phone_code = 297
+        else
+          phone_code = 280
+        end
+      end
+      return "549" + phone_code.to_s + phone.to_s
+    end
   end
 
   def age

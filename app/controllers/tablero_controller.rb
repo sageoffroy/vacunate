@@ -70,6 +70,22 @@ class TableroController < ApplicationController
     end
   end
 
+  def check_dni
+
+    dni = params[:dni]
+
+    dni_number = dni.to_i
+
+    if dni_number > 99999
+      @person = Person.where(dni:dni_number).first
+    end
+    
+    respond_to do |format|
+      format.js
+    end
+
+  end
+
 
   def update_states
     

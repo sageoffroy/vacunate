@@ -31,6 +31,7 @@
                     <h2 class="text-white mx-auto mt-5 mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h2>
                     <a class="btn btn-primary btn-block mb-3" href="/people/new">INSCRIBITE</a>
                     <a class="btn btn-secondary btn-block mb-3" href="#preguntas">PREGUNTAS FRECUENTES</a>
+                    <a class="btn btn-secondary btn-block mb-3" href="#verificar">¿YA ESTOY INSCRIPTO?</a>
                     <a class="btn btn-secondary btn-block mb-3" href="#contacto">CONTACTO</a>
                   </div>
                 </div>
@@ -68,9 +69,50 @@
           </div>
         </div>
       </section>
-
+      <!-- Verificar -->
+      <section class="preguntas-section text-center py-5" id="verificar">
+        <div class="container">
+          <div class="panel-pane pane-texto">
+            <div class="pane-content">
+              <div class="row text-center mb-5 justify-content-md-center">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h2>¿ YA ESTOY INSCRIPTO?</h2>
+                </div>
+                <%= render "tablero/form_check"%> 
+                <div class="col-md-12 col-sm-12 col-xs-12"> 
+                  <p id="verfication-msg" style="font-weight: 600">Ingrese un DNI válido y presione el botón verificar.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <%= render "layouts/footer"%>
+
+      <!-- Modal -->
+      <div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" style="background-color:#a34795;">
+            <div class="modal-body" style="padding: 1rem;">
+              <%= image_tag "grupospriorizados.png", class:"img-fluid nav-logo" %>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Entiendo</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </body>
 </html>
 
 
+
+<script type="text/javascript">
+
+  $( window ).on( "load",function(){
+    if ($('.welcome.index').length > 0)
+    {
+      $("#info-modal").modal('show');
+    }
+  });
+</script>
