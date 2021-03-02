@@ -74,26 +74,13 @@
         <div class="container">
           <div class="panel-pane pane-texto">
             <div class="pane-content">
-              <div class="row text-center mb-5">
-                  <div class="col-md-12 col-sm-12 col-xs-12">
-                      <h2>VERIFICA SI ESTÁS INSCRIPTO</h2>
-                  </div>
-              </div>
-              <div class="row text-center mt-2 ">
-                
-                  <%= form_tag('/check_dni') do %>
-                        <div class="form-group col-md-6">
-
-                          <%= label_tag "dni_list","", {:class => "form-control"}  %>
-                        </div>
-                        <div class="form-group col-md-6">
-                          <%= submit_tag "Actualizar", :class => "btn btn-secondary btn-block"%>
-                        </div>    
-                        
-                        
-                          
-                        
-                    <% end %>
+              <div class="row text-center mb-5 justify-content-md-center">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h2>¿ YA ESTOY INSCRIPTO?</h2>
+                </div>
+                <%= render "tablero/form_check"%> 
+                <div class="col-md-12 col-sm-12 col-xs-12"> 
+                  <p id="verfication-msg" style="font-weight: 600">Ingrese un DNI válido y presione el botón verificar.</p>
                 </div>
               </div>
             </div>
