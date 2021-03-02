@@ -96,19 +96,19 @@ class Person < ApplicationRecord
   end
 
   def code_telephone
-    if phone.nil?
+    if self.phone.nil?
       return ""
     else
-      if phone_code.nil?
-        if locality.area.abbreviation == "dpape"
+      if self.phone_code.nil?
+        if self.locality.area.abbreviation == "dpape"
           phone_code = 2945
-        elsif locality.area.abbreviation == "dpapcr"
-          phone_code = 297
+        elsif self.locality.area.abbreviation == "dpapcr"
+          self.phone_code = 297
         else
-          phone_code = 280
+          self.phone_code = 280
         end
       end
-      return "549" + phone_code.to_s + phone.to_s
+      return "549" + self.phone_code.to_s + self.phone.to_s
     end
   end
 
