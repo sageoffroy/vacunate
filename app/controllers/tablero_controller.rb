@@ -72,9 +72,9 @@ class TableroController < ApplicationController
 
   def check_dni
 
-    dni = params[:dni]
+    @dni = params[:dni]
 
-    dni_number = dni.to_i
+    dni_number = @dni.to_i
 
     if dni_number > 99999
       @person = Person.where(dni:dni_number).first
