@@ -1,5 +1,5 @@
 class TableroController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:check_dni]
 
   def index
   	if !current_user.nil?
