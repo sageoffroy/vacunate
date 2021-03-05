@@ -49,10 +49,13 @@ class TableroController < ApplicationController
   def list_group_state
   	@locality = Locality.where(id: [params[:locality].split(',')])
   	@population_group = params[:population_group].split(',')
+
+    if (@population_group.first == "Soy personal de educación")
+      @population_group[0] = "Soy personal docente/auxiliar"
+    end
     @state_string = params[:state].split(',')
     @age_min = params[:age_min].to_i
     params_state = State.where(name:@state_string)
-    
     @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: params_state, birthdate: 150.years.ago..@age_min.years.ago).order(:priority)
   end
 
