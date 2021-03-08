@@ -11,6 +11,7 @@
                 <th>Grupo</th>
                 <th><%= Person.human_attribute_name("dni").titleize%></th>
                 <th>Nombre Completo</th>
+                <th>Fecha de Nacimiento</th>
                 <th>Edad</th>
                 <th>Patologías</th>
                 <th><%= Person.human_attribute_name("email").titleize%></th>
@@ -25,17 +26,17 @@
               <% @inscripciones.each do |ins| %>
                 <tr>
                   <td><%= ins.locality %></td>
-                
+
                   <td><%= ins.population_group_table %></td>
-                
+
                 <% if ((ins.dni < 1000000) or (ins.dni > 99999999)) %>
                   <td><span style="color:red;"><%= ins.dni %></span></td>
                 <% else %>
-                  <td><%= ins.dni %></span></td>
+                  <td><%= ins.dni %></td>
                 <% end %>
-                
+
                   <td><%= ins.firstname.partition(" ").first + " " + ins.lastname %></td>
-                
+                  <td><%= ins.birthdate %></td>
                 <% if (ins.age > 130) %>
                   <td><span style="color:red;"><%= ins.age %></span></td>
                 <% else %>
@@ -45,11 +46,11 @@
                   <td><%= ins.show_pathologies %></td>
 
                   <td><%= ins.email %></td>
-                  
+
                   <td><%= ins.code_telephone %></td>
-                
-                  
-                  
+
+
+
                 <% if (ins.age > 130) %>
                   <td><span style="color:red;">0</span></td>
                 <% else %>
@@ -73,7 +74,7 @@
 </div>
 
 <script type="text/javascript">
-  
+
   $(document).ready(function() {
     $('#table_export').DataTable( {
         dom: 'Bfrtip',
@@ -81,14 +82,14 @@
             {
                 extend: 'copyHtml5',
                 exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7,8,9]
+                  columns: [0,1,2,3,4,5,6,7,8,9,10]
                 }
             },
             {
                 extend: 'excelHtml5',
                 title: '',
                 exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7,8,9]
+                  columns: [0,1,2,3,4,5,6,7,8,9,10]
                 }
             },
             {
@@ -99,7 +100,7 @@
                   columns: [3,7]
                 }
             }
-            
+
         ],
         bPaginate: true,
         language: {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'},
