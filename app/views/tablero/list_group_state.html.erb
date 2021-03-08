@@ -54,14 +54,13 @@
                   <td><span style="color:red;">0</span></td>
                 <% else %>
                   <td><%= ins.priority %></td>
-
+                <% end %>
                   <td  class="state"><%= ins.state %></td>
                   <td>
                     <%= link_to((fa_icon "user-plus"), '/change_state/Nuevo/'+ ins.id.to_s, :remote => true, :class => "change_state" ) %>
                     <%= link_to((fa_icon "stethoscope"), '/change_state/Vacunado/'+ ins.id.to_s, :remote => true, :class => "change_state" ) %>
                     <%= link_to((fa_icon "calendar-times-o"), '/change_state/Ausente/'+ ins.id.to_s, :remote => true, :class => "change_state" ) %>
                   </td>
-                <% end %>
                 </tr>
               <% end %>
             </tbody>

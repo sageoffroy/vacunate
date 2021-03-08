@@ -32,7 +32,7 @@ class Person < ApplicationRecord
       return "Salud" 
     when "Soy personal de seguridad"
       return "Seguridad"       
-    when "Soy personal de educación"
+    when "Soy personal docente/auxiliar"
       return "Educación"       
     when "Soy mayor de 60 años"
       return "60 o más" 
