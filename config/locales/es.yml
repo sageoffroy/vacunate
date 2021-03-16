@@ -4,7 +4,7 @@ es:
       person:
         one: persona
         other: personas
-    attributes:    
+    attributes:
       person:
         dni: "DNI"
         firstname: "nombre"
@@ -22,6 +22,7 @@ es:
         chronic_kidney_disease: "enfermedad renal crónica"
         cardiovascular_disease: "enfermedad cardiovascular"
         chronic_lung_disease:  "enfermedad pulmonar crónica"
+        inmunocompromised: "inmunocompromiso"
         locality: "localidad"
         address_street: "calle"
         address_number: "nº"

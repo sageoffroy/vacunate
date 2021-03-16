@@ -1,6 +1,6 @@
 <%= form_with(model: person, id: "new-inscription", local: true, html: { class: "form-horizontal" }) do |form| %>
   <% if person.errors.any? %>
-      
+
       <script type="text/javascript">
         window.onload = function() {
           toastr['error']('Uno o más campos tienen errores, corrígelos y vuelve a intentarlo');
@@ -24,13 +24,13 @@
   <% end %>
 
   <div class="row">
-   
+
     <div class="col-md-12 title-form">
       <hr>
       <div class="alert alert-warning" role="alert">
         Los campos marcados con un "<span style="color:red;">*</span>" son de carácter obligatorio para poder inscribirse.
       </div>
-      
+
       <p><strong>1- Datos personales</strong></p>
     </div>
 
@@ -81,7 +81,7 @@
       <%= form.label :email, "E-mail" %>
       <%= form.email_field :email, :placeholder=> "contacto@chubut.gov.ar", :class => "form-control" , autocomplete: "email" %>
     </div>
-    
+
     <div class="col-md-12 title-form">
       <hr>
       <p><strong>3- Datos de tu domicilio</strong></p>
@@ -120,9 +120,9 @@
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
       <%= form.radio_button :population_group, "Soy mayor de 60 años", checked: true%><br>
-      <%= form.label :population_group, "Soy mayor de 60 años" %>    
+      <%= form.label :population_group, "Soy mayor de 60 años" %>
     </div>
-    
+
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %><br>
       <%= form.radio_button :population_group, "Tengo entre 18 y 59 (con factores de riesgo)"%><br>
@@ -177,18 +177,23 @@
       <%= form.label :chronic_lung_disease, "Enfermedad pulmonar crónica" %>
     </div>
 
+    <div class="col-md-12 form-group">
+      <%= form.check_box :inmunocompromised%>
+      <%= form.label :inmunocompromised, "inmunocompromiso" %>
+    </div>
+
     <div class="col-md-12 title-form">
       <hr>
       <p><strong>6- Verifica que no eres un robot</strong></p>
     </div>
-    
+
     <div class="col-md-12 form-group">
       <%= recaptcha_tags :id => "person_recaptcha_id" %>
     </div>
 
     <%= form.hidden_field :state%>
 
-    <div class="actions"> 
+    <div class="actions">
       <%= form.submit "Inscribirme", :class => "btn btn-primary btn-block", data: { confirm: 'Asegúrese de que los datos de contacto son correctos antes de continuar' } %>
       <a class="btn btn-secondary btn-block mt-3" href="/">VOLVER AL INICIO</a>
     </div>
@@ -202,7 +207,7 @@
       <div class="modal-body">
         La inscripción en el presente formulario no garantiza la inmediata aplicación de la vacuna, y no implica tampoco la reserva de un turno futuro para la colocación de la misma. <br><br>
         La vacunación contra el Covid-19 se realizará en función de la disponibilidad de las dosis y atendiendo a un cronograma desarrollado por el Programa Provincial de Vacunación, en virtud de la priorización de los distintos grupos de riesgo. <br><br>
-        Una vez que las dosis estén disponibles, usted recibirá una notificación para concurrir al centro vacunatorio más cercano, donde le será aplicada la  vacuna contra el Covid-19. 
+        Una vez que las dosis estén disponibles, usted recibirá una notificación para concurrir al centro vacunatorio más cercano, donde le será aplicada la  vacuna contra el Covid-19.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Entiendo</button>
@@ -210,8 +215,8 @@
     </div>
   </div>
 </div>
-  
-  
+
+
 <% end %>
 <script type="text/javascript">
 

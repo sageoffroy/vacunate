@@ -1,6 +1,6 @@
 class Person < ApplicationRecord
-  
-  
+
+
   belongs_to :locality, validate: false
   validates :firstname, presence: true
   validates :lastname, presence: true
@@ -22,26 +22,26 @@ class Person < ApplicationRecord
   end
 
   def have_any_pathology?
-    return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease)
+    return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease or inmunocompromised)
   end
 
   def population_group_table
-    
+
     case population_group
     when "Soy personal de salud"
-      return "Salud" 
+      return "Salud"
     when "Soy personal de seguridad"
-      return "Seguridad"       
+      return "Seguridad"
     when "Soy personal de educación"
-      return "Educación"       
+      return "Educación"
     when "Soy mayor de 60 años"
-      return "60 o más" 
+      return "60 o más"
     when "Tengo entre 18 y 59 (con factores de riesgo)"
-      return "18 a 59 (riesgo)"      
+      return "18 a 59 (riesgo)"
     else
       return "Otro"
     end
-  end  
+  end
 
   def show_pathologies
 
@@ -87,6 +87,14 @@ class Person < ApplicationRecord
       end
     end
 
+    if (inmunocompromised)
+      if (p_aux.eql? "")
+        p_aux = p_aux + "IC"
+      else
+        p_aux = p_aux + " - IC"
+      end
+    end
+
     if (p_aux.eql? "")
       p_aux = "N/A"
     end
@@ -118,7 +126,7 @@ class Person < ApplicationRecord
 
   def update_priority
 
-    
+
     priority_aux = (age * 1.3).round
 
     if (diabetes)
@@ -137,9 +145,13 @@ class Person < ApplicationRecord
       priority_aux += 5
     end
 
+    if (inmunocompromised)
+      priority_aux += 5
+    end
+
     update_attribute('priority', priority_aux)
-    
-    
+
+
   end
 
   def update_state (state)
@@ -164,7 +176,7 @@ class Person < ApplicationRecord
           if phone.blank?
             # Mail vacío, Código Completo y Telefono vacío
             errors.add(:phone, "Debe ingresar su Número de Teléfono además del Código de Área")
-            
+
           end
         end
       else
@@ -183,5 +195,3 @@ class Person < ApplicationRecord
     end
 
 end
-
-

@@ -42,7 +42,7 @@ class PeopleController < ApplicationController
     end
   end
 
-  
+
 
   # PATCH/PUT /people/1 or /people/1.json
   def update
@@ -61,7 +61,7 @@ class PeopleController < ApplicationController
 
   # DELETE /people/1 or /people/1.json
   def destroy
-    
+
     authorize! :destroy, Person, :message => "No tienes permisos para destruir inscripciones."
 
     @person.destroy
@@ -80,7 +80,7 @@ class PeopleController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.require(:person).permit(:firstname, :lastname, :dni, :dni_sex, :self_perceived_sex, :birthdate, :phone_code, :phone, :email, :condition, :population_group, :locality_id, :address_street, :address_number, :address_floor, :address_department, :state_id, :obesity, :diabetes, :chronic_kidney_disease, :cardiovascular_disease, :chronic_lung_disease, :priority)
+      params.require(:person).permit(:firstname, :lastname, :dni, :dni_sex, :self_perceived_sex, :birthdate, :phone_code, :phone, :email, :condition, :population_group, :locality_id, :address_street, :address_number, :address_floor, :address_department, :state_id, :obesity, :diabetes, :chronic_kidney_disease, :cardiovascular_disease, :chronic_lung_disease, :priority, :inmunocompromised)
     end
 
     def validate_params
