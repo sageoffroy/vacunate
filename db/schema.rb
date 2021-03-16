@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_141716) do
+ActiveRecord::Schema.define(version: 2021_03_16_201441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2021_02_20_141716) do
     t.datetime "updated_at", null: false
     t.bigint "area_id"
     t.index ["area_id"], name: "index_localities_on_area_id"
+  end
+
+  create_table "pathologies", force: :cascade do |t|
+    t.integer "code"
+    t.integer "priority"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "people", force: :cascade do |t|
@@ -57,8 +65,18 @@ ActiveRecord::Schema.define(version: 2021_02_20_141716) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "priority"
+    t.string "inmunocompromised"
+    t.string "boolean"
     t.index ["locality_id"], name: "index_people_on_locality_id"
     t.index ["state_id"], name: "index_people_on_state_id"
+  end
+
+  create_table "population_groups", force: :cascade do |t|
+    t.integer "code"
+    t.integer "priority"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
