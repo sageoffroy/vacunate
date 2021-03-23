@@ -22,7 +22,7 @@ class Person < ApplicationRecord
   end
 
   def have_any_pathology?
-    return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease or inmunocompromised)
+    return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease or (inmunocompromised.eql? "1"))
   end
 
   def population_group_table
@@ -87,7 +87,7 @@ class Person < ApplicationRecord
       end
     end
 
-    if (inmunocompromised)
+    if (inmunocompromised.eql? "1")
       if (p_aux.eql? "")
         p_aux = p_aux + "IC"
       else
@@ -145,7 +145,7 @@ class Person < ApplicationRecord
       priority_aux += 5
     end
 
-    if (inmunocompromised)
+    if (inmunocompromised.eql? "1")
       priority_aux += 5
     end
 
