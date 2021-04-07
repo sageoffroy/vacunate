@@ -9,6 +9,7 @@ class PeopleController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: PersonDatatable.new(params, view_context: view_context) }
+      format.csv { send_data Person.all.to_csv(col_sep: ';') }
     end
   end
 
