@@ -23,6 +23,7 @@ module Vacunate
         g.stylesheets false
     end
     config.action_controller.default_protect_from_forgery = false
+    config.serve_static_assets = true
 
   end
 end
