@@ -26,3 +26,51 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  $(document).on('turbolinks:load', function() {
+  return $('#people-datatable').dataTable({
+    dom: 'Bfrtip',
+    buttons:[{
+      extend: 'excelHtml5',
+      title: '',
+      exportOptions: {
+        columns: [0,1,2,3,4]
+      }
+    }],
+    processing: true,
+    serverSide: true,
+    ajax: {
+      url: $('#people-datatable').data('source')
+    },
+    pagingType: 'full_numbers',
+    language: {
+      'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
+    },
+    bPaginate: true,
+    info: false,
+    responsive: true,
+    deferRender: true,
+    stateSave: true,
+    columns: [
+      {
+        data: 'locality'
+      }, {
+        data: 'population_group'
+      }, {
+        data: 'dni'
+      }, {
+        data: 'firstname'
+      }, {
+        data: 'lastname'
+      }, {
+        data: 'options'
+      }
+    ]
+  });
+});
+
+
+
+</script>

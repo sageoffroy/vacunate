@@ -158,6 +158,18 @@ class Person < ApplicationRecord
     update_attribute('state', state)
   end
 
+
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |person|
+        csv << person.attributes.values_at(*column_names)
+      end
+    end
+  end
+
+  
   private
 
     def phone_xor_email

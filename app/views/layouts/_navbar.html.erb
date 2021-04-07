@@ -18,6 +18,10 @@
               <div class="dropdown-menu" aria-labelledby="dropdown07">
                 <a class="dropdown-item" href="/people">Inscripciones</a>
                 <a class="dropdown-item" href="/tablero">Tablero</a>
+                <% if current_user.has_role? :admin%>
+
+                <%= link_to "Descargar CSV", people_path(format: "csv"), class: "dropdown-item" %>
+                <% end %>    
               </div>
             </li>
           </ul>

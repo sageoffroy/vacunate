@@ -31,14 +31,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_201441) do
     t.index ["area_id"], name: "index_localities_on_area_id"
   end
 
-  create_table "pathologies", force: :cascade do |t|
-    t.integer "code"
-    t.integer "priority"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "people", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -69,14 +61,6 @@ ActiveRecord::Schema.define(version: 2021_03_16_201441) do
     t.string "boolean"
     t.index ["locality_id"], name: "index_people_on_locality_id"
     t.index ["state_id"], name: "index_people_on_state_id"
-  end
-
-  create_table "population_groups", force: :cascade do |t|
-    t.integer "code"
-    t.integer "priority"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|
