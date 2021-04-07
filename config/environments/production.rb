@@ -45,6 +45,7 @@ Rails.application.configure do
 
   config.serve_static_assets = true
   config.public_file_server.enabled = true
+  
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
