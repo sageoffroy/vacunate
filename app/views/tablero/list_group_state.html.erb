@@ -17,6 +17,7 @@
                 <th><%= Person.human_attribute_name("email").titleize%></th>
                 <th><%= Person.human_attribute_name("phone").titleize%></th>
                 <th><%= Person.human_attribute_name("priority").titleize%></th>
+                <th>Fecha de Inscripción</th>
                 <th>Estado</th>
                 <th>Opciones</th>
               </tr>
@@ -55,6 +56,7 @@
                   <td><span style="color:red;">0</span></td>
                 <% else %>
                   <td><%= ins.priority %></td>
+                  <td><%= ins.created_at.strftime('%d-%m-%Y') %></td>
 
                   <td  class="state"><%= ins.state %></td>
                   <td>
