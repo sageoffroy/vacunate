@@ -56,12 +56,12 @@
                   <td><span style="color:red;">0</span></td>
                 <% else %>
                   <td><%= ins.priority %></td>
-<<<<<<< HEAD
+
                 <% end %>
-=======
+
                   <td><%= ins.created_at.strftime('%d-%m-%Y') %></td>
 
->>>>>>> 1a05b915f027394e2bbdf6ea8ca8310e78499da3
+
                   <td  class="state"><%= ins.state %></td>
                   <td>
                     <%= link_to((fa_icon "user-plus"), '/change_state/Nuevo/'+ ins.id.to_s, :remote => true, :class => "change_state" ) %>
