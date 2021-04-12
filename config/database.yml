@@ -83,3 +83,4 @@ production:
   database: vacunate_production
   username: informatica
   password: Chubut387
+  timeout: 150000

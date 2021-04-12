@@ -18,7 +18,7 @@ class Person < ApplicationRecord
   validate :phone_xor_email
 
   def to_s
-    "(" + dni + ") " + firstname + " " + lastname
+    "(" + dni.to_s + ") " + firstname + " " + lastname
   end
 
   def have_any_pathology?
