@@ -30,7 +30,7 @@
 <script type="text/javascript">
 
   $(document).on('turbolinks:load', function() {
-  return $('#people-datatable').dataTable({
+  return $('#people-datatable').DataTable({
     dom: 'Bfrtip',
     buttons:[{
       extend: 'excelHtml5',
@@ -52,6 +52,7 @@
     info: false,
     responsive: true,
     deferRender: true,
+    bDestroy: true,
     stateSave: true,
     columns: [
       {

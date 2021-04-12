@@ -58,15 +58,6 @@ $(document).ready ->
 
 $(document).on 'turbolinks:load', ->
   $('[data-toggle="tooltip"]').tooltip()
-  datatable = $('.datatable')
-  datatable.DataTable
-    'language': 'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
-    'bPaginate': true
-    'info': false
-    'responsive': true
-    'deferRender': true
-    'stateSave': true
-
   form = $('form')
   form.integrateSelect2()
   form.integrateDatepicker()
@@ -97,32 +88,3 @@ $(document).on 'turbolinks:load', ->
       x = e.target.value.replace(/\D/g, '').match(/(\d{0,6})/)
       e.target.value = x[1]
       return
-
-$(document).on 'turbolinks:before-cache', ->
-    dataTable =  $($.fn.dataTable.tables(true)).DataTable()
-    if (dataTable != null)
-      dataTable.destroy();
-
-
-$(document).on 'turbolinks:load', ->
-  $('#people-datatable2').dataTable
-    processing: true
-    serverSide: true
-    ajax:
-      url: $('#people-datatable').data('source')
-    pagingType: 'full_numbers'
-    language: 'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
-    bPaginate: true
-    info: false
-    responsive: true
-    deferRender: true
-    stateSave: true
-    columns: [
-      {data: 'locality'}
-      {data: 'population_group'}
-      {data: 'dni'}
-      {data: 'firstname'}
-      {data: 'lastname'}
-      {data: 'options'}
-
-    ]
