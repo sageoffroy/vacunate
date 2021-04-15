@@ -4,9 +4,10 @@
       <div class="row my-2">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <h3>LOCALIDADES</h3>
-          <table class="responsive nowrap table table-hover datatable">
+          <table id="localities-datatable" class="responsive nowrap table table-hover">
             <thead>
               <tr>
+                <th>ID</th>
                 <th>Área</th>
                 <th>Nombre</th>
                 <th>CP</th>
@@ -17,6 +18,7 @@
             <tbody>
               <% @localities.each do |locality| %>
                 <tr>
+                  <td><%= locality.id %></td>
                   <td><%= locality.area %></td>
                   <td><%= locality.name %></td>
                   <td><%= locality.postal_code %></td>
@@ -34,3 +36,29 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  $(document).on('turbolinks:load', function() {
+  return $('#localities-datatable').DataTable({
+    dom: 'Bfrtip',
+    buttons:[{
+      extend: 'excelHtml5',
+      title: '',
+      exportOptions: {
+        columns: [0,1,2,3]
+      }
+    }],
+    pagingType: 'full_numbers',
+    language: {
+      'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
+    },
+    bPaginate: true,
+    responsive: true,
+    deferRender: true,
+    bDestroy: true,
+    stateSave: true,
+  });
+});
+
+</script>
