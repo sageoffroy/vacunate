@@ -36,11 +36,11 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                      Mayores de 60</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%=@total_mayores_60%></div>
+                      Vacunados</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%=@total_de_vacunados%></div>
                 </div>
                 <div class="col-auto">
-                  <i class="fa fa-blind fa-2x text-gray-300"></i>
+                  <i class="fa fa-medkit fa-2x text-gray-300"></i>
                 </div>
               </div>
             </div>
@@ -54,11 +54,11 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                    18 a 59 (Riesgo)
+                    Nuevos
                   </div>
                   <div class="row no-gutters align-items-center">
                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                      <%=@total_18_59_riesgo%>
+                      <%=@total_nuevos%>
                     </div>
                   </div>
                 </div>
@@ -77,10 +77,10 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                    Resto
+                    Ausentes
                   </div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">
-                    <%=@total_de_inscripciones - @total_mayores_60 - @total_18_59_riesgo%>
+                    <%=@total_ausentes%>
                   </div>
                 </div>
                 <div class="col-auto">

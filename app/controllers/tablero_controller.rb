@@ -17,6 +17,9 @@ class TableroController < ApplicationController
   	end
 
   	@total_de_inscripciones = inscripciones.count
+    @total_nuevos = inscripciones.where(state:1).count
+    @total_de_vacunados = inscripciones.where(state:2).count
+    @total_ausentes = inscripciones.where(state:3).count
   	@total_mayores_60 = inscripciones.where(population_group: "Soy mayor de 60 años").count
   	@total_18_59_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (con factores de riesgo)").count
 
@@ -58,7 +61,6 @@ class TableroController < ApplicationController
       @population_group = ["Soy personal docente/auxiliar", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)", "Tengo entre 18 y 59 (sin factores de riesgo)"]
 
     else
-      byebug
       @population_group = params[:population_group].split(',')
       if (@population_group.first == "Soy personal de educación")
         @population_group[0] = "Soy personal docente/auxiliar"
