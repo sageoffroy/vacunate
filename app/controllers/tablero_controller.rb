@@ -47,12 +47,24 @@ class TableroController < ApplicationController
   end
 
   def list_group_state
-  	@locality = Locality.where(id: [params[:locality].split(',')])
-  	@population_group = params[:population_group].split(',')
 
-    if (@population_group.first == "Soy personal de educación")
-      @population_group[0] = "Soy personal docente/auxiliar"
+    if (params[:locality] == "Todas")
+      @locality = Locality.all
+    else
+      @locality = Locality.where(id: [params[:locality].split(',')])
     end
+    
+    if (params[:population_group] == "Todos")
+      @population_group = ["Soy personal docente/auxiliar", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)", "Tengo entre 18 y 59 (sin factores de riesgo)"]
+
+    else
+      byebug
+      @population_group = params[:population_group].split(',')
+      if (@population_group.first == "Soy personal de educación")
+        @population_group[0] = "Soy personal docente/auxiliar"
+      end
+    end
+    
     @state_string = params[:state].split(',')
     @age_min = params[:age_min].to_i
     params_state = State.where(name:@state_string)

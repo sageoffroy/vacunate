@@ -237,25 +237,37 @@
 
 
   function listGenerator(){
-    locality = $('#select_locality_list');
-    population_group = $('#population_group_list');
-    state = $('#state_list');
-    age_min = $('#age_min');
+    locality_select = $('#select_locality_list');
+    population_group_select = $('#population_group_list');
+    state_select = $('#state_list');
+    age_min_select = $('#age_min');
 
+    if (locality_select.val().length === 0){
+      locality = "Todas";
+    }else{
+      locality = locality_select.val();
+    } 
+
+    if (population_group_select.val().length === 0){
+      population_group = "Todos";
+    }else{
+      population_group = population_group_select.val();
+    }     
+
+    if (state_select.val().length === 0){
+      state = "Todos";
+    }else{
+      state = state_select.val();
+    } 
+
+    if (age_min_select.val().length === 0){
+      age_min = "18";
+    }else{
+      age_min = age_min_select.val();
+    } 
+
+    window.location.href = '/list_group_state/'+locality+'/'+population_group+'/'+ state +'/'+age_min
     
-    console.log (locality.val() == null);
-    console.log (population_group.val() == null);
-    console.log (state.val() == null);
-    console.log (age_min.val() == null);
-
-    if (!(locality.val().length === 0) &&  !(population_group.val().length === 0) && !(state.val().length === 0) && !(age_min.val().length === 0)){
-  
-      window.location.href = '/list_group_state/'+locality.val()+'/'+population_group.val()+'/'+ state.val()+'/'+age_min.val()
-    }
-    else{
-      toastr['error']('Debes completar todos los campos para poder listar');
-
-    }
   }
 
 </script>
