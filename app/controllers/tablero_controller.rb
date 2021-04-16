@@ -38,6 +38,8 @@ class TableroController < ApplicationController
       @localities = Locality.where(area: Area.where(abbreviation: current_user.area).first)
     end
 
+    @localities_age = @localities
+
 		count = 0
 		inscripciones.all.each do |person|
 			if person.have_any_pathology?
@@ -141,10 +143,40 @@ class TableroController < ApplicationController
     end
 
     @log_array.push(["Actualización finalizada", "info"])
-
-
-    
   end
+
+  def update_ages
+
+    @log_array = []
+    @log_array.push(["Comenzandola actualización.", "info"])
+    
+    locality = Locality.where(id: [params[:locality].split(',')])
+    
+
+    if locality.nil?
+      @log_array.push(["Debe elegir al menos una localidad.", "error"])  
+    else
+
+      @people = Person.where(state:1, locality: locality)
+
+      @people.each do |person|
+        if person.age < 5 or person.age > 110
+          @log_array.push(["El dni: " + person.dni.to_s + " percibe una edad errona: " + person.age.to_s, "error"])
+          if person.population_group === "Soy mayor de 60 años"
+            person.update_birthdate(Date.new(1960, 1, 1))
+          else
+            person.update_birthdate(Date.new(2003, 1, 1))            
+          end
+          @log_array.push(["El dni: " + person.dni.to_s + " se actualizó a la edad de " + person.age.to_s + " años.", "success"])
+        end
+
+
+      end
+
+    end
+  end
+
+
 
 end
 

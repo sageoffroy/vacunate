@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   post '/update_states' => 'tablero#update_states'
 
+  get '/update_ages/:locality' => 'tablero#update_ages'
+
   get '/change_state/:state/:id' => 'tablero#change_state'
 
   post '/check_dni' => 'tablero#check_dni'
@@ -21,3 +23,4 @@ Rails.application.routes.draw do
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+

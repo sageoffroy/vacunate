@@ -158,6 +158,10 @@ class Person < ApplicationRecord
     update_attribute('state', state)
   end
 
+  def update_birthdate (birthdate)
+    update_attribute('birthdate', birthdate)
+  end
+
 
 
   def self.to_csv(options = {})
