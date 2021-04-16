@@ -157,7 +157,7 @@ class TableroController < ApplicationController
       @log_array.push(["Debe elegir al menos una localidad.", "error"])  
     else
 
-      @people = Person.where(state:1, locality: locality)
+      @people = Person.where(state:2, locality: locality)
 
       @people.each do |person|
         if person.age < 5 or person.age > 110
