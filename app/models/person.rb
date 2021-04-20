@@ -124,6 +124,11 @@ class Person < ApplicationRecord
     return ((Time.zone.now - birthdate.to_time) / 1.year.seconds).floor
   end
 
+  def address
+    address_street + " " + address_number.to_s
+  end
+
+
   def update_priority
 
 

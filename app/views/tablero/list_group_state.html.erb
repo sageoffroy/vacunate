@@ -13,6 +13,7 @@
                 <th>Nombre Completo</th>
                 <th>Fecha de Nacimiento</th>
                 <th>Edad</th>
+                <th>Dirección</th>
                 <th>Patologías</th>
                 <th><%= Person.human_attribute_name("email").titleize%></th>
                 <th><%= Person.human_attribute_name("phone").titleize%></th>
@@ -43,7 +44,7 @@
                 <% else %>
                   <td><%= ins.age %></td>
                 <% end %>
-
+                  <td><%= ins.address %></td>
                   <td><%= ins.show_pathologies %></td>
 
                   <td><%= ins.email %></td>
