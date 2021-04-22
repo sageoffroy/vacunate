@@ -54,7 +54,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                    Nuevos
+                    Sin Vacunar
                   </div>
                   <div class="row no-gutters align-items-center">
                     <div class="h5 mb-0 font-weight-bold text-gray-800">
@@ -77,7 +77,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                    Ausentes
+                    Sin Comunicación
                   </div>
                   <div class="h5 mb-0 font-weight-bold text-gray-800">
                     <%=@total_ausentes%>
@@ -90,7 +90,128 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!---------------------------------------------------->
+      <div class="row my-2">
+      <!-- Earnings (Monthly) Card Example -->
+        <div class="col-md-2 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    > de 70 Años
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_mayores_70%>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-md-2 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                      60 - 69 Años</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_mayores_60%>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-md-2 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    18 - 59 años F/R
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <%=@total_18_59_riesgo%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-md-2 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    Salud
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_salud%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      <!-- Pending Requests Card Example -->
+        <div class="col-md-2 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    Seguridad
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_seguridad%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      <!-- Pending Requests Card Example -->
+        <div class="col-md-2 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    Educación
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_educacion%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!-- Pending Requests Card Example -->
+        
     </div>
+
+    
+
+
+
 
     <!-- Content Row -->
     <div class="row">

@@ -14,6 +14,7 @@
                 <th>Fecha de Nacimiento</th>
                 <th>Edad</th>
                 <th>Dirección</th>
+                <th>Nº</th>
                 <th>Patologías</th>
                 <th><%= Person.human_attribute_name("email").titleize%></th>
                 <th><%= Person.human_attribute_name("phone").titleize%></th>
@@ -44,7 +45,8 @@
                 <% else %>
                   <td><%= ins.age %></td>
                 <% end %>
-                  <td><%= ins.address %></td>
+                  <td><%= ins.address_street %></td>
+                  <td><%= ins.address_number %></td>
                   <td><%= ins.show_pathologies %></td>
 
                   <td><%= ins.email %></td>
@@ -89,14 +91,14 @@
             {
                 extend: 'copyHtml5',
                 exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7,8,9,10,11]
+                  columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
                 }
             },
             {
                 extend: 'excelHtml5',
                 title: '',
                 exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7,8,9,10,11]
+                  columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
                 }
             },
             {
@@ -113,18 +115,18 @@
         language: {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'},
         order: [[ 8, "desc" ]],
         columnDefs: [
-            { responsivePriority: 5, targets: 0 },
-            { responsivePriority: 6, targets: 1 },
             { responsivePriority: 1, targets: 2 },
             { responsivePriority: 2, targets: 3 },
-            { responsivePriority: 7, targets: 4 },
-            { responsivePriority: 8, targets: 5 },
-            { responsivePriority: 10001, targets: 6 },
-            { responsivePriority: 10002, targets: 7 },
-            { responsivePriority: 9, targets: 8 },
             { responsivePriority: 3, targets: 9 },
             { responsivePriority: 4, targets: 10 },
-            { responsivePriority: 5, targets: 11 },
+            { responsivePriority: 5, targets: 0 },
+            { responsivePriority: 6, targets: 1 },
+            { responsivePriority: 7, targets: 4 },
+            { responsivePriority: 8, targets: 5 },
+            { responsivePriority: 9, targets: 8 },
+            { responsivePriority: 10, targets: 11 },
+            { responsivePriority: 10001, targets: 6 },
+            { responsivePriority: 10002, targets: 7 },
         ]
     } );
 } );

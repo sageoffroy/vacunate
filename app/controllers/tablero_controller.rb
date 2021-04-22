@@ -20,16 +20,23 @@ class TableroController < ApplicationController
     @total_nuevos = inscripciones.where(state:1).count
     @total_de_vacunados = inscripciones.where(state:2).count
     @total_ausentes = inscripciones.where(state:3).count
-  	@total_mayores_60 = inscripciones.where(population_group: "Soy mayor de 60 años").count
+    #---------------------------------------------------------------
+  	
+
+    @total_mayores_70 = inscripciones.where(population_group: "Soy mayor de 60 años", birthdate: (150.years.ago - 1.day)..70.year.ago).count
+    @total_mayores_60 = inscripciones.where(population_group: "Soy mayor de 60 años", birthdate: (70.years.ago - 1.day)..60.year.ago).count
   	@total_18_59_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (con factores de riesgo)").count
+    @total_educacion = inscripciones.where(population_group: "Soy personal docente/auxiliar").count
+    @total_seguridad = inscripciones.where(population_group: "Soy personal de seguridad").count
+    @total_salud = inscripciones.where(population_group: "Soy personal de salud").count
 
-  	@inscripciones_x_localidad = inscripciones.group(:locality).order('count_id desc').count('id')
+    @inscripciones_x_localidad = inscripciones.group(:locality).order('count_id desc').count('id')
 
-		@inscripciones_obesidad = inscripciones.where(obesity: true).count
-		@inscripciones_diabetes = inscripciones.where(diabetes: true).count
-		@inscripciones_ERC = inscripciones.where(chronic_kidney_disease: true).count
-		@inscripciones_EC = inscripciones.where(cardiovascular_disease: true).count
-		@inscripciones_EPC = inscripciones.where(chronic_lung_disease: true).count
+		#@inscripciones_obesidad = inscripciones.where(obesity: true).count
+		#@inscripciones_diabetes = inscripciones.where(diabetes: true).count
+		#@inscripciones_ERC = inscripciones.where(chronic_kidney_disease: true).count
+		#@inscripciones_EC = inscripciones.where(cardiovascular_disease: true).count
+		#@inscripciones_EPC = inscripciones.where(chronic_lung_disease: true).count
 
 
     if current_user.area == "MS"
@@ -60,7 +67,7 @@ class TableroController < ApplicationController
     end
     
     if (params[:population_group] == "Todos")
-      @population_group = ["Soy personal docente/auxiliar", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)", "Tengo entre 18 y 59 (sin factores de riesgo)"]
+      @population_group = ["Soy personal docente/auxiliar", "Soy personal de seguridad", "Soy personal de salud", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)", "Tengo entre 18 y 59 (sin factores de riesgo)"]
 
     else
       @population_group = params[:population_group].split(',')
