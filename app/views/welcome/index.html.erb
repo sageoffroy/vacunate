@@ -27,11 +27,17 @@
                   <%= image_tag "logo_vacunate.png", style:"max-width:50%;" %>
                 </h1>
                 <div class="row justify-content-md-center">
+
                   <div class="col-md-6 ">
                     <h2 class="text-white mx-auto mt-5 mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h2>
-                    <a class="btn btn-primary btn-block mb-3" href="/people/new">INSCRIBITE</a>
-                    <%= link_to "PREGUNTAS FRECUENTES", "https://www.google.com/url?q=https://drive.google.com/file/d/1wlY1PefRvZd8QExwMAa2QwCbzYsRfYK9/view?usp%3Dsharing&sa=D&source=hangouts&ust=1617901301468000&usg=AFQjCNERho9GdhIkMRLnVPd8B_3HYxdKGw", target: "_blank", class: "btn btn-secondary btn-block mb-3" %>
 
+                    <div class="row">
+                      
+                    </div>
+
+                    <a class="btn btn-primary btn-block mb-3" href="/people/new">INSCRIBITE</a>
+                    <%= link_to "PREGUNTAS VACUNACIÓN", "https://www.google.com/url?q=https://drive.google.com/file/d/1wlY1PefRvZd8QExwMAa2QwCbzYsRfYK9/view?usp%3Dsharing&sa=D&source=hangouts&ust=1617901301468000&usg=AFQjCNERho9GdhIkMRLnVPd8B_3HYxdKGw", target: "_blank", class: "btn btn-secondary btn-block mb-3" %>
+                    <a class="btn btn-secondary btn-block mb-3" href="#info-covid">INFO COVID</a>
                     <a class="btn btn-secondary btn-block mb-3" href="#verificar">¿YA ESTOY INSCRIPTO?</a>
                     <a class="btn btn-secondary btn-block mb-3" href="#contacto">CONTACTO</a>
                   </div>
@@ -39,39 +45,92 @@
             </div>
         </div>
       </header>
-      <!-- Preguntas -->
-      <!--section class="preguntas-section text-center py-5" id="preguntas">
+      <!-- Info Covid -->
+      <section class="text-center py-5" id="info-covid">
         <div class="container">
           <div class="panel-pane pane-texto">
             <div class="pane-content">
-              <div class="row text-center mb-5">
-                  <div class="col-md-12 col-sm-12 col-xs-12">
-                      <h2>PREGUNTAS FRECUENTES</h2>
-                  </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2>NO CUIDAMOS ENTRE TOD@S</h2>
               </div>
-              <div class="row text-center mt-2 ">
-                <div class="col-md-12 col-lg-7 mb-5">
-                  <%= image_tag "preguntas1.png", style:"max-width:50%;" %>
-                </div>
-                <div class="col-md-12 col-lg-5"></div>
+              
+              <p class="text-left mt-3">
+                Mientras llevamos adelante la campaña de vacunación contra la COVID-19, es importante que nos sigamos cuidando <strong>con el fin de disminuir la transmisión del virus y el impacto de la segunda ola en nuestro provincia.</strong>
+              </p>
+              <p class="text-left">
+                <strong>Seamos responsables</strong> y pongamos en práctica estas medidas de cuidado: 
+              </p>
+              <ol class="text-left pl-6">
+                <li>Uso adecuado de barbijo o tapaboca-nariz.</li>
+                <li>Lavado de manos frecuente y apropiado.</li>
+                <li>Mantenimiento de una distancia ideal de dos metros.</li>
+                <li>Evitar tocarse ojos, nariz y boca.</li>
+                <li>Evitar espacios cerrados y ventilar los ambientes.</li>
+                <li>Evitar salir de casa si se presentan síntomas relacionados a infecciones respiratorias, o concurrir a lugares públicos (ej., ámbito laboral, eventos sociales,lugares de gran afluencia de personas).</li>
+                <li>Desinfectar superficies y objetos regularmente.</li>
 
-                <div class="col-md-12 col-lg-5"></div>
-                <div class="col-md-12 col-lg-7 mb-5">
-                  <%= image_tag "preguntas2.png", style:"max-width:50%;" %>
-                </div>
 
-                <div class="col-md-12 col-lg-7 mb-5">
-                  <%= image_tag "preguntas3.png", style:"max-width:50%;" %>
-                </div>
-                <div class="col-md-12 col-lg-5"></div>
+              </ol>
+              
+              <p class="text-left">
+                <strong>Más información: <a class="section-link" href="http://www.ministeriodesalud.chubut.gov.ar/ministerio-de-salud/epidemiologia/coronavirus/">http://www.ministeriodesalud.chubut.gov.ar/ministerio-de-salud/epidemiologia/coronavirus/</a></strong>
 
+              </p>
+              
+              <hr>
+              
+              <%= image_tag "placa5.jpeg", style:"max-height:400px;" %>
+              <%= image_tag "placa4.jpeg", style:"max-height:400px;" %>
+
+
+
+              <div class="col-md-12 col-sm-12 col-xs-12 mb-3 mt-5">
+                <h2>¿CUALES SON LOS GRUPOS DE RIESGO?</h2>
               </div>
+
+              <div class="alert alert-danger text-left">
+                <strong>IMPORTANTE:</strong> DEBE ACREDITAR SU CONDICIÓN AL MOMENTO DE LA CONVOCATORIA. RECUERDE GESTIONAR CERTIFICADO MÉDICO O DOCUMENTACIÓN CON TIEMPO.
+              </div>
+
+              <ol class="text-left pl-6" type="I">
+                <li><strong>PERSONAS CON ENFERMEDADES RESPIRATORIAS CRÓNICAS:</strong> hernia diafragmática, enfermedad pulmonar obstructiva crónica [EPOC], enfisema congénito, displasia broncopulmonar, traqueostomizados crónicos, bronquiectasias, fibrosis quística y asma moderado o severo.
+                </li>
+                <li><strong>PERSONAS CON ENFERMEDADES CARDÍACAS:</strong> insuficiencia cardíaca, enfermedad coronaria, reemplazo valvular, valvulopatías y cardiopatías congénitas. La Hipertensión Arterial como única entidad NO es condición para acceder a la vacunación.
+                </li>
+                <li><strong>PERSONAS DIABÉTICAS:</strong> Insulino requiriente y aquellos con medicación oral.</li>
+                <li><strong>PERSONAS CON INSUFICIENCIA RENAL CRÓNICA:</strong> en diálisis o en plan de ingresar a diálisis en los siguientes seis meses.</li>
+                <li>
+                  <strong>OBESIDAD:</strong> se define obesidad con IMC igual o superior a 35,0 kg/m2 (Obesidad Clase II y III) el IMC= peso/talla (al cuadrado)        
+                </li>
+                <li>
+                  <strong>PERSONAS CON INMUNODEFICIENCIAS:</strong> (con valoración de riesgo/ beneficio e indicaciónmédica).<br>
+                  • Congénita, asplenia funcional o anatómica (incluida anemia drepanocítica) y desnutrición grave. <br>
+                  • Personas con VIH <br>
+                  • Personas con medicación inmunosupresora o corticoides en altas dosis (mayor a 2 mg/kg/día de metilprednisona o más de 20 mg/día o su equivalente por más de 14 días).
+                </li>
+                <li><strong>PACIENTES TRASPLANTADOS:</strong> con valoración de riesgo/ beneficio e indicación médica.</li>
+                <li><strong>CIRROSIS.</strong></li>
+                <li><strong>PERSONAS CON DISCAPACIDAD RESIDENTES EN RESIDENCIAS DE LARGA ESTANCIA, COMO INSTITUCIONES CERRADAS</strong></li>
+              </ol>
+
+              <p class="text-left">
+                Las indicaciones y recomendaciones son dinámicas y se modifican en base a la disponibilidad de nueva evidencia científica que colabora en las actualizaciones. 
+              </p>
+              <p class="text-left">
+                <strong>Fuente:</strong> Lineamientos Técnicos para vacunas Covid del Ministerio de Salud de Nación. Condiciones contempladas en la Resolución Nacional 627/2020 RESOL-2020-627-APN-MS
+              </p>
+              <p class="text-left">
+                <strong>Más información: <a class="section-link" href="http://www.ministeriodesalud.chubut.gov.ar/ministerio-de-salud/epidemiologia/coronavirus/">http://www.ministeriodesalud.chubut.gov.ar/ministerio-de-salud/epidemiologia/coronavirus/</a></strong>
+
+              </p>
+              
+
             </div>
           </div>
         </div>
-      </section-->
+      </section>
       <!-- Verificar -->
-      <section class="preguntas-section text-center py-5" id="verificar">
+      <section class="text-center text-white py-5 bg-section-blue" id="verificar">
         <div class="container">
           <div class="panel-pane pane-texto">
             <div class="pane-content">

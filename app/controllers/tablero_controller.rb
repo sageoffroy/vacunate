@@ -32,14 +32,8 @@ class TableroController < ApplicationController
 
     @inscripciones_x_localidad = inscripciones.group(:locality).order('count_id desc').count('id')
 
-		#@inscripciones_obesidad = inscripciones.where(obesity: true).count
-		#@inscripciones_diabetes = inscripciones.where(diabetes: true).count
-		#@inscripciones_ERC = inscripciones.where(chronic_kidney_disease: true).count
-		#@inscripciones_EC = inscripciones.where(cardiovascular_disease: true).count
-		#@inscripciones_EPC = inscripciones.where(chronic_lung_disease: true).count
 
-
-    if current_user.area == "MS"
+		if current_user.area == "MS"
       @localities = Locality.all
     else
       @localities = Locality.where(area: Area.where(abbreviation: current_user.area).first)
@@ -119,7 +113,7 @@ class TableroController < ApplicationController
     dni_list = format_dni_list.split(',')
     @state_string = params[:state]
     @log_array = []
-      @log_array.push(["Comenzandola actualización", "info"])
+      @log_array.push(["Comenzando la correción de edades", "info"])
 
     params_state = State.where(name: @state_string).first
     if !params_state.nil?
@@ -168,13 +162,53 @@ class TableroController < ApplicationController
 
       @people.each do |person|
         if person.age < 5 or person.age > 110
-          @log_array.push(["El dni: " + person.dni.to_s + " percibe una edad errona: " + person.age.to_s, "error"])
+          @log_array.push([person.population_group + " - El dni: " + person.dni.to_s + " percibe una edad errona: " + person.age.to_s + " ( " +person.birthdate.to_s + " )" , "error"])
+
+          day = person.birthdate.day
+          month = person.birthdate.month
+          age = person.birthdate.year
+          type = "info"
+
           if person.population_group === "Soy mayor de 60 años"
-            person.update_birthdate(Date.new(1960, 1, 1))
+            age = 1960
+            if person.birthdate.year.to_s.size == 4
+              age_aux = ("19"+ person.birthdate.year.to_s[2..4]).to_i
+              if age.between? 1900, 1960
+                age = age_aux
+                type = "success"
+              end
+            elsif person.birthdate.year.to_s.size > 4
+              age_aux = person.birthdate.year.to_s[0..3].to_i
+              if age.between? 1900, 1960
+                age = age_aux
+                type = "success"
+              end
+            end
+
           else
-            person.update_birthdate(Date.new(2003, 1, 1))            
+            age = 2003
+            if person.birthdate.year.to_s.size == 4
+              age_aux = ("19"+ person.birthdate.year.to_s[2..4]).to_i
+              if age.between? 1961, 2004
+                age = age_aux
+                type = "success"
+              end
+            elsif person.birthdate.year.to_s.size > 4
+              age_aux = person.birthdate.year.to_s[0..3].to_i
+              if age.between? 1961, 2004
+                age = age_aux
+                type = "success"
+              end
+            end
           end
-          @log_array.push(["El dni: " + person.dni.to_s + " se actualizó a la edad de " + person.age.to_s + " años.", "success"])
+          @log_array.push(["\t Se corrigio la fecha a: ( " + Date.new(age, month, day).to_s + " )" , type])
+
+          #if person.population_group === "Soy mayor de 60 años"
+            #person.update_birthdate(Date.new(1960, 1, 1))
+          #else
+            #person.update_birthdate(Date.new(2003, 1, 1))            
+          #end
+          #@log_array.push(["El dni: " + person.dni.to_s + " se actualizó a la edad de " + person.age.to_s + " años.", "success"])
         end
 
 
