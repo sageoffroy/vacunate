@@ -165,6 +165,7 @@ class Person < ApplicationRecord
 
   def update_birthdate (birthdate)
     update_attribute('birthdate', birthdate)
+    update_priority
   end
 
 

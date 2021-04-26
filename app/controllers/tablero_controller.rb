@@ -201,14 +201,13 @@ class TableroController < ApplicationController
               end
             end
           end
-          @log_array.push(["\t Se corrigio la fecha a: ( " + Date.new(age, month, day).to_s + " )" , type])
+          #@log_array.push(["       Se corrigio la fecha a: ( " + Date.new(age, month, day).to_s + " )" , type])
 
-          #if person.population_group === "Soy mayor de 60 años"
-            #person.update_birthdate(Date.new(1960, 1, 1))
-          #else
-            #person.update_birthdate(Date.new(2003, 1, 1))            
-          #end
-          #@log_array.push(["El dni: " + person.dni.to_s + " se actualizó a la edad de " + person.age.to_s + " años.", "success"])
+          person.update_birthdate(Date.new(age, month, day))
+
+
+          
+          @log_array.push(["Se actualizó la edad a: " + person.age.to_s + " ( " +person.birthdate.to_s + " - Prioridad: " + person.priority.to_s + " )" , type])
         end
 
 
