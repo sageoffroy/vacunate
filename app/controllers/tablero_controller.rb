@@ -106,15 +106,12 @@ class TableroController < ApplicationController
 
   end
 
-
-  def update_states
-    
+  def update_states    
     format_dni_list = params[:dni_list].gsub("\r\n", ",")
     dni_list = format_dni_list.split(',')
     @state_string = params[:state]
     @log_array = []
-      @log_array.push(["Comenzando la correción de edades", "info"])
-
+    @log_array.push(["Comenzando la correción de edades", "info"])
     params_state = State.where(name: @state_string).first
     if !params_state.nil?
       new_state = State.where(name: "Nuevo").first
@@ -201,22 +198,11 @@ class TableroController < ApplicationController
               end
             end
           end
-          #@log_array.push(["       Se corrigio la fecha a: ( " + Date.new(age, month, day).to_s + " )" , type])
-
           person.update_birthdate(Date.new(age, month, day))
-
-
-          
           @log_array.push(["Se actualizó la edad a: " + person.age.to_s + " ( " +person.birthdate.to_s + " - Prioridad: " + person.priority.to_s + " )" , type])
         end
-
-
       end
-
     end
   end
-
-
-
 end
 
