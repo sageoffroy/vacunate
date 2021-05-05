@@ -4,21 +4,27 @@ class PeopleController < ApplicationController
   before_action :authenticate_user!, :only => [:index, :edit]
 
 
-  def person_to_csv
+  def self.to_csv
+    attributes = %w{dni firstname lastname}
 
-    file = "#{Rails.root}/public/people_data.csv"
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
 
-    
+      all.each do |person|
+        csv << attributes.map{ |attr| person.send(attr) }
 
+      end
+    end
   end
 
 
   # GET /people or /people.json
   def index
     respond_to do |format|
+      @people = Person.all
       format.html
       format.json { render json: PersonDatatable.new(params, view_context: view_context) }
-      format.csv { send_data Person.where(locality_id:54).to_csv(col_sep: ';') }
+      format.csv { send_data @people.to_csv(col_sep: ';'), filename: "inscripciones-#{Date.today}.csv" }
     end
   end
 
