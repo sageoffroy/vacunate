@@ -77,12 +77,9 @@ class TableroController < ApplicationController
   end
 
   def change_state
-    
     @state_string = params[:state]
-
     state = State.where(name: @state_string).first
     person = Person.where(id: params[:id]).first
-
     person.update_state(state)
 
     respond_to do |format|
@@ -91,19 +88,14 @@ class TableroController < ApplicationController
   end
 
   def check_dni
-
     @dni = params[:dni]
-
     dni_number = @dni.to_i
-
     if dni_number > 99999
       @person = Person.where(dni:dni_number).first
     end
-    
     respond_to do |format|
       format.js
     end
-
   end
 
   def update_states    
@@ -111,7 +103,7 @@ class TableroController < ApplicationController
     dni_list = format_dni_list.split(',')
     @state_string = params[:state]
     @log_array = []
-    @log_array.push(["Comenzando la correción de edades", "info"])
+    @log_array.push(["Comenzando la modificación de estados", "info"])
     params_state = State.where(name: @state_string).first
     if !params_state.nil?
       new_state = State.where(name: "Nuevo").first
@@ -146,7 +138,7 @@ class TableroController < ApplicationController
   def update_ages
 
     @log_array = []
-    @log_array.push(["Comenzandola actualización.", "info"])
+    @log_array.push(["Comenzando la actualización de edades.", "info"])
     
     locality = Locality.where(id: [params[:locality].split(',')])
     

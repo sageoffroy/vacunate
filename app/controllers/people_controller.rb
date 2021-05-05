@@ -18,7 +18,7 @@ class PeopleController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: PersonDatatable.new(params, view_context: view_context) }
-      format.csv { send_data Person.where(state:2).to_csv(col_sep: ';') }
+      format.csv { send_data Person.where(locality_id:54).to_csv(col_sep: ';') }
     end
   end
 
