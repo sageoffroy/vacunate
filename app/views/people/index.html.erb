@@ -5,7 +5,7 @@
     <div class="pane-content">
       <div class="row my-2">
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <h3>LOCALIDADES</h3>
+          <h3>INSCRIPCIONES</h3>
           <table id="people-datatable" data-source="<%= people_path(format: :json) %>" class= "responsive nowrap table table-hover">
             <thead>
               <tr>
@@ -25,7 +25,34 @@
       </div>
     </div>
   </div>
+
+
+<% if user_signed_in? %>
+  <% if current_user.email === "chubutvacunate@gmail.com" or current_user.email === "sageoffroy@gmail.com" %>
+    <div style='margin: 50px;'>
+      <a id='download_people' class='btn btn-success' href='/people/download'>Descargar Inscriptos</a>
+    </div>
+    <script language='javascript'>
+      $(function() {
+        $('#download_people').click(function(e) {
+          e.preventDefault();
+          var uuid = generateUUID();
+          $(this).html('Descargando...').attr('disabled', 'disabled');
+          var url = $(this).attr('href') + '?uuid=' + uuid;
+          subscribeDownloadChannel(uuid, function() {
+            $.get(url);
+          });
+          return false;
+        })
+      });
+    </script>
+
+
+  <% end %>
+<% end %>
 </div>
+    
+
 
 <script type="text/javascript">
 

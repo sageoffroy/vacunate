@@ -99,4 +99,6 @@ gem 'recaptcha', require: 'recaptcha/rails'
 
 gem 'seed_dump'
 
-gem "chronic"
+gem 'chronic'
+
+gem 'filesaverjs-rails'

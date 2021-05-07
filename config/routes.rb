@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   resources :areas
+  get 'people/download'
   resources :people
   resources :localities
   resources :states
