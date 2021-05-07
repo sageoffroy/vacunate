@@ -19,9 +19,6 @@
               <div class="dropdown-menu" aria-labelledby="dropdown07">
                 <a class="dropdown-item" href="/people">Inscripciones</a>
                 <a class="dropdown-item" href="/tablero">Tablero</a>
-                <% if current_user.email === "chubutvacunate@gmail.com" or current_user.email === "tcstaptw@gmail.com" %>
-                <%= link_to "Descargar CSV (TW)", people_path(format: "csv"), class: "dropdown-item" %>
-                <% end %>    
               </div>
             </li>
             <% end %>
