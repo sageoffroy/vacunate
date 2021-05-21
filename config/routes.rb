@@ -23,7 +23,8 @@ Rails.application.routes.draw do
   post '/create_csv' => 'tablero#create_csv'
   post '/send_csv' => 'tablero#send_csv'
 
-  post 'download_csv', to: "tablero#download_csv"
+  post 'download_excel', to: "tablero#download_excel"
+  post 'download_wps', to: "tablero#download_wps"
 
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

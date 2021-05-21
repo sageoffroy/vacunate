@@ -200,13 +200,41 @@ class TableroController < ApplicationController
   end
 
   def create_csv
-    File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
-      f.write "Fecha: 21/05/2021\n"
-      Person.copy_to do |line|
-        f.write line
-      end
-    end
 
+    if !current_user.nil?
+      if current_user.area == "dpapt"
+        inscripciones = Person.where(locality: Locality.where(area: 1))
+      elsif current_user.area == "dpapn"
+        inscripciones = Person.where(locality: Locality.where(area: 2))
+      elsif current_user.area == "dpape"
+        inscripciones = Person.where(locality: Locality.where(area: 3))
+      elsif current_user.area == "dpapcr"
+        inscripciones = Person.where(locality: Locality.where(area: 4))
+      else
+        inscripciones = Person.all
+      end
+    
+
+      File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
+        f.write "Fecha: " +   Time.now.strftime("%d/%m/%Y") + "\n"
+        Person.copy_to do |line|
+          f.write line
+        end
+      end
+
+      
+    end
+  end
+
+  def change_csv_to_tab
+    csv_aux = File.read("#{Rails.root}/public/inscripciones.csv")
+    changed_data = csv_aux.gsub(",", "\t") 
+    File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
+      f.write(changed_data)
+    end
+  end
+
+  def change_csv_to_semicolon
     csv_aux = File.read("#{Rails.root}/public/inscripciones.csv")
     changed_data = csv_aux.gsub(",", ";") 
     File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
@@ -214,10 +242,14 @@ class TableroController < ApplicationController
     end
   end
 
-  def download_csv
+  def download_excel
+    change_csv_to_tab
     send_file "#{Rails.root}/public/inscripciones.csv", type: "application/csv", x_sendfile: true
   end
 
-
+  def download_wps
+    change_csv_to_semicolon
+    send_file "#{Rails.root}/public/inscripciones.csv", type: "application/csv", x_sendfile: true
+  end
 end
 
