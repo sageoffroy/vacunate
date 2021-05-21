@@ -1,5 +1,7 @@
 class TableroController < ApplicationController
+  require "csv"
   before_action :authenticate_user!, :except => [:check_dni]
+
 
   def index
   	if !current_user.nil?
@@ -196,5 +198,26 @@ class TableroController < ApplicationController
       end
     end
   end
+
+  def create_csv
+    File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
+      f.write "Fecha: 21/05/2021\n"
+      Person.copy_to do |line|
+        f.write line
+      end
+    end
+
+    csv_aux = File.read("#{Rails.root}/public/inscripciones.csv")
+    changed_data = csv_aux.gsub(",", ";") 
+    File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
+      f.write(changed_data)
+    end
+  end
+
+  def download_csv
+    send_file "#{Rails.root}/public/inscripciones.csv", type: "application/csv", x_sendfile: true
+  end
+
+
 end
 

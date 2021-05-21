@@ -17,6 +17,8 @@ class Person < ApplicationRecord
 
   validate :phone_xor_email
 
+  acts_as_copy_target
+
   def to_s
     "(" + dni.to_s + ") " + firstname + " " + lastname
   end
@@ -168,18 +170,6 @@ class Person < ApplicationRecord
     update_priority
   end
 
-
-
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |person|
-        csv << person.attributes.values_at(*column_names)
-      end
-    end
-  end
-
-  
   private
 
     def phone_xor_email

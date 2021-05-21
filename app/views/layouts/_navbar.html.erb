@@ -19,6 +19,8 @@
               <div class="dropdown-menu" aria-labelledby="dropdown07">
                 <a class="dropdown-item" href="/people">Inscripciones</a>
                 <a class="dropdown-item" href="/tablero">Tablero</a>
+                <a id="createCSV" class="dropdown-item" href="">Generar CSV</a>
+                <%= link_to "Descargar CSV", download_csv_path, class: "dropdown-item", method: :post %>
               </div>
             </li>
             <% end %>
@@ -38,3 +40,31 @@
         </div>
       </div>
     </nav>
+
+<script type="text/javascript">
+  $("#createCSV").on("click", createCSV);
+  $("#sendCSV").on("click", sendCSV);
+
+  function createCSV(){
+    $.ajax({
+      url: '/create_csv',
+      type: 'POST'
+    }).done(function(data) {
+      console.log("Se creo el archivo");
+    }).fail(function(xhr, status, error) {
+      console.log("Fallo la carga");
+    });
+  }
+
+  function sendCSV(){
+    $.ajax({
+      url: '/send_csv',
+      type: 'POST'
+    }).done(function(data) {
+      console.log("Se creo el archivo");
+    }).fail(function(xhr, status, error) {
+      console.log("Fallo la carga");
+    });
+  }
+
+</script>

@@ -61,8 +61,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
-
 # Integración de Bootstrap stable
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.6'
@@ -100,3 +98,5 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'seed_dump'
 
 gem "chronic"
+
+gem 'postgres-copy'

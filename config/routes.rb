@@ -20,6 +20,11 @@ Rails.application.routes.draw do
 
   post '/check_dni' => 'tablero#check_dni'
 
+  post '/create_csv' => 'tablero#create_csv'
+  post '/send_csv' => 'tablero#send_csv'
+
+  post 'download_csv', to: "tablero#download_csv"
+
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
