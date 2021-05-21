@@ -83,4 +83,6 @@ production:
   database: vacunate_production
   username: informatica
   password: Chubut387
-  timeout: 150000
+  timeout: 180000
+  variables:
+    statement_timeout: 5min # or ms, min, etc
