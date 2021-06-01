@@ -4,7 +4,7 @@
       <div class="row my-2">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <h3 class="">
-                TABLERO 
+                TABLERO
             </h3>
         </div>
 
@@ -107,7 +107,7 @@
                     <%=@total_mayores_70%>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@
                     <%=@total_mayores_60%>
                   </div>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@
             </div>
           </div>
         </div>
-      
+
       <!-- Pending Requests Card Example -->
         <div class="col-md-2 mb-4">
           <div class="card border-left-dark shadow h-100 py-2">
@@ -186,7 +186,7 @@
             </div>
           </div>
         </div>
-      
+
       <!-- Pending Requests Card Example -->
         <div class="col-md-2 mb-4">
           <div class="card border-left-dark shadow h-100 py-2">
@@ -205,10 +205,10 @@
           </div>
         </div>
       <!-- Pending Requests Card Example -->
-        
+
     </div>
 
-    
+
 
 
 
@@ -226,11 +226,15 @@
                 </div>
                 <div class="card-body">
               		<% @inscripciones_x_localidad.each do |loc| %>
-              			<h4 class="small font-weight-bold"><%=loc[0].name%> <span class="float-right"><%=number_with_precision(loc[1].to_f / @total_de_inscripciones.to_f * 100,:precision => 2).to_s + '%'%></span></h4>
-                  	<div class="progress mb-4">
-                    	<div class="progress-bar bg-warning" role="progressbar" style="width: <%=(loc[1].to_f / @total_de_inscripciones.to_f * 100).to_s + '%'%>"
-                      aria-valuenow="<%=(loc[1].to_f / @total_de_inscripciones.to_f * 100).to_s%>" aria-valuemin="0" aria-valuemax="100"></div>
-                  	</div>
+                    <% if !loc[0].nil?%>
+                			<h4 class="small font-weight-bold">
+                        <%=loc[0].name%>
+                        <span class="float-right"><%=number_with_precision(loc[1].to_f / @total_de_inscripciones.to_f * 100,:precision => 2).to_s + '%'%></span></h4>
+                    	<div class="progress mb-4">
+                      	<div class="progress-bar bg-warning" role="progressbar" style="width: <%=(loc[1].to_f / @total_de_inscripciones.to_f * 100).to_s + '%'%>"
+                        aria-valuenow="<%=(loc[1].to_f / @total_de_inscripciones.to_f * 100).to_s%>" aria-valuemin="0" aria-valuemax="100"></div>
+                    	</div>
+                    <% end %>
               		<% end %>
                 </div>
             </div>
@@ -279,13 +283,13 @@
                     <div class="col-md-12 form-group">
                       <%= label_tag "Edad Mínima" %>
                       <%= number_field_tag 'age_min', '18', {class:'form-control'}%>
-                    </div>     
+                    </div>
 
                     <div class="col-md-12 form-group">
                       <%= label_tag "Estado:" %>
                       <%= select_tag "state_list", options_for_select(["Nuevo", "Vacunado", "Ausente"]), {class: " select-field form-control", multiple: "multiple"}%>
                     </div>
-                    <div class="col-md-12 form-group"> 
+                    <div class="col-md-12 form-group">
                       <a id="list_generator_button" class="btn btn-secondary btn-block">GENERAR LISTADO</a>
                     </div>
                   </div>
@@ -300,17 +304,17 @@
                 </div>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-12 form-group">  
+                    <div class="col-md-12 form-group">
                     <%= form_tag('/update_states') do %>
-                        <div class="form-group">  
+                        <div class="form-group">
                           <%= label_tag "Listado de documentos:" %>
                           <%= text_area_tag "dni_list","", {:class => "form-control"}  %>
-                        </div>    
-                        <div class="form-group">  
+                        </div>
+                        <div class="form-group">
                           <%= label_tag "Estado:" %>
                           <%= select_tag "state", options_for_select([ "Nuevo", "Vacunado", "Ausente"], "Nuevo"), {class: "select2 select-field form-control"}%>
                         </div>
-                        <div class="form-group">  
+                        <div class="form-group">
                           <%= submit_tag "Actualizar Estados", :class => "btn btn-secondary btn-block"%>
                         </div>
                     <% end %>
@@ -336,7 +340,7 @@
                       <%= label_tag "Localidad*:" %>
                       <%= select_tag "select_locality_age", options_from_collection_for_select(@localities, :id, :to_s), :class=> 'select-field form-control', multiple: "multiple" %>
                     </div>
-                    <div class="col-md-12 form-group"> 
+                    <div class="col-md-12 form-group">
                       <a id="update_ages_button" class="btn btn-secondary btn-block">Actulizar Edades</a>
                     </div>
                   </div>
@@ -367,20 +371,20 @@
     theme: "bootstrap",
     width: '100%',
     allowClear: false
-  }); 
+  });
 
   $("#state_list").select2({
     theme: "bootstrap",
     width: '100%',
     allowClear: false
-  });  
+  });
 
   $("#list_generator_button").on("click", listGenerator);
   $("#update_ages_button").on("click", updateAges);
 
 
 
-  
+
 
 
   function listGenerator(){
@@ -393,41 +397,41 @@
       locality = "Todas";
     }else{
       locality = locality_select.val();
-    } 
+    }
 
     if (population_group_select.val().length === 0){
       population_group = "Todos";
     }else{
       population_group = population_group_select.val();
-    }     
+    }
 
     if (state_select.val().length === 0){
       state = "Todos";
     }else{
       state = state_select.val();
-    } 
+    }
 
     if (age_min_select.val().length === 0){
       age_min = "18";
     }else{
       age_min = age_min_select.val();
-    } 
+    }
 
     window.location.href = '/list_group_state/'+locality+'/'+population_group+'/'+ state +'/'+age_min
-    
+
   }
 
   function updateAges(){
     locality_select = $('#select_locality_age');
-    
+
     if (locality_select.val().length === 0){
       toastr['error']('Requiere ingresar una localidad');
     }else{
       locality = locality_select.val();
-    } 
+    }
 
     window.location.href = '/update_ages/'+locality
-    
+
   }
 
 </script>
