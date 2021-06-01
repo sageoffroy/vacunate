@@ -192,6 +192,9 @@
     </div>
 
     <%= form.hidden_field :state%>
+    <div class="alert alert-danger" role="alert">
+      Los datos ingresados en el presente formulario revisten carácter de Declaración Jurada. Cualquier omisión o falsedad provocará el rechazo de la inscripción y la consecuente exclusión del registro, sin perjuicio de las sanciones legales que pudieran corresponder.
+    </div>
 
     <div class="actions">
       <%= form.submit "Inscribirme", :class => "btn btn-primary btn-block", data: { confirm: 'Asegúrese de que los datos de contacto son correctos antes de continuar' } %>
