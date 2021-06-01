@@ -32,7 +32,7 @@
                     <h2 class="text-white mx-auto mt-5 mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h2>
 
                     <div class="row">
-                      
+
                     </div>
 
                     <a class="btn btn-primary btn-block mb-3" href="/people/new">INSCRIBITE</a>
@@ -49,16 +49,16 @@
       <section class="text-center py-5" id="info-covid">
         <div class="container">
           <div class="panel-pane pane-texto">
-            <div class="pane-content">
+            <div class="pane-content row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <h2>NO CUIDAMOS ENTRE TOD@S</h2>
               </div>
-              
+
               <p class="text-left mt-3">
                 Mientras llevamos adelante la campaña de vacunación contra la COVID-19, es importante que nos sigamos cuidando <strong>con el fin de disminuir la transmisión del virus y el impacto de la segunda ola en nuestro provincia.</strong>
               </p>
               <p class="text-left">
-                <strong>Seamos responsables</strong> y pongamos en práctica estas medidas de cuidado: 
+                <strong>Seamos responsables</strong> y pongamos en práctica estas medidas de cuidado:
               </p>
               <ol class="text-left pl-6">
                 <li>Uso adecuado de barbijo o tapaboca-nariz.</li>
@@ -71,25 +71,32 @@
 
 
               </ol>
-              
+
               <p class="text-left">
                 <strong>Más información: <a class="section-link" href="http://www.ministeriodesalud.chubut.gov.ar/ministerio-de-salud/epidemiologia/coronavirus/">http://www.ministeriodesalud.chubut.gov.ar/ministerio-de-salud/epidemiologia/coronavirus/</a></strong>
 
               </p>
-              
-              <hr>
-              
-              <%= image_tag "placa5.jpeg", style:"max-height:400px;" %>
-              <%= image_tag "placa4.jpeg", style:"max-height:400px;" %>
 
+              <hr>
+
+              <div class="col-md-7 col-sm-12 col-xs-12 mb-3 mt-5">
+                <%= image_tag "placa5.jpeg", class:"img-fluid"%>
+
+              </div>
+              <div class="col-md-5 col-sm-12 col-xs-12 mb-3 mt-5">
+
+                <%= image_tag "placa4.jpeg", class:"img-fluid" %>
+              </div>
 
 
               <div class="col-md-12 col-sm-12 col-xs-12 mb-3 mt-5">
                 <h2>¿CUÁLES SON LOS GRUPOS DE RIESGO?</h2>
               </div>
-              <%= image_tag "factores_de_riesgo.jpg", style:"max-height:600px;" %>
-             
-              
+              <div class="col-md-12 col-sm-12 col-xs-12 mb-3 mt-5">
+
+                <%= image_tag "factores_de_riesgo.jpg", class:"img-fluid" %>
+              </div>
+
 
             </div>
           </div>
@@ -106,7 +113,10 @@
                 </div>
                 <%= render "tablero/form_check"%>
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                  <p id="verfication-msg" style="font-weight: 600">Ingrese un DNI válido y presione el botón verificar.</p>
+                  <!--p id="verfication-msg" style="font-weight: 600">Ingrese un DNI válido y presione el botón verificar.</p-->
+                  <div class="alert alert-danger" role="alert">
+                    Debido a la gran cantidad de inscripciones, la opción para verificar si una persona se encuentra inscripta estará deshabilitada por unos días. Sepa disculpar molestias
+                  </div>
                 </div>
               </div>
             </div>
@@ -116,7 +126,7 @@
       <%= render "layouts/footer"%>
 
       <!-- Modal -->
-      <div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content" style="background-color:#a34795;">
             <div class="modal-body" style="padding: 1rem;">
@@ -127,13 +137,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </div-->
   </body>
 </html>
 
 
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
   $( window ).on( "load",function(){
     if ($('.welcome.index').length > 0)
