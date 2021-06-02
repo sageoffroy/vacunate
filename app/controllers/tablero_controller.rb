@@ -23,7 +23,7 @@ class TableroController < ApplicationController
     @total_de_vacunados = inscripciones.where(state:2).count
     @total_ausentes = inscripciones.where(state:3).count
     #---------------------------------------------------------------
-  	
+
 
     @total_mayores_70 = inscripciones.where(population_group: "Soy mayor de 60 años", birthdate: (150.years.ago - 1.day)..70.year.ago).count
     @total_mayores_60 = inscripciones.where(population_group: "Soy mayor de 60 años", birthdate: (70.years.ago - 1.day)..60.year.ago).count
@@ -41,16 +41,14 @@ class TableroController < ApplicationController
       @localities = Locality.where(area: Area.where(abbreviation: current_user.area).first)
     end
 
-    @localities_age = @localities
+#   count = 0
+#		inscripciones.all.each do |person|
+#			if person.have_any_pathology?
+#				count = count + 1
+#			end
+#		end
 
-		count = 0
-		inscripciones.all.each do |person|
-			if person.have_any_pathology?
-				count = count + 1
-			end
-		end
-
-		@inscripciones_patologia = count
+#		@inscripciones_patologia = count
 
   end
 
@@ -61,7 +59,7 @@ class TableroController < ApplicationController
     else
       @locality = Locality.where(id: [params[:locality].split(',')])
     end
-    
+
     if (params[:population_group] == "Todos")
       @population_group = ["Soy personal docente/auxiliar", "Soy personal de seguridad", "Soy personal de salud", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)", "Tengo entre 18 y 59 (sin factores de riesgo)"]
 
@@ -71,7 +69,7 @@ class TableroController < ApplicationController
         @population_group[0] = "Soy personal docente/auxiliar"
       end
     end
-    
+
     @state_string = params[:state].split(',')
     @age_min = params[:age_min].to_i
     params_state = State.where(name:@state_string)
@@ -100,7 +98,7 @@ class TableroController < ApplicationController
     end
   end
 
-  def update_states    
+  def update_states
     format_dni_list = params[:dni_list].gsub("\r\n", ",")
     dni_list = format_dni_list.split(',')
     @state_string = params[:state]
@@ -111,17 +109,17 @@ class TableroController < ApplicationController
       new_state = State.where(name: "Nuevo").first
       dni_list.each do |dni|
         person = Person.where(dni: dni).first
-        
-        #Si la persona no éxiste      
+
+        #Si la persona no éxiste
         if person.nil?
           @log_array.push(["El dni: " + dni + " no existe en el registro de inscripciones", "danger"])
         else
-          #Si la persona no tiene un estado asociado, le asignamos el estado nuevo     
+          #Si la persona no tiene un estado asociado, le asignamos el estado nuevo
           if person.state.nil?
             person.update_state(new_state)
           end
 
-          #Si la persona ya tiene ese estado      
+          #Si la persona ya tiene ese estado
           if person.state == params_state
             @log_array.push(["El dni: " + dni + " ya tenía el estado " + @state_string, "info"])
           else
@@ -141,12 +139,12 @@ class TableroController < ApplicationController
 
     @log_array = []
     @log_array.push(["Comenzando la actualización de edades.", "info"])
-    
+
     locality = Locality.where(id: [params[:locality].split(',')])
-    
+
 
     if locality.nil?
-      @log_array.push(["Debe elegir al menos una localidad.", "error"])  
+      @log_array.push(["Debe elegir al menos una localidad.", "error"])
     else
 
       @people = Person.where(state:1, locality: locality)
@@ -213,7 +211,7 @@ class TableroController < ApplicationController
       else
         inscripciones = Person.all
       end
-    
+
 
       File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
         f.write "Fecha: " +   Time.now.strftime("%d/%m/%Y") + "\n"
@@ -222,13 +220,13 @@ class TableroController < ApplicationController
         end
       end
 
-      
+
     end
   end
 
   def change_csv_to_tab
     csv_aux = File.read("#{Rails.root}/public/inscripciones.csv")
-    changed_data = csv_aux.gsub(",", "\t") 
+    changed_data = csv_aux.gsub(",", "\t")
     File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
       f.write(changed_data)
     end
@@ -236,7 +234,7 @@ class TableroController < ApplicationController
 
   def change_csv_to_semicolon
     csv_aux = File.read("#{Rails.root}/public/inscripciones.csv")
-    changed_data = csv_aux.gsub(",", ";") 
+    changed_data = csv_aux.gsub(",", ";")
     File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
       f.write(changed_data)
     end
@@ -252,4 +250,3 @@ class TableroController < ApplicationController
     send_file "#{Rails.root}/public/inscripciones.csv", type: "application/csv", x_sendfile: true
   end
 end
-
