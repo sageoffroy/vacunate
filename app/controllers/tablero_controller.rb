@@ -73,7 +73,7 @@ class TableroController < ApplicationController
     @state_string = params[:state].split(',')
     @age_min = params[:age_min].to_i
     params_state = State.where(name:@state_string)
-    @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: params_state).includes(:locality)
+    @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: params_state).includes(:locality, :state)
   end
 
   def change_state
