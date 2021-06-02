@@ -4,19 +4,6 @@ class TableroController < ApplicationController
 
 
   def index
-  	if !current_user.nil?
-  		if current_user.area == "dpapt"
-        inscripciones = Person.where(locality: Locality.where(area: 1))
-  		elsif current_user.area == "dpapn"
-  			inscripciones = Person.where(locality: Locality.where(area: 2))
-  		elsif current_user.area == "dpape"
-  			inscripciones = Person.where(locality: Locality.where(area: 3))
-  		elsif current_user.area == "dpapcr"
-  			inscripciones = Person.where(locality: Locality.where(area: 4))
-  		else
-  			inscripciones = Person.all
-  		end
-  	end
 
   	@total_de_inscripciones = inscripciones.count
     @total_nuevos = inscripciones.where(state:1).count
@@ -28,6 +15,7 @@ class TableroController < ApplicationController
     @total_mayores_70 = inscripciones.where(population_group: "Soy mayor de 60 años", birthdate: (150.years.ago - 1.day)..70.year.ago).count
     @total_mayores_60 = inscripciones.where(population_group: "Soy mayor de 60 años", birthdate: (70.years.ago - 1.day)..60.year.ago).count
   	@total_18_59_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (con factores de riesgo)").count
+    @total_18_59_sin_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (sin factores de riesgo)").count
     @total_educacion = inscripciones.where(population_group: "Soy personal docente/auxiliar").count
     @total_seguridad = inscripciones.where(population_group: "Soy personal de seguridad").count
     @total_salud = inscripciones.where(population_group: "Soy personal de salud").count
@@ -54,12 +42,31 @@ class TableroController < ApplicationController
 
   def list_group_state
 
+    if !current_user.nil?
+  		if current_user.area == "dpapt"
+        inscripciones_area = Person.where(locality: Locality.where(area: 1))
+  		elsif current_user.area == "dpapn"
+  			inscripciones_area = Person.where(locality: Locality.where(area: 2))
+  		elsif current_user.area == "dpape"
+  			inscripciones_area = Person.where(locality: Locality.where(area: 3))
+  		elsif current_user.area == "dpapcr"
+  			inscripciones_area = Person.where(locality: Locality.where(area: 4))
+  		else
+  			inscripciones_area = Person.all
+  		end
+  	end
+
+
     locality_filter = true
     if (params[:locality] == "Todas")
       #@locality = Locality.all
-      locality_filter = false
+      if current_user.area == "MS"
+        @localities = Locality.all
+      else
+        @localities = Locality.where(area: Area.where(abbreviation: current_user.area).first)
+      end
     else
-      @locality = Locality.where(id: [params[:locality].split(',')])
+      @localities = Locality.where(id: [params[:locality].split(',')])
     end
 
     population_group_filter = true
@@ -80,9 +87,9 @@ class TableroController < ApplicationController
 
     if locality_filter
       if population_group_filter
-        @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: params_state).includes(:locality, :state)
+        @inscripciones = Person.where(locality: @localities, population_group: @population_group, state: params_state).includes(:locality, :state)
       else
-        @inscripciones = Person.where(locality: @locality, state: params_state).includes(:locality, :state)
+        @inscripciones = Person.where(locality: @localities, state: params_state).includes(:locality, :state)
       end
     else
       if population_group_filter
