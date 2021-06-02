@@ -54,14 +54,18 @@ class TableroController < ApplicationController
 
   def list_group_state
 
+    locality_filter = true
     if (params[:locality] == "Todas")
-      @locality = Locality.all
+      #@locality = Locality.all
+      locality_filter = false
     else
       @locality = Locality.where(id: [params[:locality].split(',')])
     end
 
+    population_group_filter = true
     if (params[:population_group] == "Todos")
-      @population_group = ["Soy personal docente/auxiliar", "Soy personal de seguridad", "Soy personal de salud", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)", "Tengo entre 18 y 59 (sin factores de riesgo)"]
+      population_group_filter = false
+      #@population_group = ["Soy personal docente/auxiliar", "Soy personal de seguridad", "Soy personal de salud", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)", "Tengo entre 18 y 59 (sin factores de riesgo)"]
 
     else
       @population_group = params[:population_group].split(',')
@@ -73,7 +77,20 @@ class TableroController < ApplicationController
     @state_string = params[:state].split(',')
     @age_min = params[:age_min].to_i
     params_state = State.where(name:@state_string)
-    @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: params_state).includes(:locality, :state)
+
+    if locality_filter
+      if population_group_filter
+        @inscripciones = Person.where(locality: @locality, population_group: @population_group, state: params_state).includes(:locality, :state)
+      else
+        @inscripciones = Person.where(locality: @locality, state: params_state).includes(:locality, :state)
+      end
+    else
+      if population_group_filter
+        @inscripciones = Person.where(population_group: @population_group, state: params_state).includes(:locality, :state)
+      else
+        @inscripciones = Person.where(state: params_state).includes(:locality, :state)
+      end
+    end
   end
 
   def change_state
