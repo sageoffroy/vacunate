@@ -5,6 +5,21 @@ class TableroController < ApplicationController
 
   def index
 
+    if !current_user.nil?
+  		if current_user.area == "dpapt"
+        inscripciones = Person.where(locality: Locality.where(area: 1))
+  		elsif current_user.area == "dpapn"
+  			inscripciones = Person.where(locality: Locality.where(area: 2))
+  		elsif current_user.area == "dpape"
+  			inscripciones = Person.where(locality: Locality.where(area: 3))
+  		elsif current_user.area == "dpapcr"
+  			inscripciones = Person.where(locality: Locality.where(area: 4))
+  		else
+  			inscripciones = Person.all
+  		end
+  	end
+
+
   	@total_de_inscripciones = inscripciones.count
     @total_nuevos = inscripciones.where(state:1).count
     @total_de_vacunados = inscripciones.where(state:2).count
