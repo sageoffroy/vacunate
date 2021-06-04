@@ -1,4 +1,4 @@
-  # PostgreSQL. Versions 9.1 and up are supported.
+# PostgreSQL. Versions 9.1 and up are supported.
 #
 # Install the pg driver:
 #   gem install pg
@@ -79,11 +79,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
+  <<: *default
   database: vacunate_production
   username: informatica
   password: Chubut387
-  adapter: postgresql
-  pool: 5
-  timeout: 200000
-  variables:
-    statement_timeout: 200000ms # or ms, min, etc
+  timeout: 150000

@@ -97,8 +97,6 @@ gem 'recaptcha', require: 'recaptcha/rails'
 
 gem 'seed_dump'
 
-gem 'chronic'
+gem "chronic"
 
 gem 'postgres-copy'
-
-gem 'scenic'

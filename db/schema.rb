@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_104303) do
+ActiveRecord::Schema.define(version: 2021_03_16_201441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,30 +103,4 @@ ActiveRecord::Schema.define(version: 2021_06_04_104303) do
   add_foreign_key "localities", "areas"
   add_foreign_key "people", "localities"
   add_foreign_key "people", "states"
-
-  create_view "people_with_locality_and_states", sql_definition: <<-SQL
-    SELECT localities.name AS locality_name,
-      people.dni,
-      people.population_group,
-      people.priority,
-      people.firstname,
-      people.lastname,
-      people.dni_sex,
-      people.birthdate,
-      people.phone_code,
-      people.phone,
-      people.email,
-      states.name AS state_name,
-      people.obesity,
-      people.diabetes,
-      people.chronic_kidney_disease,
-      people.cardiovascular_disease,
-      people.chronic_lung_disease,
-      people.inmunocompromised,
-      people.created_at,
-      people.updated_at
-    FROM ((people
-      JOIN localities ON ((localities.id = people.locality_id)))
-      JOIN states ON ((states.id = people.state_id)));
-  SQL
 end
