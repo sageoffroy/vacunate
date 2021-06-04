@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get '/change_state/:state/:id' => 'tablero#change_state'
 
-  # post '/check_dni' => 'tablero#check_dni'
+  post '/check_dni' => 'tablero#check_dni'
 
   post '/create_csv' => 'tablero#create_csv'
   post '/send_csv' => 'tablero#send_csv'
