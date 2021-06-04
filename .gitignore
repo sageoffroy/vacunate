@@ -29,6 +29,9 @@
 /config/credentials.yml.enc
 /config/database.yml
 
+# Ignorar archivos de la carpeta publica
+/public/*
+
 nohup.out
 
 
