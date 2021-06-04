@@ -219,7 +219,7 @@
                 </div>
                 <div class="card-body">
               		<% @inscripciones_x_localidad_nuevo.zip(@inscripciones_x_localidad_vacunado).each do |loc_nuevo, loc_vacunado| %>
-                    <% if !loc_nuevo[0].nil?%>
+                    <% if (!loc_nuevo[0].nil?) and (!loc_vacunado.nil?)%>
                 			<h4 class="small font-weight-bold">
                         <%=loc_nuevo[0].name%>
                         <span class="float-right">Total: <%=loc_nuevo[1] + loc_vacunado[1]%> - Vacunados: <%=loc_vacunado[1]%></span></h4>
