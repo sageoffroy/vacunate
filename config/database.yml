@@ -79,10 +79,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
   database: vacunate_production
   username: informatica
   password: Chubut387
-  timeout: 180000
+  adapter: postgresql
+  pool: 5
+  timeout: 200000
   variables:
-    statement_timeout: 5min # or ms, min, etc
+    statement_timeout: 200000ms # or ms, min, etc
