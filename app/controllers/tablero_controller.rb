@@ -257,7 +257,7 @@ class TableroController < ApplicationController
       end
 
 
-      File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
+      File.open("#{Rails.root}/public/inscripciones"+current_user.area+".csv", "wb") do |f|
         f.write "Fecha: " +   Time.now.strftime("%d/%m/%Y") + "\n"
         Person.copy_to do |line|
           f.write line
@@ -269,28 +269,28 @@ class TableroController < ApplicationController
   end
 
   def change_csv_to_tab
-    csv_aux = File.read("#{Rails.root}/public/inscripciones.csv")
+    csv_aux = File.read("#{Rails.root}/public/inscripciones"+current_user.area+".csv")
     changed_data = csv_aux.gsub(",", "\t")
-    File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
+    File.open("#{Rails.root}/public/inscripciones"+current_user.area+".csv", "wb") do |f|
       f.write(changed_data)
     end
   end
 
   def change_csv_to_semicolon
-    csv_aux = File.read("#{Rails.root}/public/inscripciones.csv")
+    csv_aux = File.read("#{Rails.root}/public/inscripciones"+current_user.area+".csv")
     changed_data = csv_aux.gsub(",", ";")
-    File.open("#{Rails.root}/public/inscripciones.csv", "wb") do |f|
+    File.open("#{Rails.root}/public/inscripciones"+current_user.area+".csv", "wb") do |f|
       f.write(changed_data)
     end
   end
 
   def download_excel
     change_csv_to_tab
-    send_file "#{Rails.root}/public/inscripciones.csv", type: "application/csv", x_sendfile: true
+    send_file "#{Rails.root}/public/inscripciones"+current_user.area+".csv", type: "application/csv", x_sendfile: true
   end
 
   def download_wps
     change_csv_to_semicolon
-    send_file "#{Rails.root}/public/inscripciones.csv", type: "application/csv", x_sendfile: true
+    send_file "#{Rails.root}/public/inscripciones"+current_user.area+".csv", type: "application/csv", x_sendfile: true
   end
 end
