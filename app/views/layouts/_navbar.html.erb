@@ -44,8 +44,7 @@
 
 <script type="text/javascript">
   $("#createCSV").on("click", createCSV);
-  $("#sendCSV").on("click", sendCSV);
-
+  
   function createCSV(){
     $.ajax({
       url: '/create_csv',
@@ -56,16 +55,4 @@
       console.log("Fallo la carga");
     });
   }
-
-  function sendCSV(){
-    $.ajax({
-      url: '/send_csv',
-      type: 'POST'
-    }).done(function(data) {
-      console.log("Se creo el archivo");
-    }).fail(function(xhr, status, error) {
-      console.log("Fallo la carga");
-    });
-  }
-
 </script>

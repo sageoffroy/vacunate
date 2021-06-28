@@ -36,10 +36,15 @@ class TableroController < ApplicationController
     @total_seguridad = inscripciones.where(population_group: "Soy personal de seguridad").count
     @total_salud = inscripciones.where(population_group: "Soy personal de salud").count
 
-    #@inscripciones_x_localidad = inscripciones.group(:locality).order('count_id desc').count('id')
+    a = inscripciones.group(:locality).order('count_id desc').count('id')
+    @inscripciones_x_localidad = p Hash[*a.sort_by { |k,v| -v }[0..5].flatten]
 
-    @inscripciones_x_localidad_nuevo = inscripciones.group(:locality).where(state:1).order('count_id desc').count('id')
-    @inscripciones_x_localidad_vacunado = inscripciones.group(:locality).where(state:2).order('count_id desc').count('id')
+    v = inscripciones.group(:locality).where(state:1).order('count_id desc').count('id')
+    @inscripciones_x_localidad_vacunado = p Hash[*v.sort_by { |k,v| -v }[0..5].flatten]
+
+
+    #@inscripciones_x_localidad_nuevo = inscripciones.group(:locality).where(state:1).order('count_id desc').count('id')
+    #@inscripciones_x_localidad_vacunado = inscripciones.group(:locality).where(state:2).order('count_id desc').count('id')
 
     
 
@@ -284,12 +289,12 @@ class TableroController < ApplicationController
     end
   end
 
-  def download_excel
+  def download_tab
     change_csv_to_tab
     send_file "#{Rails.root}/public/inscripciones"+current_user.area+".csv", type: "application/csv", x_sendfile: true
   end
 
-  def download_wps
+  def download_semicolon
     change_csv_to_semicolon
     send_file "#{Rails.root}/public/inscripciones"+current_user.area+".csv", type: "application/csv", x_sendfile: true
   end
