@@ -39,7 +39,7 @@ class TableroController < ApplicationController
     a = inscripciones.group(:locality).order('count_id desc').count('id')
     @inscripciones_x_localidad = p Hash[*a.sort_by { |k,v| -v }[0..5].flatten]
 
-    v = inscripciones.group(:locality).where(state:1).order('count_id desc').count('id')
+    v = inscripciones.group(:locality).where(state:2).order('count_id desc').count('id')
     @inscripciones_x_localidad_vacunado = p Hash[*v.sort_by { |k,v| -v }[0..5].flatten]
 
 
