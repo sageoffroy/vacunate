@@ -290,11 +290,11 @@ class TableroController < ApplicationController
   end
 
   def download_tab
-    change_csv_to_tab
     send_file "#{Rails.root}/public/inscripciones"+current_user.area+".csv", type: "application/csv", x_sendfile: true
   end
 
   def download_semicolon
+    byebug
     change_csv_to_semicolon
     send_file "#{Rails.root}/public/inscripciones"+current_user.area+".csv", type: "application/csv", x_sendfile: true
   end
