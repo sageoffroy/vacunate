@@ -33,6 +33,7 @@ class TableroController < ApplicationController
     @total_12_17 = inscripciones.where(population_group: "Tengo entre 12 y 17 (con recomendación de vacuna COVID)").count
   	@total_18_59_con_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (con factores de riesgo)").count
     @total_18_59_sin_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (sin factores de riesgo)").count
+    @total_18_59 = @total_18_59_con_riesgo + @total_18_59_sin_riesgo
     @total_educacion = inscripciones.where(population_group: "Soy personal docente/auxiliar").count
     @total_seguridad = inscripciones.where(population_group: "Soy personal de seguridad").count
     @total_salud = inscripciones.where(population_group: "Soy personal de salud").count
