@@ -83,7 +83,7 @@ gem 'toastr-rails'
 gem 'cocoon'
 gem 'barby'
 
-# Seguridad 
+# Seguridad
 # https://github.com/RolifyCommunity/rolify/wiki/Devise---CanCanCan---rolify-Tutorial
 gem 'devise'
 gem 'cancancan'

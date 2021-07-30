@@ -1,6 +1,5 @@
 class Person < ApplicationRecord
 
-
   belongs_to :locality, validate: false
   validates :firstname, presence: true
   validates :lastname, presence: true
@@ -24,7 +23,7 @@ class Person < ApplicationRecord
   end
 
   def have_any_pathology?
-    return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease or (inmunocompromised.eql? "1"))
+    return (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease or (inmunocompromised.eql? "1") or neurological_disease)
   end
 
   def population_group_table
@@ -33,13 +32,15 @@ class Person < ApplicationRecord
     when "Soy personal de salud"
       return "Salud"
     when "Soy personal de seguridad"
-      return "Seguridad"       
+      return "Seguridad"
     when "Soy personal docente/auxiliar"
-      return "Educación"       
+      return "Educación"
     when "Soy mayor de 60 años"
       return "60 o más"
     when "Tengo entre 18 y 59 (con factores de riesgo)"
       return "18 a 59 (riesgo)"
+    when "Tengo entre 12 y 17 (con recomendación de vacuna COVID)"
+      return "12 a 17 (recomend)"
     else
       return "Otro"
     end
@@ -89,6 +90,14 @@ class Person < ApplicationRecord
       end
     end
 
+    if (neurological_disease)
+      if (p_aux.eql? "")
+        p_aux = p_aux + "EN"
+      else
+        p_aux = p_aux + " - EN"
+      end
+    end
+
     if (inmunocompromised.eql? "1")
       if (p_aux.eql? "")
         p_aux = p_aux + "IC"
@@ -100,7 +109,6 @@ class Person < ApplicationRecord
     if (p_aux.eql? "")
       p_aux = "N/A"
     end
-
 
     return p_aux
   end
@@ -149,6 +157,10 @@ class Person < ApplicationRecord
       priority_aux += 5
     end
     if (chronic_lung_disease)
+      priority_aux += 5
+    end
+
+    if (neurological_disease)
       priority_aux += 5
     end
 

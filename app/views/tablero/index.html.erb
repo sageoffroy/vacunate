@@ -249,7 +249,7 @@
                 <% end %>
               <% end %>
             </div>
-            
+
           </div>
         </div>
         <div class="col-lg-6 mb-4">
@@ -289,12 +289,12 @@
                     </div>
                     <div class="col-md-12 form-group">
                       <%= label_tag "Grupo Poblacional:" %>
-                      <%= select_tag "population_group_list", options_for_select([ "Soy personal de salud", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)","Tengo entre 18 y 59 (sin factores de riesgo)"]), {class: "select-field form-control", multiple: "multiple"}%>
+                      <%= select_tag "population_group_list", options_for_select([ "Tengo entre 12 y 17 (con recomendación de vacuna COVID)", "Soy personal de salud", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)","Tengo entre 18 y 59 (sin factores de riesgo)"]), {class: "select-field form-control", multiple: "multiple"}%>
                     </div>
 
                     <div class="col-md-12 form-group">
                       <%= label_tag "Edad Mínima" %>
-                      <%= number_field_tag 'age_min', '18', {class:'form-control'}%>
+                      <%= number_field_tag 'age_min', '12', {class:'form-control'}%>
                     </div>
 
                     <div class="col-md-12 form-group">
