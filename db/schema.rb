@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_201441) do
+ActiveRecord::Schema.define(version: 2021_07_29_103949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_201441) do
     t.datetime "updated_at", null: false
     t.integer "priority"
     t.string "inmunocompromised"
-    t.string "boolean"
+    t.boolean "neurological_disease"
+    t.boolean "cud"
     t.index ["locality_id"], name: "index_people_on_locality_id"
     t.index ["state_id"], name: "index_people_on_state_id"
   end
