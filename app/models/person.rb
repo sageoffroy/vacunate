@@ -46,6 +46,14 @@ class Person < ApplicationRecord
     end
   end
 
+  def show_cud
+    if (cud)
+      "Si"
+    else
+      "No"
+    end
+  end  
+
   def show_pathologies
 
     p_aux = ""
@@ -145,6 +153,9 @@ class Person < ApplicationRecord
     priority_aux = (age * 1.3).round
 
     if (diabetes)
+      priority_aux += 20
+    end
+    if (cud)
       priority_aux += 20
     end
     if (obesity)

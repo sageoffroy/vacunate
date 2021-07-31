@@ -16,6 +16,7 @@
                 <th>Dirección</th>
                 <th>Nº</th>
                 <th>Patologías</th>
+                <th>CUD</th>
                 <th><%= Person.human_attribute_name("email").titleize%></th>
                 <th><%= Person.human_attribute_name("phone").titleize%></th>
                 <th><%= Person.human_attribute_name("priority").titleize%></th>
@@ -48,6 +49,7 @@
                   <td><%= ins.address_street %></td>
                   <td><%= ins.address_number %></td>
                   <td><%= ins.show_pathologies %></td>
+                  <td><%= ins.show_cud %></td>
 
                   <td><%= ins.email %></td>
 
@@ -91,14 +93,14 @@
             {
                 extend: 'copyHtml5',
                 exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
+                  columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
                 }
             },
             {
                 extend: 'excelHtml5',
                 title: '',
                 exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13]
+                  columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
                 }
             },
             {
