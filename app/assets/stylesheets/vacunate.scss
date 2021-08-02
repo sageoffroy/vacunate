@@ -4899,10 +4899,11 @@ a.badge-black:focus, a.badge-black.focus {
 
 .alert {
   position: relative;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
+  padding: 0.5rem 0.75rem;
+  margin-bottom: 0.5rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+  width: 100%;
 }
 
 .alert-heading {

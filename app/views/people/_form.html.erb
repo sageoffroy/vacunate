@@ -86,7 +86,6 @@
       <hr>
       <p><strong>3- Datos de tu domicilio</strong></p>
     </div>
-
     <div class="col-md-12 form-group">
       <%= form.label :locality_id, "Localidad  <span style='color:red;'>*</span>".html_safe %>
       <%= form.collection_select :locality_id, Locality.all, :id, :to_s, {prompt: "Seleccionar localidad"}, {class: "select2 select-field form-control"} %>
@@ -116,43 +115,49 @@
       <hr>
       <p><strong>4- Indica a que grupo poblacional perteneces</strong></p>
     </div>
+    <div class="alert alert-warning" role="alert">
+      Los grupos se habilitarán de acuerdo a la fecha de nacimiento ingresada.
+    </div>
+    <div id="birthdate-alert" class="alert alert-danger" role="alert">
+      Debes elegir tu Fecha de Naciomiento primero.
+    </div>
     <div id="group-danger" class="alert alert-danger" role="alert" style="display: none;">
       Quienes tengan doce años deberán concurrir al vacunatorio con la compañía de un adulto.
     </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy mayor de 60 años", onchange: "handleChange(this);", checked: true %><br>
+      <%= form.radio_button :population_group, "Soy mayor de 60 años", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
       <%= form.label :population_group, "Soy mayor de 60 años" %>
     </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-07.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Tengo entre 12 y 17 (con recomendación de vacuna COVID)", onchange: "handleChange(this);"%> <br>
+      <%= form.radio_button :population_group, "Tengo entre 12 y 17 (con recomendación de vacuna COVID)", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Tengo entre 12 y 17 (con recomendación de vacuna COVID)" %>
     </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Tengo entre 18 y 59 (con factores de riesgo)", onchange: "handleChange(this);"%><br>
+      <%= form.radio_button :population_group, "Tengo entre 18 y 59 (con factores de riesgo)", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
       <%= form.label :population_group, "Tengo entre 18 y 59 (con factores de riesgo)" %>
     </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-06.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Tengo entre 18 y 59 (sin factores de riesgo)", onchange: "handleChange(this);"%><br>
+      <%= form.radio_button :population_group, "Tengo entre 18 y 59 (sin factores de riesgo)", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
       <%= form.label :population_group, "Tengo entre 18 y 59 (sin factores de riesgo)" %>
     </div>
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-03.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal de salud", onchange: "handleChange(this);"%><br>
+      <%= form.radio_button :population_group, "Soy personal de salud", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
       <%= form.label :population_group, "Soy personal de salud" %>
     </div>
 
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-05.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal de seguridad", onchange: "handleChange(this);"%><br>
+      <%= form.radio_button :population_group, "Soy personal de seguridad", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
       <%= form.label :population_group, "Soy personal de seguridad" %>
     </div>
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-04.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal docente/auxiliar", onchange: "handleChange(this);"%><br>
+      <%= form.radio_button :population_group, "Soy personal docente/auxiliar", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
       <%= form.label :population_group, "Soy personal de educación" %>
     </div>
 
@@ -250,8 +255,12 @@
 
 <% end %>
 <script type="text/javascript">
-
+  
   $(document).ready(function(){
+
+    var date_str = $("#person_birthdate").val();
+    console.log("La fecha ahora es: " + date_str);
+    checkAge(date_str);
     if ($("#person_population_group_tengo_entre_12_y_17_con_recomendación_de_vacuna_covid")[0].checked) {
       $("#group-danger").show();
       $("#obesity-tooltip").show();
@@ -260,14 +269,47 @@
       $("#inmunocompromised-tooltip").show();
     }
 
-
-
     if ($('.people.new').length > 0) {
       $("#warning-modal").modal('show');
     }
 
-
+    $("#person_birthdate").on("change", function() {
+      var date_str = $("#person_birthdate").val();
+      console.log("La fecha ahora es: " + date_str);
+      checkAge(date_str);
+    });
   });
+
+  function checkAge (age_str){
+    $('.population_group').prop('checked', false);
+    englishStr = age_str.substr(3, 2)+"/"+age_str.substr(0, 2)+"/"+age_str.substr(6, 4);
+    dob = new Date(englishStr);
+    var today = new Date();
+    var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+    if(age_str.length === 0){
+      console.log("La fecha de Nacimiento esta vacía");
+      $("#birthdate-alert").fadeIn('slow');
+      $('.population_group').attr('disabled', true);
+    }
+    else {
+      console.log("Tiene una fecha de nacimiento");
+      $("#birthdate-alert").fadeOut('slow');
+      if (age >= 12 && age < 18){
+        console.log("Entre 12 y 17");
+        $('.population_group').attr('disabled', true);
+        $('#person_population_group_tengo_entre_12_y_17_con_recomendación_de_vacuna_covid').attr('disabled', false);
+      }else if (age >= 18 && age <= 120){
+        console.log("Mayor o igual a 18");
+        $('.population_group').attr('disabled', false);
+        $('#person_population_group_tengo_entre_12_y_17_con_recomendación_de_vacuna_covid').attr('disabled', true);
+      }else {
+        console.log("No entra en los grupos permitidos");
+        toastr['error']('La fecha de ingresada no corresponde a ninguno de los grupos poblaciones permitidos');
+        $('.population_group').attr('disabled', true);
+      }
+    }
+  }
+
 
 
   function handleChange(src) {
