@@ -118,6 +118,9 @@
     <div class="alert alert-warning" role="alert">
       Los grupos se habilitarán de acuerdo a la Fecha de Nacimiento ingresada.
     </div>
+    <div id="birthdate-alert" class="alert alert-danger" role="alert">
+      Debes elegir tu Fecha de Nacimiento primero.
+    </div>
     <div id="group-danger" class="alert alert-danger" role="alert" style="display: none;">
       Quienes tengan doce años deberán concurrir al vacunatorio con la compañía de un adulto.
     </div>
@@ -164,9 +167,6 @@
     </div>
     <div class="alert alert-warning" role="alert">
       Al momento de la vacunación, deberá acreditar la condición mediante certificado (papel o virtual), recetas de medicamentos, etc.
-    </div>
-    <div id="pathology-alert" class="alert alert-danger" role="alert">
-      Debes elegir tu Grupo Poblacional primero.
     </div>
     <div class="col-md-12 form-group">
       <%= form.check_box :obesity, class: "pathology", disabled:""%>
