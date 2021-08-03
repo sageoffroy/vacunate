@@ -17,6 +17,7 @@ class Person < ApplicationRecord
 
   validate :phone_xor_email
   validate :population_group_control 
+  validate :pathology_control
   acts_as_copy_target
 
   def to_s
@@ -235,11 +236,23 @@ class Person < ApplicationRecord
       if (age>=12 and age<18) and (population_group != "Tengo entre 12 y 17 (con recomendación de vacuna COVID)")
         errors.add(:birthdate, "La fecha de nacimiento no coincide con el grupo poblacional elegido")
       end  
-      if (age>=18 and age<120) and (population_group == "Tengo entre 12 y 17 (con recomendación de vacuna COVID)")
+      if (age>=18 and age<59) and (population_group == "Tengo entre 12 y 17 (con recomendación de vacuna COVID)")
         errors.add(:birthdate, "La fecha de nacimiento no coincide con el grupo poblacional elegido")
       end   
+
       if (age < 12 or age>=120) 
         errors.add(:birthdate, "La fecha de ingresada no corresponde a ninguno de los grupos poblaciones permitidos")
       end  
-    end 
+    end
+
+    def pathology_control
+      if (population_group === "Tengo entre 18 y 59 (sin factores de riesgo)")
+        if (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease or (inmunocompromised.eql? "1") or neurological_disease)
+          errors.add(:inmunocompromised, "No puede ingresar Patologías para ese Grupo Poblacional")
+        end
+      end
+    end
+
+   
+
 end
