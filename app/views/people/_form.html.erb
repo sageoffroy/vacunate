@@ -116,10 +116,7 @@
       <p><strong>4- Indica a que grupo poblacional perteneces</strong></p>
     </div>
     <div class="alert alert-warning" role="alert">
-      Los grupos se habilitarán de acuerdo a la fecha de nacimiento ingresada.
-    </div>
-    <div id="birthdate-alert" class="alert alert-danger" role="alert">
-      Debes elegir tu Fecha de Naciomiento primero.
+      Los grupos se habilitarán de acuerdo a la Fecha de Nacimiento ingresada.
     </div>
     <div id="group-danger" class="alert alert-danger" role="alert" style="display: none;">
       Quienes tengan doce años deberán concurrir al vacunatorio con la compañía de un adulto.
@@ -200,7 +197,7 @@
     </div>
     <div class="col-md-12 form-group">
       <%= form.check_box :inmunocompromised, class: "pathology", disabled:""%>
-      <%= form.label :inmunocompromised, "inmunocompromiso" %>
+      <%= form.label :inmunocompromised, "Inmunocompromiso" %>
       <%= fa_icon "question-circle", id: "inmunocompromised-tooltip", data: { toggle: 'tooltip', placement: 'right', original_title: 'Oncológicos y oncohematológicos con diagnostico reciente o activa, inmunodeficiencias primarias, personas con enfermedades autoinmunes y/o tratamientos inmunosupresores, inmunomoduladores o biológicos, transplantados, personas que viven con vih independientemente del CD4 y CV' }, style: "display: none;" %>
     </div>
 
