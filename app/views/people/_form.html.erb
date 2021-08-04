@@ -126,7 +126,7 @@
     </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy mayor de 60 años", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
+      <%= form.radio_button :population_group, "Soy mayor de 60 años", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Soy mayor de 60 años" %>
     </div>
     <div class="col-md-6 form-group text-center">
@@ -136,28 +136,28 @@
     </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Tengo entre 18 y 59 (con factores de riesgo)", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
+      <%= form.radio_button :population_group, "Tengo entre 18 y 59 (con factores de riesgo)", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Tengo entre 18 y 59 (con factores de riesgo)" %>
     </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-06.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Tengo entre 18 y 59 (sin factores de riesgo)", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
+      <%= form.radio_button :population_group, "Tengo entre 18 y 59 (sin factores de riesgo)", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Tengo entre 18 y 59 (sin factores de riesgo)" %>
     </div>
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-03.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal de salud", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
+      <%= form.radio_button :population_group, "Soy personal de salud", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Soy personal de salud" %>
     </div>
 
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-05.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal de seguridad", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
+      <%= form.radio_button :population_group, "Soy personal de seguridad", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Soy personal de seguridad" %>
     </div>
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-04.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy personal docente/auxiliar", onchange: "handleChange(this);",disabled:"", class:"population_group"%><br>
+      <%= form.radio_button :population_group, "Soy personal docente/auxiliar", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Soy personal de educación" %>
     </div>
 
@@ -169,34 +169,34 @@
       Al momento de la vacunación, deberá acreditar la condición mediante certificado (papel o virtual), recetas de medicamentos, etc.
     </div>
     <div class="col-md-12 form-group">
-      <%= form.check_box :obesity, class: "pathology", disabled:""%>
+      <%= form.check_box :obesity, class: "pathology"%>
       <%= form.label :obesity, "Obesidad" %>
       <%= fa_icon "question-circle", id: "obesity-tooltip", data: { toggle: 'tooltip', placement: 'right', original_title: 'Con IMC mayor a 35 o Puntaje Z mayor a 2' }, style: "display: none;" %>
     </div>
     <div class="col-md-12 form-group">
-      <%= form.check_box :diabetes, class: "pathology",disabled:""%>
+      <%= form.check_box :diabetes, class: "pathology"%>
       <%= form.label :diabetes, "Diabetes" %>
     </div>
     <div class="col-md-12 form-group">
-      <%= form.check_box :chronic_kidney_disease, class: "pathology", disabled:""%>
+      <%= form.check_box :chronic_kidney_disease, class: "pathology"%>
       <%= form.label :chronic_kidney_disease, "Enfermedad renal crónica" %>
     </div>
     <div class="col-md-12 form-group">
-      <%= form.check_box :cardiovascular_disease, class: "pathology", disabled:""%>
+      <%= form.check_box :cardiovascular_disease, class: "pathology"%>
       <%= form.label :cardiovascular_disease, "Enfermedad cardiovascular" %>
       <%= fa_icon "question-circle", id: "cardiovascular-tooltip", data: { toggle: 'tooltip', placement: 'right', original_title: 'Insuficiencia cardiaca, enfermedad coronaria, valvulopatías, miocardiopatías, hipertensión pulmonar, cardiopatías congénitas con insuficiencia cardiaca y/o cianóticas no corregidas' }, style: "display: none;" %>
     </div>
     <div class="col-md-12 form-group">
-      <%= form.check_box :neurological_disease, class: "pathology", disabled:""%>
+      <%= form.check_box :neurological_disease, class: "pathology"%>
       <%= form.label :neurological_disease, "Enfermedad neurológica" %>
     </div>
     <div class="col-md-12 form-group">
-      <%= form.check_box :chronic_lung_disease, class: "pathology", disabled:""%>
+      <%= form.check_box :chronic_lung_disease, class: "pathology"%>
       <%= form.label :chronic_lung_disease, "Enfermedad pulmonar crónica" %>
       <%= fa_icon "question-circle", id: "chronic-lung-tooltip", data: { toggle: 'tooltip', placement: 'right', original_title: 'Fibrosis quística, enfermedad intersticial pulmonar, asma grave, requerimiento de oxigeno terapia, Enfermedad grave de la vía area, Hospitalizaciones por asma, Enfermedades neuromusculares con compromiso respiratorio' }, style: "display: none;"%>
     </div>
     <div class="col-md-12 form-group">
-      <%= form.check_box :inmunocompromised, class: "pathology", disabled:""%>
+      <%= form.check_box :inmunocompromised, class: "pathology"%>
       <%= form.label :inmunocompromised, "Inmunocompromiso" %>
       <%= fa_icon "question-circle", id: "inmunocompromised-tooltip", data: { toggle: 'tooltip', placement: 'right', original_title: 'Oncológicos y oncohematológicos con diagnostico reciente o activa, inmunodeficiencias primarias, personas con enfermedades autoinmunes y/o tratamientos inmunosupresores, inmunomoduladores o biológicos, transplantados, personas que viven con vih independientemente del CD4 y CV' }, style: "display: none;" %>
     </div>
@@ -256,46 +256,48 @@
 <script type="text/javascript">
   
   $(document).ready(function(){
-
-    var date_str = $("#person_birthdate").val();
-    checkAge(date_str);
-    if ($("#person_population_group_tengo_entre_12_y_17_con_recomendación_de_vacuna_covid")[0].checked) {
-      $("#group-danger").show();
-      $("#obesity-tooltip").show();
-      $("#cardiovascular-tooltip").show();
-      $("#chronic-lung-tooltip").show();
-      $("#inmunocompromised-tooltip").show();
-    } 
-
-    // limpio el date de fecha nac.
-    $("#person_birthdate").val('');
-    // limpio seleccion de population group
-    $('.population_group').prop('checked', false);
-    
-    $('.pathology').attr('disabled', true);
-    $('.pathology').prop('checked', false);
-
     if ($('.people.new').length > 0) {
-      $("#warning-modal").modal('show');
-    }
 
-    $("#person_birthdate").on("change", function() {
+      
+
       var date_str = $("#person_birthdate").val();
-      console.log("La fecha ahora es: " + date_str);
       checkAge(date_str);
-    });
+      if ($("#person_population_group_tengo_entre_12_y_17_con_recomendación_de_vacuna_covid")[0].checked) {
+        $("#group-danger").show();
+        $("#obesity-tooltip").show();
+        $("#cardiovascular-tooltip").show();
+        $("#chronic-lung-tooltip").show();
+        $("#inmunocompromised-tooltip").show();
+      } 
+
+      // limpio el date de fecha nac.
+      $("#person_birthdate").val('');
+      // limpio seleccion de population group
+      $('.population_group').prop('checked', false);
+      
+      $('.pathology').attr('disabled', true);
+      $('.pathology').prop('checked', false);
+
+      $("#warning-modal").modal('show');
+      
+      $("#person_birthdate").on("change", function() {
+        var date_str = $("#person_birthdate").val();
+        console.log("La fecha ahora es: " + date_str);
+        checkAge(date_str);
+      });
 
 
-    $('.population_group').change(function() {
-      console.log($(this).val());
-      if ("Tengo entre 18 y 59 (sin factores de riesgo)" === $(this).val()){
-        $('.pathology').attr('disabled', true);
-        $('.pathology').prop('checked', false);
-      }else{
-        $('.pathology').attr('disabled', false);
-        
-      }
-    });
+      $('.population_group').change(function() {
+        console.log($(this).val());
+        if ("Tengo entre 18 y 59 (sin factores de riesgo)" === $(this).val()){
+          $('.pathology').attr('disabled', true);
+          $('.pathology').prop('checked', false);
+        }else{
+          $('.pathology').attr('disabled', false);
+          
+        }
+      });
+    }
   });
 
 
