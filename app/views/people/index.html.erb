@@ -14,6 +14,9 @@
                 <th><%= Person.human_attribute_name("dni").titleize%></th>
                 <th><%= Person.human_attribute_name("firstname").titleize%></th>
                 <th><%= Person.human_attribute_name("lastname").titleize%></th>
+                <th><%= Person.human_attribute_name("birthdate").titleize%></th>
+                <th><%= Person.human_attribute_name("email").titleize%></th>
+                <th>Teléfono</th>
                 <th>Opciones</th>
               </tr>
             </thead>
@@ -80,6 +83,12 @@
         data: 'firstname'
       }, {
         data: 'lastname'
+      }, {
+        data: 'birthdate'
+      }, {
+        data: 'email'
+      }, {
+        data: 'telephone'
       }, {
         data: 'options'
       }

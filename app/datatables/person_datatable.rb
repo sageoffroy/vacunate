@@ -21,6 +21,9 @@ class PersonDatatable < AjaxDatatablesRails::ActiveRecord
       dni: { source: "Person.dni", searchable: true, orderable: true },
       firstname: { source: "Person.firstname", searchable: true, orderable: true },
       lastname: { source: "Person.lastname", searchable: true, orderable: true },
+      birthdate: { source: "Person.birthdate", searchable: false, orderable: false },
+      email: { source: "Person.email", searchable: true, orderable: false },
+      telephone: {searchable: false, orderable: false},
       options: {searchable: false, orderable: false}
     }
   end
@@ -33,6 +36,9 @@ class PersonDatatable < AjaxDatatablesRails::ActiveRecord
         dni: record.dni,
         firstname: record.firstname,
         lastname: record.lastname,
+        birthdate: record.birthdate,
+        email: record.email,
+        telephone: record.phone_code.to_s + " - " + record.phone.to_s,
         options: (link_to((fa_icon "eye"), record) + link_to((fa_icon "pencil"), edit_person_path(record)) + link_to((fa_icon "trash-o"), record, method: :delete, data: { confirm: '¿Esta seguro que desea eliminar?' }))
       }
     end
