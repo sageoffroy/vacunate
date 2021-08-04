@@ -141,7 +141,8 @@ class Person < ApplicationRecord
   end
 
   def age
-    return ((Time.zone.now - birthdate.to_time) / 1.year.seconds).floor
+    dateAux =  birthdate.to_s[3..4]+"/"+  birthdate.to_s[0..1]+"/"+ birthdate.to_s[6..9]
+    return ((Time.zone.now - dateAux.to_time) / 1.year.seconds).floor
   end
 
   def address
@@ -232,16 +233,17 @@ class Person < ApplicationRecord
     end
 
     def population_group_control
-      age=((Time.zone.now - birthdate.to_time) / 1.year.seconds).floor
+
+      dateAux =  birthdate.to_s[3..4]+"/"+  birthdate.to_s[0..1]+"/"+ birthdate.to_s[6..9]
+      age=((Time.zone.now - dateAux.to_time) / 1.year.seconds).floor
       if (age>=12 and age<18) and (population_group != "Tengo entre 12 y 17 (con recomendación de vacuna COVID)")
         errors.add(:birthdate, "La fecha de nacimiento no coincide con el grupo poblacional elegido")
       end  
       if (age>=18 and age<59) and (population_group == "Tengo entre 12 y 17 (con recomendación de vacuna COVID)")
         errors.add(:birthdate, "La fecha de nacimiento no coincide con el grupo poblacional elegido")
       end   
-
       if (age < 12 or age>=120) 
-        errors.add(:birthdate, "La fecha de ingresada no corresponde a ninguno de los grupos poblaciones permitidos")
+        errors.add(:birthdate, "La fecha ingresada no corresponde a ninguno de los grupos poblacionales permitidos")
       end  
     end
 
