@@ -42,7 +42,7 @@ class Person < ApplicationRecord
     when "Tengo entre 18 y 59 (con factores de riesgo)"
       return "18 a 59 (riesgo)"
     when "Tengo entre 12 y 17 (con recomendación de vacuna COVID)"
-      return "12 a 17 (recomend)"
+      return "12 a 17 (recomendación)"
     else
       return "Otro"
     end
@@ -55,6 +55,14 @@ class Person < ApplicationRecord
       "No"
     end
   end  
+
+  def show_pregnant
+    if (pregnant)
+      "Si"
+    else
+      "No"
+    end
+  end
 
   def show_pathologies
 
@@ -159,6 +167,9 @@ class Person < ApplicationRecord
       priority_aux += 20
     end
     if (cud)
+      priority_aux += 20
+    end
+    if (pregnant)
       priority_aux += 20
     end
     if (obesity)

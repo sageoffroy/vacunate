@@ -9,18 +9,22 @@
               <tr>
                 <th><%= Person.human_attribute_name("locality").titleize%></th>
                 <th>Grupo</th>
+                <th>PRI</th>
                 <th><%= Person.human_attribute_name("dni").titleize%></th>
-                <th>Nombre Completo</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Edad</th>
-                <th>Dirección</th>
-                <th>Nº</th>
                 <th>Patologías</th>
                 <th>CUD</th>
+                <th>EMB</th>
+                <th>Nombre Completo</th>
+                <th>Edad</th>
                 <th><%= Person.human_attribute_name("email").titleize%></th>
                 <th><%= Person.human_attribute_name("phone").titleize%></th>
-                <th><%= Person.human_attribute_name("priority").titleize%></th>
+                <th>Dirección</th>
+                <th>Nº</th>
+                
+                
+                <th>Fecha de Nacimiento</th>
                 <th>Fecha de Inscripción</th>
+
                 <th>Estado</th>
                 <th>Opciones</th>
               </tr>
@@ -32,38 +36,35 @@
                   <td><%= ins.locality %></td>
 
                   <td><%= ins.population_group_table %></td>
-
+                  <td><%= ins.priority %></td>
                 <% if ((ins.dni < 1000000) or (ins.dni > 99999999)) %>
                   <td><span style="color:red;"><%= ins.dni %></span></td>
                 <% else %>
                   <td><%= ins.dni %></td>
                 <% end %>
-
-                  <td><%= ins.firstname.partition(" ").first + " " + ins.lastname %></td>
-                  <td><%= ins.birthdate %></td>
-                <% if (ins.age > 130) %>
-                  <td><span style="color:red;"><%= ins.age %></span></td>
-                <% else %>
-                  <td><%= ins.age %></td>
-                <% end %>
-                  <td><%= ins.address_street %></td>
-                  <td><%= ins.address_number %></td>
                   <td><%= ins.show_pathologies %></td>
                   <td><%= ins.show_cud %></td>
-
+                  <td><%= ins.show_pregnant %></td>
+                  
+                  <td><%= ins.firstname.partition(" ").first + " " + ins.lastname %></td>
+                  <% if (ins.age > 130) %>
+                  <td><span style="color:red;"><%= ins.age %></span></td>
+                  <% else %>
+                  <td><%= ins.age %></td>
+                  <% end %>
                   <td><%= ins.email %></td>
-
                   <td><%= ins.code_telephone %></td>
-
+                  <td><%= ins.address_street %></td>
+                  <td><%= ins.address_number %></td>
 
 
                 <% if (ins.age > 130) %>
                   <td><span style="color:red;">0</span></td>
                 <% else %>
-                  <td><%= ins.priority %></td>
+                  
 
                 <% end %>
-
+                  <td><%= ins.birthdate %></td>
                   <td><%= ins.created_at.strftime('%d-%m-%Y') %></td>
 
 
@@ -88,49 +89,35 @@
 
   $(document).ready(function() {
     $('#table_export').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'copyHtml5',
-                exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-                }
-            },
-            {
-                extend: 'excelHtml5',
-                title: '',
-                exportOptions: {
-                  columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-                }
-            },
-            {
-                extend: 'csvHtml5',
-                fieldBoundary: '',
-                header:false,
-                exportOptions: {
-                  columns: [3,7]
-                }
+      dom: 'Bfrtip',
+      buttons: [
+        {
+            extend: 'copyHtml5',
+            exportOptions: {
+              columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
             }
+        },
+        {
+            extend: 'excelHtml5',
+            title: '',
+            exportOptions: {
+              columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+            }
+        },
+        {
+            extend: 'csvHtml5',
+            fieldBoundary: '',
+            header:false,
+            exportOptions: {
+              columns: [3,7]
+            }
+        }
 
-        ],
-        bPaginate: true,
-        language: {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'},
-        order: [[ 8, "desc" ]],
-        columnDefs: [
-            { responsivePriority: 1, targets: 2 },
-            { responsivePriority: 2, targets: 3 },
-            { responsivePriority: 3, targets: 9 },
-            { responsivePriority: 4, targets: 10 },
-            { responsivePriority: 5, targets: 0 },
-            { responsivePriority: 6, targets: 1 },
-            { responsivePriority: 7, targets: 4 },
-            { responsivePriority: 8, targets: 5 },
-            { responsivePriority: 9, targets: 8 },
-            { responsivePriority: 10, targets: 11 },
-            { responsivePriority: 10001, targets: 6 },
-            { responsivePriority: 10002, targets: 7 },
-        ]
-    } );
+      ],
+      bPaginate: true,
+      language: {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'},
+      order: [[ 8, "desc" ]]
+    });
 } );
 
 
