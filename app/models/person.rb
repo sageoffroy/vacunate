@@ -142,7 +142,7 @@ class Person < ApplicationRecord
 
   def age
     dateAux =  birthdate.to_s[3..4]+"/"+  birthdate.to_s[0..1]+"/"+ birthdate.to_s[6..9]
-    return ((Time.zone.now - dateAux.to_time) / 1.year.seconds).floor
+    return ((Time.zone.now - Chronic.parse(dateAux)) / 1.year.seconds).floor
   end
 
   def address
@@ -235,7 +235,7 @@ class Person < ApplicationRecord
     def population_group_control
 
       dateAux =  birthdate.to_s[3..4]+"/"+  birthdate.to_s[0..1]+"/"+ birthdate.to_s[6..9]
-      age=((Time.zone.now - dateAux.to_time) / 1.year.seconds).floor
+      age=((Time.zone.now - Chronic.parse(dateAux)) / 1.year.seconds).floor
       if (age>=12 and age<18) and (population_group != "Tengo entre 12 y 17 (con recomendación de vacuna COVID)")
         errors.add(:birthdate, "La fecha de nacimiento no coincide con el grupo poblacional elegido")
       end  
@@ -250,11 +250,9 @@ class Person < ApplicationRecord
     def pathology_control
       if (population_group === "Tengo entre 18 y 59 (sin factores de riesgo)")
         if (obesity or diabetes or chronic_kidney_disease or cardiovascular_disease or chronic_lung_disease or (inmunocompromised.eql? "1") or neurological_disease)
-          errors.add(:inmunocompromised, "No puede ingresar Patologías para ese Grupo Poblacional")
+          errors.add(:population_group, "No puede ingresar Patologías para ese Grupo Poblacional")
         end
       end
     end
-
-   
 
 end

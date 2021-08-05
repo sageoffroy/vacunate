@@ -214,9 +214,20 @@
       <%= form.check_box :cud%>
       <%= form.label :cud, "Tengo certificado único de discapacidad" %>
     </div>
+    
     <div class="col-md-12 title-form">
       <hr>
-      <p><strong>7- Verifica que no eres un robot</strong></p>
+      <p><strong>7- Embarazo</strong></p>
+
+    </div>
+    <div class="col-md-12 form-group">
+      <%= form.check_box :pregnant, class: "pregnant"%>
+      <%= form.label :pregnant, "Estoy embarazada" %>
+    </div>
+    
+    <div class="col-md-12 title-form">
+      <hr>
+      <p><strong>8- Verifica que no eres un robot</strong></p>
     </div>
 
     <div class="col-md-12 form-group">
@@ -258,10 +269,11 @@
   $(document).ready(function(){
     if ($('.people.new').length > 0) {
 
-      
-
+      var sex = $("#person_dni_sex").val();
+      checkPregnant(sex);
       var date_str = $("#person_birthdate").val();
       checkAge(date_str);
+      
       if ($("#person_population_group_tengo_entre_12_y_17_con_recomendación_de_vacuna_covid")[0].checked) {
         $("#group-danger").show();
         $("#obesity-tooltip").show();
@@ -282,13 +294,19 @@
       
       $("#person_birthdate").on("change", function() {
         var date_str = $("#person_birthdate").val();
-        console.log("La fecha ahora es: " + date_str);
+        //console.log("La fecha ahora es: " + date_str);
         checkAge(date_str);
+      });
+
+      $("#person_dni_sex").on("change", function() {
+        var sex = $("#person_dni_sex").val();
+        checkPregnant(sex);
+        
       });
 
 
       $('.population_group').change(function() {
-        console.log($(this).val());
+        //console.log($(this).val());
         if ("Tengo entre 18 y 59 (sin factores de riesgo)" === $(this).val()){
           $('.pathology').attr('disabled', true);
           $('.pathology').prop('checked', false);
@@ -299,6 +317,20 @@
       });
     }
   });
+
+  function checkPregnant(sex){
+      //console.log( "la persona es "+sex);
+      if (sex=="Femenino"){
+          $('.pregnant').attr('disabled', false);
+      }
+      else
+      {
+          $('.pregnant').attr('disabled', true);
+
+      }
+      
+          
+    }
 
 
   function checkAge (age_str){
@@ -346,6 +378,7 @@
         console.log("No entra en los grupos permitidos");
         toastr['error']('La fecha de ingresada no corresponde a ninguno de los grupos poblaciones permitidos');
         $('.population_group').attr('disabled', true);
+        
       }
     }
   }

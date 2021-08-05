@@ -1,4 +1,7 @@
 class PeopleController < ApplicationController
+
+  require 'chronic'
+
   before_action :set_person, only: %i[ show edit update destroy ]
 
   before_action :authenticate_user!, :only => [:index, :edit]
@@ -96,7 +99,7 @@ class PeopleController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.require(:person).permit(:firstname, :lastname, :dni, :dni_sex, :self_perceived_sex, :birthdate, :phone_code, :phone, :email, :condition, :population_group, :locality_id, :address_street, :address_number, :address_floor, :address_department, :state_id, :obesity, :diabetes, :chronic_kidney_disease, :cardiovascular_disease, :chronic_lung_disease, :priority, :inmunocompromised, :neurological_disease, :cud)
+      params.require(:person).permit(:firstname, :lastname, :dni, :dni_sex, :self_perceived_sex, :birthdate, :phone_code, :phone, :email, :condition, :population_group, :locality_id, :address_street, :address_number, :address_floor, :address_department, :state_id, :obesity, :diabetes, :chronic_kidney_disease, :cardiovascular_disease, :chronic_lung_disease, :priority, :inmunocompromised, :neurological_disease, :cud, :pregnant)
     end
 
     def validate_params
