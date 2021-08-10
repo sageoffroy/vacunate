@@ -40,9 +40,9 @@ class Person < ApplicationRecord
     when "Soy mayor de 60 años"
       return "60 o más"
     when "Tengo entre 18 y 59 (con factores de riesgo)"
-      return "18 a 59 (riesgo)"
+      return "18 a 59 F/R"
     when "Tengo entre 12 y 17 (con recomendación de vacuna COVID)"
-      return "12 a 17 (recomendación)"
+      return "12 a 17"
     else
       return "Otro"
     end
