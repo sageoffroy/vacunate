@@ -103,8 +103,12 @@ class TableroController < ApplicationController
 
     else
       @population_group = params[:population_group].split(',')
+      byebug
       if (@population_group.first == "Soy personal de educación")
         @population_group[0] = "Soy personal docente/auxiliar"
+      end
+      if (@population_group.first == "Tengo entre 12 y 17")
+        @population_group[0] = "Tengo entre 12 y 17 (con recomendación de vacuna COVID)"
       end
     end
 
