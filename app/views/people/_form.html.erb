@@ -124,10 +124,18 @@
     <div id="group-danger" class="alert alert-danger" role="alert" style="display: none;">
       Quienes tengan doce años deberán concurrir al vacunatorio con la compañía de un adulto.
     </div>
+    <div id="group-3a11" class="alert alert-danger" role="alert" style="display: none;">
+      Deben concurrir con libreta de vacunación.
+    </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
       <%= form.radio_button :population_group, "Soy mayor de 60 años", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Soy mayor de 60 años" %>
+    </div>
+    <div class="col-md-6 form-group text-center">
+      <%= image_tag "iconos_salud-07.png", style:"max-width:150px;" %><br>
+      <%= form.radio_button :population_group, "Tengo entre 3 y 11 años", onchange: "handleChange(this);", class:"population_group"%><br>
+      <%= form.label :population_group, "Tengo entre 3 y 11 años" %>
     </div>
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-07.png", style:"max-width:150px;" %><br>
@@ -281,6 +289,9 @@
         $("#chronic-lung-tooltip").show();
         $("#inmunocompromised-tooltip").show();
       } 
+      if ($("#person_population_group_tengo_entre_3_y_11_años")[0].checked) {
+        $("#group-3a11").show();
+      }
 
       // limpio el date de fecha nac.
       $("#person_birthdate").val('');
@@ -347,7 +358,16 @@
     else {
       console.log("Tiene una fecha de nacimiento");
       $("#birthdate-alert").fadeOut('slow');
-      if (age >= 12 && age < 18){
+      $('#group-3a11').fadeOut('slow'); 
+      if(age >= 3 && age < 12){
+        $('#group-3a11').fadeIn('slow'); 
+        $('.population_group').attr('disabled', true);
+        $('#person_population_group_tengo_entre_3_y_11_años').attr('disabled', false);
+        $('#person_population_group_tengo_entre_3_y_11_años').prop('checked', true);
+        $('.pathology').attr('disabled', false);
+        $('.pathology').prop('checked', false);
+
+      }else if (age >= 12 && age < 18){
         console.log("Entre 12 y 17");
         // Aca muestro el  mensage de acompañate si tiene 12 años
         if (age == 12)
@@ -365,7 +385,10 @@
         $('.population_group').attr('disabled', false);
         $('.pathology').prop('checked', false);
         $('#person_population_group_tengo_entre_12_y_17_con_recomendación_de_vacuna_covid').attr('disabled', true);
+        $('#person_population_group_tengo_entre_3_y_11_años').attr('disabled', true);
+        $('#person_population_group_soy_mayor_de_60_años').attr('disabled', true);
         if (age >= 60){
+          $('#person_population_group_soy_mayor_de_60_años').attr('disabled', false);
           $('#person_population_group_soy_mayor_de_60_años').prop('checked', true);
           $('.pathology').prop('checked', false);
           $('.pathology').attr('disabled', false);
@@ -386,22 +409,24 @@
 
 
   function handleChange(src) {
+
     if (src.value === "Tengo entre 12 y 17 (con recomendación de vacuna COVID)"){
-      //$('#group-danger').fadeIn('slow');   
+      $('#group-danger').fadeIn('slow');   
       $('#obesity-tooltip').fadeIn('slow');  
       $('#cardiovascular-tooltip').fadeIn('slow'); 
       $('#chronic-lung-tooltip').fadeIn('slow'); 
       $('#inmunocompromised-tooltip').fadeIn('slow'); 
 
     }else{
+
       $('#group-danger').fadeOut('slow');   
       $('#obesity-tooltip').fadeOut('slow');
       $('#cardiovascular-tooltip').fadeOut('slow');
       $('#chronic-lung-tooltip').fadeOut('slow');
       $('#inmunocompromised-tooltip').fadeOut('slow'); 
     }
-
-
+      
 
   }
+      
 </script>

@@ -43,6 +43,8 @@ class Person < ApplicationRecord
       return "18 a 59 (riesgo)"
     when "Tengo entre 12 y 17 (con recomendación de vacuna COVID)"
       return "12 a 17 (recomendación)"
+    when "Tengo entre 3 y 11 años"
+      return "3 a 11"  
     else
       return "Otro"
     end
@@ -253,7 +255,10 @@ class Person < ApplicationRecord
       if (age>=18 and age<59) and (population_group == "Tengo entre 12 y 17 (con recomendación de vacuna COVID)")
         errors.add(:birthdate, "La fecha de nacimiento no coincide con el grupo poblacional elegido")
       end   
-      if (age < 12 or age>=120) 
+      if (age>=3 and age<12) and (population_group != "Tengo entre 3 y 11 años")
+        errors.add(:birthdate, "La fecha de nacimiento no coincide con el grupo poblacional elegido")
+      end 
+      if (age < 3 or age>=120) 
         errors.add(:birthdate, "La fecha ingresada no corresponde a ninguno de los grupos poblacionales permitidos")
       end  
     end
