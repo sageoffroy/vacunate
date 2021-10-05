@@ -47,6 +47,7 @@ class PeopleController < ApplicationController
 
   # POST /people or /people.json
   def create
+
     @person = Person.new(person_params)
     @person.state = State.where(name: "Nuevo").first
     respond_to do |format|
@@ -67,6 +68,8 @@ class PeopleController < ApplicationController
   def update
     authorize! :update, Person, :message => "No tienes permisos para actulizar esta inscripción."
     respond_to do |format|
+      birthdate = person_params["birthdate"]
+      birthdateAux =  birthdate.to_s[3..4]+"/"+  birthdate.to_s[0..1]+"/"+ birthdate.to_s[6..9]
       if @person.update(person_params)
         @person.update_priority
         format.html { redirect_to @person, notice: "Person was successfully updated." }

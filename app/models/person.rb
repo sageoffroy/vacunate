@@ -40,11 +40,12 @@ class Person < ApplicationRecord
     when "Soy mayor de 60 años"
       return "60 o más"
     when "Tengo entre 18 y 59 (con factores de riesgo)"
-      return "18 a 59 (riesgo)"
+      return "18 a 59 F/R"
     when "Tengo entre 12 y 17 (con recomendación de vacuna COVID)"
       return "12 a 17 (recomendación)"
     when "Tengo entre 3 y 11 años"
       return "3 a 11"  
+
     else
       return "Otro"
     end
@@ -151,8 +152,9 @@ class Person < ApplicationRecord
   end
 
   def age
-    dateAux =  birthdate.to_s[3..4]+"/"+  birthdate.to_s[0..1]+"/"+ birthdate.to_s[6..9]
-    return ((Time.zone.now - Chronic.parse(dateAux)) / 1.year.seconds).floor
+    dob = birthdate
+    now = Time.now.utc.to_date
+    return now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
   def address
@@ -247,8 +249,9 @@ class Person < ApplicationRecord
 
     def population_group_control
 
-      dateAux =  birthdate.to_s[3..4]+"/"+  birthdate.to_s[0..1]+"/"+ birthdate.to_s[6..9]
-      age=((Time.zone.now - Chronic.parse(dateAux)) / 1.year.seconds).floor
+      dob = birthdate
+      now = Time.now.utc.to_date
+      age = now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
       if (age>=12 and age<18) and (population_group != "Tengo entre 12 y 17 (con recomendación de vacuna COVID)")
         errors.add(:birthdate, "La fecha de nacimiento no coincide con el grupo poblacional elegido")
       end  
