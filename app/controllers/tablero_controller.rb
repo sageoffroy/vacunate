@@ -30,6 +30,7 @@ class TableroController < ApplicationController
     #@total_mayores_70 = inscripciones.where(population_group: "Soy mayor de 60 años", birthdate: (150.years.ago - 1.day)..70.year.ago).count
     #@total_mayores_60 = inscripciones.where(population_group: "Soy mayor de 60 años", birthdate: (70.years.ago - 1.day)..60.year.ago).count
     @total_mayores_60 = inscripciones.where(population_group: "Soy mayor de 60 años").count
+    @total_3_11 = inscripciones.where(population_group: "Tengo entre 3 y 11 años").count
     @total_12_17 = inscripciones.where(population_group: "Tengo entre 12 y 17 (con recomendación de vacuna COVID)").count
   	@total_18_59_con_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (con factores de riesgo)").count
     @total_18_59_sin_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (sin factores de riesgo)").count
@@ -68,7 +69,7 @@ class TableroController < ApplicationController
   end
 
   def list_group_state
-
+    
     if !current_user.nil?
   		if current_user.area == "dpapt"
         inscripciones_area = Person.where(locality: Locality.where(area: 1))
@@ -108,6 +109,9 @@ class TableroController < ApplicationController
       end
       if (@population_group.first == "Tengo entre 12 y 17")
         @population_group[0] = "Tengo entre 12 y 17 (con recomendación de vacuna COVID)"
+      end
+      if (@population_group.first == "Tengo entre 3 y 11")
+        @population_group[0] = "Tengo entre 3 y 11 años"
       end
     end
 
