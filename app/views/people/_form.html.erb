@@ -127,30 +127,33 @@
     <div id="group-3a11" class="alert alert-danger" role="alert" style="display: none;">
       Deben concurrir con libreta de vacunación.
     </div>
+
     <div class="col-md-6 form-group text-center">
-      <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
-      <%= form.radio_button :population_group, "Soy mayor de 60 años", onchange: "handleChange(this);", class:"population_group"%><br>
-      <%= form.label :population_group, "Soy mayor de 60 años" %>
-    </div>
-    <div class="col-md-6 form-group text-center">
-      <%= image_tag "iconos_salud-07.png", style:"max-width:150px;" %><br>
+      <%= image_tag "iconos_salud-09.png", style:"max-width:150px;" %><br>
       <%= form.radio_button :population_group, "Tengo entre 3 y 11 años", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Tengo entre 3 y 11 años" %>
     </div>
+
     <div class="col-md-6 form-group text-center">
       <%= image_tag "iconos_salud-07.png", style:"max-width:150px;" %><br>
       <%= form.radio_button :population_group, "Tengo entre 12 y 17 (con recomendación de vacuna COVID)", onchange: "handleChange(this);", class:"population_group"%><br>
-      <%= form.label :population_group, "Tengo entre 12 y 17" %>
+      <%= form.label :population_group, "Tengo entre 12 y 17 años" %>
     </div>
-    <div class="col-md-6 form-group text-center">
+    <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %><br>
       <%= form.radio_button :population_group, "Tengo entre 18 y 59 (con factores de riesgo)", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Tengo entre 18 y 59 (con factores de riesgo)" %>
     </div>
-    <div class="col-md-6 form-group text-center">
+    <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-06.png", style:"max-width:150px;" %><br>
       <%= form.radio_button :population_group, "Tengo entre 18 y 59 (sin factores de riesgo)", onchange: "handleChange(this);", class:"population_group"%><br>
       <%= form.label :population_group, "Tengo entre 18 y 59 (sin factores de riesgo)" %>
+    </div>
+
+    <div class="col-md-4 form-group text-center">
+      <%= image_tag "iconos_salud-01.png", style:"max-width:150px;" %><br>
+      <%= form.radio_button :population_group, "Soy mayor de 60 años", onchange: "handleChange(this);", class:"population_group"%><br>
+      <%= form.label :population_group, "Soy mayor de 60 años" %>
     </div>
     <div class="col-md-4 form-group text-center">
       <%= image_tag "iconos_salud-03.png", style:"max-width:150px;" %><br>

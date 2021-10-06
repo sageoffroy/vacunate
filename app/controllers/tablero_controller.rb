@@ -35,9 +35,11 @@ class TableroController < ApplicationController
   	@total_18_59_con_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (con factores de riesgo)").count
     @total_18_59_sin_riesgo = inscripciones.where(population_group: "Tengo entre 18 y 59 (sin factores de riesgo)").count
     @total_18_59 = @total_18_59_con_riesgo + @total_18_59_sin_riesgo
-    @total_educacion = inscripciones.where(population_group: "Soy personal docente/auxiliar").count
-    @total_seguridad = inscripciones.where(population_group: "Soy personal de seguridad").count
-    @total_salud = inscripciones.where(population_group: "Soy personal de salud").count
+    total_educacion = inscripciones.where(population_group: "Soy personal docente/auxiliar").count
+    total_seguridad = inscripciones.where(population_group: "Soy personal de seguridad").count
+    total_salud = inscripciones.where(population_group: "Soy personal de salud").count
+    @total_administracion = total_educacion + total_seguridad + total_salud
+
 
     a = inscripciones.group(:locality).order('count_id desc').count('id')
     @inscripciones_x_localidad = p Hash[*a.sort_by { |k,v| -v }[0..5].flatten]
@@ -56,20 +58,9 @@ class TableroController < ApplicationController
     else
       @localities = Locality.where(area: Area.where(abbreviation: current_user.area).first)
     end
-
-#   count = 0
-#		inscripciones.all.each do |person|
-#			if person.have_any_pathology?
-#				count = count + 1
-#			end
-#		end
-
-#		@inscripciones_patologia = count
-
   end
 
-  def list_group_state
-    
+  def list_group_state    
     if !current_user.nil?
   		if current_user.area == "dpapt"
         inscripciones_area = Person.where(locality: Locality.where(area: 1))
