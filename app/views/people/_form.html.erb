@@ -125,7 +125,7 @@
       Quienes tengan doce años deberán concurrir al vacunatorio con la compañía de un adulto.
     </div>
     <div id="group-3a11" class="alert alert-danger" role="alert" style="display: none;">
-      Deben concurrir con libreta de vacunación.
+      Deberán concurrir al vacunatorio con la compañía de un adulto y la libreta de vacunación.
     </div>
 
     <div class="col-md-6 form-group text-center">
@@ -307,14 +307,18 @@
       $("#warning-modal").modal('show');
       
       $("#person_birthdate").on("change", function() {
+        
+        hidden_msg();
         var date_str = $("#person_birthdate").val();
         //console.log("La fecha ahora es: " + date_str);
         checkAge(date_str);
+        checkPregnant(sex);
+
       });
 
       $("#person_dni_sex").on("change", function() {
-        var sex = $("#person_dni_sex").val();
-        checkPregnant(sex);
+        //var sex = $("#person_dni_sex").val();
+        checkPregnant();
         
       });
 
@@ -332,14 +336,24 @@
     }
   });
 
-  function checkPregnant(sex){
+
+  function hidden_msg(){
+
+    $('#group-danger').fadeOut('slow'); 
+    $('#group-danger').fadeOut('slow');
+  }
+
+  function checkPregnant(){
+
       //console.log( "la persona es "+sex);
-      if (sex=="Femenino"){
+      var sex = $("#person_dni_sex").val();
+      if (sex=="Femenino" && !($("#person_population_group_tengo_entre_3_y_11_años")[0].checked)){
           $('.pregnant').attr('disabled', false);
       }
       else
       {
           $('.pregnant').attr('disabled', true);
+          $('.pregnant').prop('checked', false);
 
       }
       
