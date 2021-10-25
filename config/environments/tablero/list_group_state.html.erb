@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="panel-pane pane-texto">
+    <div class="pane-content">
+      <div class="row my-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h3>LISTADO DE INSCRIPCIONES</h3>
+          <table id="table_export" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+            <thead>
+              <tr>
+                <th><%= Person.human_attribute_name("locality").titleize%></th>
+                <th>Grupo</th>
+                <th><%= Person.human_attribute_name("dni").titleize%></th>
+                <th>Nombre Completo</th>
+                <th>Edad</th>
+                <th>PAT</th>
+                <th>PRI</th>
+                <th>CUD</th>
+                <th>EMB</th>
+                <th><%= Person.human_attribute_name("email").titleize%></th>
+                <th><%= Person.human_attribute_name("phone").titleize%></th>
+                <th>Dirección</th>
+                <th>Nº</th>
+                
+                
+                <th>Fecha de Nacimiento</th>
+                <th>Fecha de Inscripción</th>
+
+                <th>Estado</th>
+                <th>Opciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @inscripciones.each do |ins| %>
+                <tr>
+                  <td><%= ins.locality %></td>
+
+                  <td><%= ins.population_group_table %></td>
+                  
+                <% if ((ins.dni < 1000000) or (ins.dni > 99999999)) %>
+                  <td><span style="color:red;"><%= ins.dni %></span></td>
+                <% else %>
+                  <td><%= ins.dni %></td>
+                <% end %>
+
+                  <td><%= ins.firstname.partition(" ").first + " " + ins.lastname %></td>
+                  <% if (ins.age > 130) %>
+                  <td><span style="color:red;"><%= ins.age %></span></td>
+                  <% else %>
+                  <td><%= ins.age %></td>
+                  <% end %>
+
+                  <td><%= ins.show_pathologies %></td>
+                  <td><%= ins.priority %></td>
+                  <td><%= ins.show_cud %></td>
+                  <td><%= ins.show_pregnant %></td>
+                  
+                  
+                  <td><%= ins.email %></td>
+                  <td><%= ins.code_telephone %></td>
+                  <td><%= ins.address_street %></td>
+                  <td><%= ins.address_number %></td>
+
+
+                <% if (ins.age > 130) %>
+                  <td><span style="color:red;">0</span></td>
+                <% else %>
+                  
+
+                <% end %>
+                  <td><%= ins.birthdate %></td>
+                  <td><%= ins.created_at.strftime('%d-%m-%Y') %></td>
+
+
+                  <td  class="state"><%= ins.state %></td>
+                  <td>
+                    <%= link_to((fa_icon "user-plus"), '/change_state/Nuevo/'+ ins.id.to_s, :remote => true, :class => "change_state" ) %>
+                    <%= link_to((fa_icon "stethoscope"), '/change_state/Vacunado/'+ ins.id.to_s, :remote => true, :class => "change_state" ) %>
+                    <%= link_to((fa_icon "calendar-times-o"), '/change_state/Ausente/'+ ins.id.to_s, :remote => true, :class => "change_state" ) %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <a class="btn btn-secondary btn-block mt-3" href="/tablero">VOLVER AL tablero</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    $('#table_export').DataTable( {
+      dom: 'Bfrtip',
+      buttons: [
+        {
+          extend: 'copyHtml5',
+          exportOptions: {
+            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+          }
+        },
+        {
+          extend: 'excelHtml5',
+          title: '',
+          exportOptions: {
+            columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+          }
+        },
+        {
+          extend: 'csvHtml5',
+          fieldBoundary: '',
+          header:false,
+          exportOptions: {
+            columns: [3,7]
+          }
+        }
+
+      ],
+      bPaginate: true,
+      language: {'url': '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'},
+      order: [[ 8, "desc" ]]
+    });
+} );
+
+
+
+</script>

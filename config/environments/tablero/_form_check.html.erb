@@ -1,0 +1,6 @@
+<%= form_tag('/check_dni', style: "width:100%;", class: "col-md-6 col-xs-12 check_dni", remote: true) do %>
+  <div class="form-group">
+    <%= text_field_tag "dni","", {:style=>"border-radius:0px;" , :class => "form-control text-center", :placeholder=> "Ingresar DNI"}  %>
+    <%= submit_tag "Verificar", :class => "btn btn-secondary btn-block"%>
+  </div>
+<% end %>

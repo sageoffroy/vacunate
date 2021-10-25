@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="panel-pane pane-texto">
+    <div class="pane-content">
+      <div class="row my-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+          <h3>Log de la actualización de Edades</h3>
+          <strong>Actualización automática de edades para la localidad de </strong>
+          <hr>
+          <% @log_array.each do |line| %>
+          <p class="text-console text-<%=line[1]%>">- <%= line[0] %></p>
+          <% end %>
+          <a class="btn btn-secondary btn-block mt-3" href="/tablero">VOLVER AL TABLERO</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

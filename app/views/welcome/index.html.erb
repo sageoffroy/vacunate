@@ -31,18 +31,18 @@
                   <div class="col-md-8 ">
                     <h2 class="text-white mx-auto mt-5 mb-5">Plan provincial público, gratuito y optativo contra COVID-19</h2>
 
-                  
+
                     <% if user_signed_in? %>
                     <a class="btn btn-warning btn-block mb-3 text-white" href="/tablero">TABLERO</a>
                     <%= link_to "SALIR", destroy_user_session_path, :method => :delete, :class => " btn btn-danger btn-block mb-3" %>
                     <hr style="border-top-color: white;">
-                    <% end %>     
+                    <% end %>
 
                     <a class="btn btn-primary btn-block mb-3" href="/people/new">INSCRIBITE</a>
                     <%= link_to "PREGUNTAS VACUNACIÓN", "https://drive.google.com/file/d/12ieHtAIASHlQprPGsPbFItCpxuDcA6u5/view?usp=sharing", target: "_blank", class: "btn btn-secondary btn-block mb-3" %>
                     <a class="btn btn-secondary btn-block mb-3" href="#info-covid">INFO COVID</a>
                     <a class="btn btn-secondary btn-block mb-3" href="#verificar">¿YA ESTOY INSCRIPTO?</a>
-                    <a class="btn btn-secondary btn-block mb-3" href="#contacto">CONTACTO</a>
+                    <a class="btn btn-secondary btn-block mb-3" href="#contacto" style="background:#E24E97;">CONTACTO</a>
                   </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                 <%= render "tablero/form_check"%>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                   <p id="verfication-msg" style="font-weight: 600">Ingrese un DNI válido y presione el botón verificar.</p>
-                  
+
                 </div>
               </div>
             </div>

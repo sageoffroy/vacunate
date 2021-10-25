@@ -1,0 +1,493 @@
+<div class="container">
+  <div class="panel-pane pane-texto">
+    <div class="pane-content">
+      <div class="row my-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <h3 class="">TABLERO</h3>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    Total de Inscripciones
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_de_inscripciones%>
+                  </div>
+                </div>
+                <div class="col-auto">
+                    <i class="fa fa-address-book fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                      Vacunados</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><%=@total_de_vacunados%></div>
+                </div>
+                <div class="col-auto">
+                  <i class="fa fa-medkit fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-danger shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                    Sin Vacunar
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <%=@total_nuevos%>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fa fa-medkit fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pending Requests Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                    Sin Comunicación
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_ausentes%>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <i class="fa fa-comments fa-2x text-gray-300"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!---------------------------------------------------->
+      <div class="row my-2">
+        <div class="col-md-3 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    3 a 11 años
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_3_11%>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    12 a 17 años
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_12_17%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-md-3 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    18 a 59 años
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <%=@total_18_59%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <div class="card border-left-dark shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-gray-800 text-uppercase mb-1">
+                    Más de 60 Años
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_mayores_60%>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                    Personal de Salud
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_salud%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                    Personal de Educación
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_educacion%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                    Personal de Seguridad
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_seguridad%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!--
+        <div class="col-md-2 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                    Personal de Seguridad
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_seguridad%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+        <div class="col-md-2 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                    Personal de Educación
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <%=@total_educacion%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      -->
+
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+        <!-- Content Column -->
+        <div class="col-lg-6 mb-4">
+          <!-- Project Card Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Localidades con más inscriptos</h6>
+            </div>
+            <div class="card-body">
+          		<% @inscripciones_x_localidad.each do |loc| %>
+                <% if (!loc[0].nil?)%>
+            			<h4 class="small font-weight-bold">
+                    <%=loc[0].name%>
+                    <span class="float-right">Total: <%=loc[1]%></span></h4>
+                	<div class="progress mb-4">
+                  	<div class="progress-bar bg-dark" role="progressbar" style="width: <%=((loc[1]).to_f / @total_de_inscripciones.to_f * 100).to_s + '%'%>"
+                      ></div>
+                	</div>
+                <% end %>
+          		<% end %>
+            </div>
+
+          </div>
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Localidades con más vacunados</h6>
+            </div>
+            <div class="card-body">
+              <% @inscripciones_x_localidad_vacunado.each do |loc| %>
+                <% if (!loc[0].nil?)%>
+                  <h4 class="small font-weight-bold">
+                    <%=loc[0].name%>
+                    <span class="float-right">Total: <%=loc[1]%></span></h4>
+                  <div class="progress mb-4">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: <%=((loc[1]).to_f / @total_de_inscripciones.to_f * 100).to_s + '%'%>"
+                      ></div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+          <div class="row">
+            <!--div class="col-lg-12">
+               <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Inscripciones con Patologías</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-lg-6">
+                                <%= image_tag "iconos_salud-02.png", style:"max-width:150px;" %>
+                            </div>
+                            <div class="col-lg-6" style="display: table;height: 150px;">
+                                <span class="h1 text-warning" style="vertical-align:middle;display: table-cell;">
+                                    <%=@inscripciones_patologia%>
+                                </span>
+                            </div>
+                        </div>
+                        <p> Cantidad de inscripciones con una o más patologías de Riesgo.</p>
+                    </div>
+                </div>
+            </div-->
+            <div class="col-lg-12">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Generar Listado</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Localidad:" %>
+                      <%= select_tag "select_locality_list", options_from_collection_for_select(@localities, :id, :to_s), :class=> 'select-field form-control', multiple: "multiple" %>
+                    </div>
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Grupo Poblacional:" %>
+                      <%= select_tag "population_group_list", options_for_select([ "Tengo entre 3 y 11","Tengo entre 12 y 17", "Soy personal de salud", "Soy personal de seguridad", "Soy personal de educación", "Soy mayor de 60 años", "Tengo entre 18 y 59 (con factores de riesgo)","Tengo entre 18 y 59 (sin factores de riesgo)"]), {class: "select-field form-control", multiple: "multiple"}%>
+                    </div>
+
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Edad Mínima" %>
+                      <%= number_field_tag 'age_min', '3', {class:'form-control'}%>
+                    </div>
+
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Estado:" %>
+                      <%= select_tag "state_list", options_for_select(["Nuevo", "Vacunado", "Ausente"]), {class: " select-field form-control", multiple: "multiple"}%>
+                    </div>
+                    <div class="col-md-12 form-group">
+                      <a id="list_generator_button" class="btn btn-secondary btn-block">GENERAR LISTADO</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Actualización Masiva de Estados</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                    <%= form_tag('/update_states') do %>
+                        <div class="form-group">
+                          <%= label_tag "Listado de documentos:" %>
+                          <%= text_area_tag "dni_list","", {:class => "form-control"}  %>
+                        </div>
+                        <div class="form-group">
+                          <%= label_tag "Estado:" %>
+                          <%= select_tag "state", options_for_select([ "Nuevo", "Vacunado", "Ausente"], "Nuevo"), {class: "select2 select-field form-control"}%>
+                        </div>
+                        <div class="form-group">
+                          <%= submit_tag "Actualizar Estados", :class => "btn btn-secondary btn-block"%>
+                        </div>
+                    <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <!-- Project Card Example -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Actulización Masiva de Edades</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="alert alert-warning" role="alert">
+                        Corrige automáticamente la edad de las personas cuya localidad sea la seleccionada.
+                      </div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                      <%= label_tag "Localidad*:" %>
+                      <%= select_tag "select_locality_age", options_from_collection_for_select(@localities, :id, :to_s), :class=> 'select-field form-control', multiple: "multiple" %>
+                    </div>
+                    <div class="col-md-12 form-group">
+                      <a id="update_ages_button" class="btn btn-secondary btn-block">Actulizar Edades</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- /.container-fluid -->
+
+
+<script type="text/javascript">
+
+
+  $(".select-field").select2({
+    theme: "bootstrap",
+    width: '100%',
+    allowClear: false
+  });
+
+  $("#population_group_list").select2({
+    theme: "bootstrap",
+    width: '100%',
+    allowClear: false
+  });
+
+  $("#state_list").select2({
+    theme: "bootstrap",
+    width: '100%',
+    allowClear: false
+  });
+
+  $("#list_generator_button").on("click", listGenerator);
+  $("#update_ages_button").on("click", updateAges);
+
+
+
+
+
+
+  function listGenerator(){
+    locality_select = $('#select_locality_list');
+    population_group_select = $('#population_group_list');
+    state_select = $('#state_list');
+    age_min_select = $('#age_min');
+
+    if (locality_select.val().length === 0){
+      locality = "Todas";
+    }else{
+      locality = locality_select.val();
+    }
+
+    if (population_group_select.val().length === 0){
+      population_group = "Todos";
+    }else{
+      population_group = population_group_select.val();
+    }
+
+    if (state_select.val().length === 0){
+      state = "Todos";
+    }else{
+      state = state_select.val();
+    }
+
+    if (age_min_select.val().length === 0){
+      age_min = "18";
+    }else{
+      age_min = age_min_select.val();
+    }
+
+    window.location.href = '/list_group_state/'+locality+'/'+population_group+'/'+ state +'/'+age_min
+
+  }
+
+  function updateAges(){
+    locality_select = $('#select_locality_age');
+
+    if (locality_select.val().length === 0){
+      toastr['error']('Requiere ingresar una localidad');
+    }else{
+      locality = locality_select.val();
+    }
+
+    window.location.href = '/update_ages/'+locality
+
+  }
+
+</script>

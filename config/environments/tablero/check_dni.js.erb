@@ -1,0 +1,15 @@
+$(".check_dni").bind('ajax:success', function(){
+
+<% if (@person.nil?) %>
+	console.log("El DNI ingresado es inválido o no se encuentra inscripto.")
+	$("#verfication-msg").text("El DNI <%=@dni%> es inválido o no se encuentra inscripto.");	
+<% else %>
+	console.log("El DNI ingresado ya se encuentra inscripto.")
+	$("#verfication-msg").text("El DNI <%=@dni%> ya se encuentra inscripto.");
+<% end %>
+
+
+
+	
+});
+
